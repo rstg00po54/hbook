@@ -1,8 +1,16 @@
+/* Generated from src/styles/page.styl */
 @import "_common"
 @import "_animations"
 @import "_header"
 @import "_sidebar"
-
+// xxxx
+*
+  scrollbar-color: #454a4d #202324  /* 滑块颜色: #454a4d，轨道颜色: #202324 */
+/* 设置滚动条的宽度 */
+::-webkit-scrollbar {
+  width: 12px;  /* 控制垂直滚动条的宽度 */
+  height: 12px; /* 控制水平滚动条的高度 */
+}
 #header
   box-shadow: 0 0 1px rgba(0,0,0,.25)
   transition: background-color .3s ease-in-out
@@ -13,12 +21,28 @@
   color: #7f8c8d;
   margin-top: 10px;
 
+:root {
+  --mar: 50px;
+}
+
 .content
-  position: relative
-  padding: 2.2em 0
-  max-width: 600px
-  margin: 0 auto
-  padding-left: 50px
+  // position: relative
+  display: flex;
+  flex-grow: 1;
+  flex-direction:column;
+  margin-left: 300px;
+  // width: calc(100vw - 340px - 12px - 12px - var(--mar) - var(--mar))
+  // width: 1600px;
+  // left: 352px;
+  padding-left: var(--mar)
+  padding-right: var(--mar)
+  background-color: #202323
+
+
+  //   padding: var(--mar)Z
+  //   max-width: 1200px
+  //   margin: 0 auto
+  //   padding-left: 50px
   &.api
     > a:first-of-type > h2
       margin-top: 0
@@ -60,12 +84,13 @@
   h2
     margin: $h2-margin-top 0 .8em
     padding-bottom: .7em
-    border-bottom: 1px solid $border
+    border-bottom: 1px solid #3a3e41
     z-index: -1
   h3
     margin: $h3-margin-top 0 1.2em
     position: relative
-    z-index: -1
+    z-index: 1
+    // background-color: #fff
     &:after
       content: "#"
       color: $theme
@@ -90,7 +115,7 @@
     // FIX: Some link click targets are covered without this
     position: inherit
   a
-    color: $theme
+    color: rgb(166, 188, 206)
     font-weight: 600
   blockquote
     margin: 2em 0
@@ -174,9 +199,11 @@
   font-size: .9em
 
 #main.fix-sidebar
-  position: static
-  .sidebar
-    position: fixed
+  // position: static
+  display: flex;
+  flex-direction: row;
+  // .sidebar
+    // position: fixed
 
 @media screen and (min-width: 1590px)
   #header
