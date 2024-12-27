@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Chapter 05 Smart Pointers and Memory Management 现代 C++ 教程: 高速上手 C++ 11/14/17/20 - Modern C++ Tutorial: C++ 11/14/17/20 On the Fly</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Modern C++ Tutorial | C++ 11/14/17/20 On the Fly | 现代 C++ 教程 | 高速上手 C++11/14/17/20">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/modern-cpp/assets/cover-2nd.png">
+    <meta name="msapplication-TileColor" content="#7e2d36">
+    <meta name="theme-color" content="#7e2d36">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80889616-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-80889616-2');
+    </script>
+
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/modern-cpp/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>window.PAGE_TYPE = "book-en-us"</script>
+    <script async src="//changkun.de/urlstat/client.js"></script>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body class="docs">
+    
+      <div id="mobile-bar" data-bg-text="Modern C++ Tutorial" >
+        <a class="menu-button"></a>
+        <a class="logo" href="/modern-cpp/"></a>
+      </div>
+    
+    <div id="header">
+  <a id="logo" href="/modern-cpp/">
+    
+      <img src="/modern-cpp/assets/cover-2nd-en-logo.png">
+      <span>Modern C++ Tutorial: C++ 11/14/17/20 On the Fly</span>
+    
+  </a>
+  <ul id="nav">
+    
+      <li class="nav-dropdown-container resource">
+<a class="nav-link">Resources</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+    <li><a class="nav-link" href="/modern-cpp/en-us/00-preface/" >Book</a></li>
+    <!-- TODO -->
+    <!-- <li><a class="nav-link" href="/modern-cpp/code/1/" >Code</a></li>
+    <li><a class="nav-link" href="/modern-cpp/exercises/1/" >Exercise</a></li>
+    <li><a class="nav-link" href="/modern-cpp/answers/1/" >Answers</a></li> -->
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container about">
+<a class="nav-link">About</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+    <li><a class="nav-link" href="/modern-cpp/about/donate.html" >Donate</a></li>
+    <li><a class="nav-link" href="/modern-cpp/about/copyright.html" >Copyright</a></li>
+    <li><a class="nav-link" href="/modern-cpp/about/ack.html" >Acknowledgements</a></li>
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container language">
+<a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    English
+</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+        <li><a class="nav-link" target="_blank" href="/modern-cpp/zh-cn/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        中文
+    </a></li>
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container about">
+<a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+    
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      
+        <li class="nav-dropdown-container resource">
+<a class="nav-link">Resources</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+    <li><a class="nav-link" href="/modern-cpp/en-us/00-preface/" >Book</a></li>
+    <!-- TODO -->
+    <!-- <li><a class="nav-link" href="/modern-cpp/code/1/" >Code</a></li>
+    <li><a class="nav-link" href="/modern-cpp/exercises/1/" >Exercise</a></li>
+    <li><a class="nav-link" href="/modern-cpp/answers/1/" >Answers</a></li> -->
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container about">
+<a class="nav-link">About</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+    <li><a class="nav-link" href="/modern-cpp/about/donate.html" >Donate</a></li>
+    <li><a class="nav-link" href="/modern-cpp/about/copyright.html" >Copyright</a></li>
+    <li><a class="nav-link" href="/modern-cpp/about/ack.html" >Acknowledgements</a></li>
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container language">
+<a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    English
+</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+        <li><a class="nav-link" target="_blank" href="/modern-cpp/zh-cn/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        中文
+    </a></li>
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container about">
+<a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+      
+    </ul>
+    <div class="list">
+      <h2>
+        
+          Book-en-us
+        
+      </h2>
+      <ul class="menu-root">
+  
+    <li>
+      <a href="/modern-cpp/en-us/00-preface/index.html" class="sidebar-link">Preface</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/01-intro/index.html" class="sidebar-link">Chapter 01: Towards Modern C++</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/02-usability/index.html" class="sidebar-link">Chapter 02: Language Usability Enhancements</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/03-runtime/index.html" class="sidebar-link">Chapter 03: Language Runtime Enhancements</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/04-containers/index.html" class="sidebar-link">Chapter 04 Containers</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/05-pointers/index.html" class="sidebar-link current">Chapter 05 Smart Pointers and Memory Management</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/06-regex/index.html" class="sidebar-link">Chapter 06 Regular Expression</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/07-thread/index.html" class="sidebar-link">Chapter 07 Parallelism and Concurrency</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/08-filesystem/index.html" class="sidebar-link">Chapter 08 File System</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/09-others/index.html" class="sidebar-link">Chapter 09 Minor Features</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/10-cpp20/index.html" class="sidebar-link">Chapter 10 Outlook: Introduction of C++20</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/appendix1/index.html" class="sidebar-link">Appendix 1: Further Study Materials</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/appendix2/index.html" class="sidebar-link">Appendix 2: Modern C++ Best Practices</a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="content book-en-us with-sidebar index-guide">
+  <h1 id="Chapter-05-Smart-Pointers-and-Memory-Management"><a href="#Chapter-05-Smart-Pointers-and-Memory-Management" class="headerlink" title="Chapter 05 Smart Pointers and Memory Management"></a>Chapter 05 Smart Pointers and Memory Management</h1><h2 id="5-1-RAII-and-Reference-Counting"><a href="#5-1-RAII-and-Reference-Counting" class="headerlink" title="5.1 RAII and Reference Counting"></a>5.1 RAII and Reference Counting</h2><p>Programmers who understand <code>Objective-C</code>&#x2F;<code>Swift</code>&#x2F;<code>JavaScript</code> should know the concept of reference counting. The reference count is counted to prevent memory leaks.<br>The basic idea is to count the number of dynamically allocated objects. Whenever you add a reference to the same object, the reference count of the referenced object is incremented once.<br>Each time a reference is deleted, the reference count is decremented by one. When the reference count of an object is reduced to zero, the pointed heap memory is automatically deleted.</p>
+<p>In traditional C++, “remembering” to manually release resources is not always a best practice. Because we are likely to forget to release resources and lead to leakage.<br>So the usual practice is that for an object, we apply for space when constructor, and free space when the destructor (called when leaving the scope).<br>That is, we often say that the RAII resource acquisition is the initialization technology.</p>
+<p>There are exceptions to everything, we always need to allocate objects on free storage. In traditional C++ we have to use <code>new</code> and <code>delete</code> to “remember” to release resources. C++11 introduces the concept of smart pointers, using the idea of ​​reference counting so that programmers no longer need to care about manually releasing memory.<br>These smart pointers include <code>std::shared_ptr</code>&#x2F;<code>std::unique_ptr</code>&#x2F;<code>std::weak_ptr</code>, which need to include the header file <code>&lt;memory&gt;</code>.</p>
+<blockquote>
+<p>Note: The reference count is not garbage collection. The reference count can recover the objects that are no longer used as soon as possible, and will not cause long waits during the recycling process.<br>More clearly and indicate the life cycle of resources.</p>
+</blockquote>
+<h2 id="5-2-std-shared-ptr"><a href="#5-2-std-shared-ptr" class="headerlink" title="5.2 std::shared_ptr"></a>5.2 <code>std::shared_ptr</code></h2><p><code>std::shared_ptr</code> is a smart pointer that records how many <code>shared_ptr</code> points to an object, eliminating to call <code>delete</code>, which automatically deletes the object when the reference count becomes zero.</p>
+<p>But not enough, because using <code>std::shared_ptr</code> still needs to be called with <code>new</code>, which makes the code a certain degree of asymmetry.</p>
+<p><code>std::make_shared</code> can be used to eliminate the explicit use of <code>new</code>, so <code>std::make_shared</code> will allocate the objects in the generated parameters.<br>And return the <code>std::shared_ptr</code> pointer of this object type. For example:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">foo</span><span class="params">(std::shared_ptr&lt;<span class="type">int</span>&gt; i)</span> </span>&#123;</span><br><span class="line">    (*i)++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// auto pointer = new int(10); // illegal, no direct assignment</span></span><br><span class="line">    <span class="comment">// Constructed a std::shared_ptr</span></span><br><span class="line">    <span class="keyword">auto</span> pointer = std::<span class="built_in">make_shared</span>&lt;<span class="type">int</span>&gt;(<span class="number">10</span>);</span><br><span class="line">    <span class="built_in">foo</span>(pointer);</span><br><span class="line">    std::cout &lt;&lt; *pointer &lt;&lt; std::endl; <span class="comment">// 11</span></span><br><span class="line">    <span class="comment">// The shared_ptr will be destructed before leaving the scope</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>std::shared_ptr</code> can get the raw pointer through the <code>get()</code> method and reduce the reference count by <code>reset()</code>.<br>And see the reference count of an object by <code>use_count()</code>. E.g:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> pointer = std::<span class="built_in">make_shared</span>&lt;<span class="type">int</span>&gt;(<span class="number">10</span>);</span><br><span class="line"><span class="keyword">auto</span> pointer2 = pointer; <span class="comment">// reference count+1</span></span><br><span class="line"><span class="keyword">auto</span> pointer3 = pointer; <span class="comment">// reference count+1</span></span><br><span class="line"><span class="type">int</span> *p = pointer.<span class="built_in">get</span>();  <span class="comment">// no increase of reference count</span></span><br><span class="line"></span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;pointer.use_count() = &quot;</span> &lt;&lt; pointer.<span class="built_in">use_count</span>() &lt;&lt; std::endl;   <span class="comment">// 3</span></span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;pointer2.use_count() = &quot;</span> &lt;&lt; pointer<span class="number">2.</span><span class="built_in">use_count</span>() &lt;&lt; std::endl; <span class="comment">// 3</span></span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;pointer3.use_count() = &quot;</span> &lt;&lt; pointer<span class="number">3.</span><span class="built_in">use_count</span>() &lt;&lt; std::endl; <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line">pointer<span class="number">2.</span><span class="built_in">reset</span>();</span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;reset pointer2:&quot;</span> &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;pointer.use_count() = &quot;</span> &lt;&lt; pointer.<span class="built_in">use_count</span>() &lt;&lt; std::endl;   <span class="comment">// 2</span></span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;pointer2.use_count() = &quot;</span> </span><br><span class="line">    &lt;&lt; pointer<span class="number">2.</span><span class="built_in">use_count</span>() &lt;&lt; std::endl;                <span class="comment">// pointer2 has reset, 0</span></span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;pointer3.use_count() = &quot;</span> &lt;&lt; pointer<span class="number">3.</span><span class="built_in">use_count</span>() &lt;&lt; std::endl; <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line">pointer<span class="number">3.</span><span class="built_in">reset</span>();</span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;reset pointer3:&quot;</span> &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;pointer.use_count() = &quot;</span> &lt;&lt; pointer.<span class="built_in">use_count</span>() &lt;&lt; std::endl;   <span class="comment">// 1</span></span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;pointer2.use_count() = &quot;</span> &lt;&lt; pointer<span class="number">2.</span><span class="built_in">use_count</span>() &lt;&lt; std::endl; <span class="comment">// 0</span></span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;pointer3.use_count() = &quot;</span> </span><br><span class="line">    &lt;&lt; pointer<span class="number">3.</span><span class="built_in">use_count</span>() &lt;&lt; std::endl;                <span class="comment">// pointer3 has reset, 0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-3-std-unique-ptr"><a href="#5-3-std-unique-ptr" class="headerlink" title="5.3 std::unique_ptr"></a>5.3 <code>std::unique_ptr</code></h2><p><code>std::unique_ptr</code> is an exclusive smart pointer that prohibits other smart pointers from sharing the same object, thus keeping the code safe:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">std::unique_ptr&lt;<span class="type">int</span>&gt; pointer = std::<span class="built_in">make_unique</span>&lt;<span class="type">int</span>&gt;(<span class="number">10</span>); <span class="comment">// make_unique, from C++14</span></span><br><span class="line">std::unique_ptr&lt;<span class="type">int</span>&gt; pointer2 = pointer; <span class="comment">// illegal</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>make_unique</code> is not complicated. C++11 does not provide <code>std::make_unique</code>, which can be implemented by itself:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> ...Args&gt;</span></span><br><span class="line"><span class="function">std::unique_ptr&lt;T&gt; <span class="title">make_unique</span><span class="params">( Args&amp;&amp; ...args )</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> std::<span class="built_in">unique_ptr</span>&lt;T&gt;( <span class="keyword">new</span> <span class="built_in">T</span>( std::forward&lt;Args&gt;(args)... ) );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>As for why it wasn’t provided, Herb Sutter, chairman of the C++ Standards Committee, mentioned in his <a target="_blank" rel="noopener" href="https://herbsutter.com/gotw/_102/">blog</a> that it was because they were forgotten.</p>
+</blockquote>
+<p>Since it is monopolized, in other words, it cannot be copied. However, we can use <code>std::move</code> to transfer it to other <code>unique_ptr</code>, for example:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Foo</span> &#123;</span><br><span class="line">    <span class="built_in">Foo</span>()      &#123; std::cout &lt;&lt; <span class="string">&quot;Foo::Foo&quot;</span> &lt;&lt; std::endl;  &#125;</span><br><span class="line">    ~<span class="built_in">Foo</span>()     &#123; std::cout &lt;&lt; <span class="string">&quot;Foo::~Foo&quot;</span> &lt;&lt; std::endl; &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123; std::cout &lt;&lt; <span class="string">&quot;Foo::foo&quot;</span> &lt;&lt; std::endl;  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">(<span class="type">const</span> Foo &amp;)</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;f(const Foo&amp;)&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::unique_ptr&lt;Foo&gt; <span class="title">p1</span><span class="params">(std::make_unique&lt;Foo&gt;())</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// p1 is not empty, prints</span></span><br><span class="line">    <span class="keyword">if</span> (p1) p1-&gt;<span class="built_in">foo</span>();</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function">std::unique_ptr&lt;Foo&gt; <span class="title">p2</span><span class="params">(std::move(p1))</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// p2 is not empty, prints</span></span><br><span class="line">        <span class="built_in">f</span>(*p2);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// p2 is not empty, prints</span></span><br><span class="line">        <span class="keyword">if</span>(p2) p2-&gt;<span class="built_in">foo</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// p1 is empty, no prints</span></span><br><span class="line">        <span class="keyword">if</span>(p1) p1-&gt;<span class="built_in">foo</span>();</span><br><span class="line"></span><br><span class="line">        p1 = std::<span class="built_in">move</span>(p2);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// p2 is empty, no prints</span></span><br><span class="line">        <span class="keyword">if</span>(p2) p2-&gt;<span class="built_in">foo</span>();</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;p2 was destroyed&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// p1 is not empty, prints</span></span><br><span class="line">    <span class="keyword">if</span> (p1) p1-&gt;<span class="built_in">foo</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Foo instance will be destroyed when leaving the scope</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-4-std-weak-ptr"><a href="#5-4-std-weak-ptr" class="headerlink" title="5.4 std::weak_ptr"></a>5.4 <code>std::weak_ptr</code></h2><p>If you think about <code>std::shared_ptr</code> carefully, you will still find that there is still a problem that resources cannot be released. Look at the following example:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    std::shared_ptr&lt;B&gt; pointer;</span><br><span class="line">    ~<span class="built_in">A</span>() &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;A was destroyed&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    std::shared_ptr&lt;A&gt; pointer;</span><br><span class="line">    ~<span class="built_in">B</span>() &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;B was destroyed&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::shared_ptr&lt;A&gt; a = std::<span class="built_in">make_shared</span>&lt;A&gt;();</span><br><span class="line">    std::shared_ptr&lt;B&gt; b = std::<span class="built_in">make_shared</span>&lt;B&gt;();</span><br><span class="line">    a-&gt;pointer = b;</span><br><span class="line">    b-&gt;pointer = a;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The result is that A and B will not be destroyed. This is because the pointer inside a, b also references <code>a, b</code>, which makes the reference count of <code>a, b</code> becomes 2, leaving the scope. When the <code>a, b</code> smart pointer is destructed, it can only cause the reference count of this area to be decremented by one. This causes the memory area reference count pointed to by the <code>a, b</code> object to be non-zero, but the external has no way to find this area, it also caused a memory leak, as shown in Figure 5.1:</p>
+<p><img src="/../../assets/figures/pointers1_en.png" alt="Figure 5.1"></p>
+<p>The solution to this problem is to use the weak reference pointer <code>std::weak_ptr</code>, which is a weak reference (compared to <code>std::shared_ptr</code> is a strong reference). A weak reference does not cause an increase in the reference count. When a weak reference is used, the final release process is shown in Figure 5.2:</p>
+<p><img src="/../../assets/figures/pointers2.png" alt="Figure 5.2"></p>
+<p>In the above figure, only B is left in the last step, and B does not have any smart pointers to reference it, so this memory resource will also be released.</p>
+<p><code>std::weak_ptr</code> has no implemented <code>*</code> and <code>-&gt;</code> operators, therefore it cannot operate on resources. <code>std::weak_ptr</code> allows us to check if a <code>std::shared_ptr</code> exists or not. The <code>expired()</code> method of a <code>std::weak_ptr</code> returns <code>false</code> when the resource is not released; Otherwise, it returns <code>true</code>.<br>Furthermore, it can also be used for the purpose of obtaining <code>std::shared_ptr</code>, which points to the original object. The <code>lock()</code> method returns a <code>std::shared_ptr</code> to the original object when the resource is not released, or <code>nullptr</code> otherwise.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>The technology of smart pointers is not novel. It is a common technology in many languages. Modern C++ introduces this technology, which eliminates the abuse of <code>new</code>&#x2F;<code>delete</code> to a certain extent. It is a more mature technology. Programming paradigm.</p>
+<h2 id="Further-Readings"><a href="#Further-Readings" class="headerlink" title="Further Readings"></a>Further Readings</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/12580432/why-does-c11-have-make-shared-but-not-make-unique">Why does C++11 have <code>make_shared</code> but not <code>make_unique</code></a></li>
+</ul>
+
+  <div class="guide-links">
+    
+      <span>← <a href="/modern-cpp/en-us/04-containers/index.html">Chapter 04 Containers</a></span>
+    
+    
+      <span style="float: right;"><a href="/modern-cpp/en-us/06-regex/index.html">Chapter 06 Regular Expression</a> →</span>
+    
+  </div>
+
+  
+    <div class="footer">
+        <p>
+          <a target="_blank" rel="noopener" href="https://changkun.de">Changkun Ou</a> &copy; 2016-2024.
+          The book is licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0</a>, code is open sourced under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> License. </a>
+        </p>
+        <p>
+          If you like the book, you could <a href="/modern-cpp/about/donate.html">donate the author</a>.
+        </p>
+      </div>
+  
+
+
+</div>
+
+      </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.2.1/js/smooth-scroll.min.js"></script>
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="https://cdn.jsdelivr.net/npm/css.escape@1.5.1/css.escape.min.js"></script>
+    <script src="/modern-cpp/js/common.js"></script>
+
+    <!-- fastclick -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
+</html>

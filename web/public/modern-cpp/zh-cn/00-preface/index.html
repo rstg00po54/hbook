@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>序言 现代 C++ 教程: 高速上手 C++ 11/14/17/20 - Modern C++ Tutorial: C++ 11/14/17/20 On the Fly</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Modern C++ Tutorial | C++ 11/14/17/20 On the Fly | 现代 C++ 教程 | 高速上手 C++11/14/17/20">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/modern-cpp/assets/cover-2nd.png">
+    <meta name="msapplication-TileColor" content="#7e2d36">
+    <meta name="theme-color" content="#7e2d36">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80889616-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-80889616-2');
+    </script>
+
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/modern-cpp/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>window.PAGE_TYPE = "book-zh-cn"</script>
+    <script async src="//changkun.de/urlstat/client.js"></script>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body class="docs">
+    
+      <div id="mobile-bar" data-bg-text="现代 C++ 教程" >
+        <a class="menu-button"></a>
+        <a class="logo" href="/modern-cpp/"></a>
+      </div>
+    
+    <div id="header">
+  <a id="logo" href="/modern-cpp/">
+    
+      <img src="/modern-cpp/assets/cover-2nd-logo.png">
+      <span>现代 C++ 教程：高速上手 C++ 11/14/17/20</span>
+    
+  </a>
+  <ul id="nav">
+    
+      <li class="nav-dropdown-container resource">
+  <a class="nav-link">资源</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a class="nav-link" href="/modern-cpp/zh-cn/00-preface/" >正文</a></li>
+      <!-- TODO -->
+      <!-- <li><a class="nav-link" href="/modern-cpp/code/1/" >代码</a></li>
+      <li><a class="nav-link" href="/modern-cpp/exercises/1/" >习题</a></li>
+      <li><a class="nav-link" href="/modern-cpp/answers/1/" >答案</a></li> -->
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link">关于</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" href="/modern-cpp/about/donate.html" >资助</a></li>
+      <li><a class="nav-link" href="/modern-cpp/about/copyright.html" >版权声明</a></li>
+      <li><a class="nav-link" href="/modern-cpp/about/ack.html" >致谢</a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    中文
+  </a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" target="_blank" href="/modern-cpp/en-us/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        English
+      </a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+
+    
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      
+        <li class="nav-dropdown-container resource">
+  <a class="nav-link">资源</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a class="nav-link" href="/modern-cpp/zh-cn/00-preface/" >正文</a></li>
+      <!-- TODO -->
+      <!-- <li><a class="nav-link" href="/modern-cpp/code/1/" >代码</a></li>
+      <li><a class="nav-link" href="/modern-cpp/exercises/1/" >习题</a></li>
+      <li><a class="nav-link" href="/modern-cpp/answers/1/" >答案</a></li> -->
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link">关于</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" href="/modern-cpp/about/donate.html" >资助</a></li>
+      <li><a class="nav-link" href="/modern-cpp/about/copyright.html" >版权声明</a></li>
+      <li><a class="nav-link" href="/modern-cpp/about/ack.html" >致谢</a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    中文
+  </a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" target="_blank" href="/modern-cpp/en-us/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        English
+      </a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+
+      
+    </ul>
+    <div class="list">
+      <h2>
+        
+          正文
+        
+      </h2>
+      <ul class="menu-root">
+  
+    <li>
+      <a href="/modern-cpp/zh-cn/00-preface/index.html" class="sidebar-link current">序言</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/zh-cn/01-intro/index.html" class="sidebar-link">第 1 章 迈向现代 C++</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/zh-cn/02-usability/index.html" class="sidebar-link">第 2 章 语言可用性的强化</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/zh-cn/03-runtime/index.html" class="sidebar-link">第 3 章 语言运行期的强化</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/zh-cn/04-containers/index.html" class="sidebar-link">第 4 章 容器</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/zh-cn/05-pointers/index.html" class="sidebar-link">第 5 章 智能指针与内存管理</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/zh-cn/06-regex/index.html" class="sidebar-link">第 6 章 正则表达式</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/zh-cn/07-thread/index.html" class="sidebar-link">第 7 章 并行与并发</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/zh-cn/08-filesystem/index.html" class="sidebar-link">第 8 章 文件系统</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/zh-cn/09-others/index.html" class="sidebar-link">第 9 章 其他杂项</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/zh-cn/10-cpp20/index.html" class="sidebar-link">第 10 章 展望：C++20 简介</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/zh-cn/appendix1/index.html" class="sidebar-link">附录 1：进一步阅读的学习材料</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/zh-cn/appendix2/index.html" class="sidebar-link">附录 2：现代 C++ 的最佳实践</a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="content book-zh-cn with-sidebar index-guide">
+  <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>C++ 是一个用户群体相当大的语言。从 C++98 的出现到 C++11 的正式定稿经历了长达十年多之久的积累。C++14&#x2F;17 则是作为对 C++11 的重要补充和优化，C++20 则将这门语言领进了现代化的大门，所有这些新标准中扩充的特性，给 C++ 这门语言注入了新的活力。<br>那些还在坚持使用<strong>传统 C++</strong> （本书把 C++98 及其之前的 C++ 特性均称之为传统 C++）而未接触过现代 C++ 的 C++ 程序员在见到诸如 Lambda 表达式这类全新特性时，甚至会流露出『学的不是同一门语言』的惊叹之情。</p>
+<p><strong>现代 C++</strong> (本书中均指 C++11&#x2F;14&#x2F;17&#x2F;20) 为传统 C++ 注入的大量特性使得整个 C++ 变得更加像一门现代化的语言。现代 C++ 不仅仅增强了 C++ 语言自身的可用性，<code>auto</code> 关键字语义的修改使得我们更加有信心来操控极度复杂的模板类型。同时还对语言运行期进行了大量的强化，Lambda 表达式的出现让 C++ 具有了『匿名函数』的『闭包』特性，而这一特性几乎在现代的编程语言（诸如 Python&#x2F;Swift&#x2F;… ）中已经司空见惯，右值引用的出现解决了 C++ 长期以来被人诟病的临时对象效率问题等等。</p>
+<p>C++17 则是近三年依赖 C++ 社区一致推进的方向，也指出了 <strong>现代C++</strong> 编程的一个重要发展方向。尽管它的出现并不如 C++11 的分量之重，但它包含了大量小而美的语言与特性（例如结构化绑定），这些特性的出现再一次修正了我们在 C++ 中的编程范式。</p>
+<p>现代 C++ 还为自身的标准库增加了非常多的工具和方法，诸如在语言自身标准的层面上制定了 <code>std::thread</code>，从而支持了并发编程，在不同平台上不再依赖于系统底层的 API，实现了语言层面的跨平台支持；<code>std::regex</code> 提供了完整的正则表达式支持等等。C++98 已经被实践证明了是一种非常成功的『范型』，而现代 C++ 的出现，则进一步推动这种范型，让 C++ 成为系统程序设计和库开发更好的语言。Concept 提供了对模板参数编译期的检查，进一步增强了语言整体的可用性。</p>
+<p>总而言之，我们作为 C++ 的拥护与实践者，始终保持接纳新事物的开放心态，才能更快的推进 C++ 的发展，使得这门古老而又新颖的语言更加充满活力。</p>
+<h2 id="目标读者"><a href="#目标读者" class="headerlink" title="目标读者"></a>目标读者</h2><ol>
+<li>本书假定读者已经熟悉了传统 C++ ，至少在阅读传统 C++ 代码上不具备任何困难。换句话说，那些长期使用传统 C++ 进行编码的人、渴望在短时间内迅速了解<strong>现代 C++</strong> 特性的人非常适合阅读本书；</li>
+<li>本书一定程度上介绍了一些现代 C++ 的<strong>黑魔法</strong>，但这些魔法毕竟有限，不适合希望进阶学习现代 C++ 的读者，本书的定位系<strong>现代 C++ 的快速上手</strong>。当然，希望进阶学习的读者可以使用本书来回顾并检验自己对 <strong>现代 C++</strong> 的熟悉度。</li>
+</ol>
+<h2 id="本书目的"><a href="#本书目的" class="headerlink" title="本书目的"></a>本书目的</h2><p>本书号称『高速上手』，从内容上对二十一世纪二十年代之前产生 C++ 的相关特性做了非常相对全面的介绍，读者可以自行根据下面的目录选取感兴趣的内容进行学习，快速熟悉需要了解的内容。这些特性并不需要全部掌握，只需针对自己的使用需求和特定的应用场景，学习、查阅最适合自己的新特性即可。</p>
+<p>同时，本书在介绍这些特性的过程中，尽可能简单明了的介绍了这些特性产生的历史背景和技术需求，这为理解这些特性、运用这些特性提供了很大的帮助。</p>
+<p>此外，笔者希望读者在阅读本书后，能够努力在新项目中直接使用 C++17，并努力将旧项目逐步迁移到 C++17。也算是笔者为推进现代 C++ 的普及贡献了一些绵薄之力。</p>
+<h2 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h2><p>本书每章中都出现了大量的代码，如果你在跟随本书介绍特性的思路编写自己的代码遇到问题时，不妨读一读随书附上的源码，你可以在<a href="../../code">这里</a>中找到书中介绍过的全部的源码，所有代码按章节组织，文件夹名称为章节序号。</p>
+<h2 id="随书习题"><a href="#随书习题" class="headerlink" title="随书习题"></a>随书习题</h2><p>本书每章最后还加入了少量难度极小的习题，仅用于检验你是否能混合运用当前章节中的知识点。你可以在<a href="../../exercises">这里</a>找到习题的答案，文件夹名称为章节序号。</p>
+
+  <div class="guide-links">
+    
+    
+      <span style="float: right;"><a href="/modern-cpp/zh-cn/01-intro/index.html">第 1 章 迈向现代 C++</a> →</span>
+    
+  </div>
+
+  
+    <div class="footer">
+        <p>
+          <a target="_blank" rel="noopener" href="https://changkun.de">欧长坤</a> &copy; 2016-2024 版权所有，
+          采用<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议许可</a>，代码使用 <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> 协议开源。</a>
+        </p>
+        <p>
+            如果你认为本书对你起到了帮助，可以<a href="/modern-cpp/about/donate.html">资助作者</a>。
+        </p>
+      </div>
+  
+
+
+</div>
+
+      </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.2.1/js/smooth-scroll.min.js"></script>
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="https://cdn.jsdelivr.net/npm/css.escape@1.5.1/css.escape.min.js"></script>
+    <script src="/modern-cpp/js/common.js"></script>
+
+    <!-- fastclick -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
+</html>

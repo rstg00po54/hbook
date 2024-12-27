@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Chapter 07 Parallelism and Concurrency 现代 C++ 教程: 高速上手 C++ 11/14/17/20 - Modern C++ Tutorial: C++ 11/14/17/20 On the Fly</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Modern C++ Tutorial | C++ 11/14/17/20 On the Fly | 现代 C++ 教程 | 高速上手 C++11/14/17/20">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/modern-cpp/assets/cover-2nd.png">
+    <meta name="msapplication-TileColor" content="#7e2d36">
+    <meta name="theme-color" content="#7e2d36">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80889616-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-80889616-2');
+    </script>
+
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/modern-cpp/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>window.PAGE_TYPE = "book-en-us"</script>
+    <script async src="//changkun.de/urlstat/client.js"></script>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body class="docs">
+    
+      <div id="mobile-bar" data-bg-text="Modern C++ Tutorial" >
+        <a class="menu-button"></a>
+        <a class="logo" href="/modern-cpp/"></a>
+      </div>
+    
+    <div id="header">
+  <a id="logo" href="/modern-cpp/">
+    
+      <img src="/modern-cpp/assets/cover-2nd-en-logo.png">
+      <span>Modern C++ Tutorial: C++ 11/14/17/20 On the Fly</span>
+    
+  </a>
+  <ul id="nav">
+    
+      <li class="nav-dropdown-container resource">
+<a class="nav-link">Resources</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+    <li><a class="nav-link" href="/modern-cpp/en-us/00-preface/" >Book</a></li>
+    <!-- TODO -->
+    <!-- <li><a class="nav-link" href="/modern-cpp/code/1/" >Code</a></li>
+    <li><a class="nav-link" href="/modern-cpp/exercises/1/" >Exercise</a></li>
+    <li><a class="nav-link" href="/modern-cpp/answers/1/" >Answers</a></li> -->
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container about">
+<a class="nav-link">About</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+    <li><a class="nav-link" href="/modern-cpp/about/donate.html" >Donate</a></li>
+    <li><a class="nav-link" href="/modern-cpp/about/copyright.html" >Copyright</a></li>
+    <li><a class="nav-link" href="/modern-cpp/about/ack.html" >Acknowledgements</a></li>
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container language">
+<a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    English
+</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+        <li><a class="nav-link" target="_blank" href="/modern-cpp/zh-cn/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        中文
+    </a></li>
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container about">
+<a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+    
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      
+        <li class="nav-dropdown-container resource">
+<a class="nav-link">Resources</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+    <li><a class="nav-link" href="/modern-cpp/en-us/00-preface/" >Book</a></li>
+    <!-- TODO -->
+    <!-- <li><a class="nav-link" href="/modern-cpp/code/1/" >Code</a></li>
+    <li><a class="nav-link" href="/modern-cpp/exercises/1/" >Exercise</a></li>
+    <li><a class="nav-link" href="/modern-cpp/answers/1/" >Answers</a></li> -->
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container about">
+<a class="nav-link">About</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+    <li><a class="nav-link" href="/modern-cpp/about/donate.html" >Donate</a></li>
+    <li><a class="nav-link" href="/modern-cpp/about/copyright.html" >Copyright</a></li>
+    <li><a class="nav-link" href="/modern-cpp/about/ack.html" >Acknowledgements</a></li>
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container language">
+<a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    English
+</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+        <li><a class="nav-link" target="_blank" href="/modern-cpp/zh-cn/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        中文
+    </a></li>
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container about">
+<a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+      
+    </ul>
+    <div class="list">
+      <h2>
+        
+          Book-en-us
+        
+      </h2>
+      <ul class="menu-root">
+  
+    <li>
+      <a href="/modern-cpp/en-us/00-preface/index.html" class="sidebar-link">Preface</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/01-intro/index.html" class="sidebar-link">Chapter 01: Towards Modern C++</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/02-usability/index.html" class="sidebar-link">Chapter 02: Language Usability Enhancements</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/03-runtime/index.html" class="sidebar-link">Chapter 03: Language Runtime Enhancements</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/04-containers/index.html" class="sidebar-link">Chapter 04 Containers</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/05-pointers/index.html" class="sidebar-link">Chapter 05 Smart Pointers and Memory Management</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/06-regex/index.html" class="sidebar-link">Chapter 06 Regular Expression</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/07-thread/index.html" class="sidebar-link current">Chapter 07 Parallelism and Concurrency</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/08-filesystem/index.html" class="sidebar-link">Chapter 08 File System</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/09-others/index.html" class="sidebar-link">Chapter 09 Minor Features</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/10-cpp20/index.html" class="sidebar-link">Chapter 10 Outlook: Introduction of C++20</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/appendix1/index.html" class="sidebar-link">Appendix 1: Further Study Materials</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/appendix2/index.html" class="sidebar-link">Appendix 2: Modern C++ Best Practices</a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="content book-en-us with-sidebar index-guide">
+  <h1 id="Chapter-07-Parallelism-and-Concurrency"><a href="#Chapter-07-Parallelism-and-Concurrency" class="headerlink" title="Chapter 07 Parallelism and Concurrency"></a>Chapter 07 Parallelism and Concurrency</h1><h2 id="7-1-Basic-of-Parallelism"><a href="#7-1-Basic-of-Parallelism" class="headerlink" title="7.1 Basic of Parallelism"></a>7.1 Basic of Parallelism</h2><p><code>std::thread</code> is used to create an execution thread instance, so it is the basis for all concurrent programming. It needs to include the <code>&lt;thread&gt;</code> header file when using it.<br>It provides a number of basic thread operations, such as <code>get_id()</code> to get the thread ID of the thread being created, use <code>join()</code> to join a thread, etc., for example:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::thread <span class="title">t</span><span class="params">([]()&#123;</span></span></span><br><span class="line"><span class="params"><span class="function">        std::cout &lt;&lt; <span class="string">&quot;hello world.&quot;</span> &lt;&lt; std::endl;</span></span></span><br><span class="line"><span class="params"><span class="function">    &#125;)</span></span>;</span><br><span class="line">    t.<span class="built_in">join</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-2-Mutex-and-Critical-Section"><a href="#7-2-Mutex-and-Critical-Section" class="headerlink" title="7.2 Mutex and Critical Section"></a>7.2 Mutex and Critical Section</h2><p>We have already learned the basics of concurrency technology in the operating system, or the database, and <code>mutex</code> is one of the cores.<br>C++11 introduces a class related to <code>mutex</code>, with all related functions in the <code>&lt;mutex&gt;</code> header file.</p>
+<p><code>std::mutex</code> is the most basic mutex class in C++11, and a mutex can be created by constructing a <code>std::mutex</code> object.<br>It can be locked by its member function <code>lock()</code>, and <code>unlock()</code> can be unlocked.<br>But in the process of actually writing the code, it is best not to directly call the member function,<br>Because calling member functions, you need to call <code>unlock()</code> at the exit of each critical section, and of course, exceptions.<br>At this time, C++11 also provides a template class <code>std::lock_guard</code> for the RAII mechanism for the mutex.</p>
+<p>RAII guarantees the exceptional security of the code while keeping the simplicity of the code.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> v = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">critical_section</span><span class="params">(<span class="type">int</span> change_v)</span> </span>&#123;</span><br><span class="line">    <span class="type">static</span> std::mutex mtx;</span><br><span class="line">    <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mtx)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// execute contention works</span></span><br><span class="line">    v = change_v;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// mtx will be released after leaving the scope</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::thread <span class="title">t1</span><span class="params">(critical_section, <span class="number">2</span>)</span>, <span class="title">t2</span><span class="params">(critical_section, <span class="number">3</span>)</span></span>;</span><br><span class="line">    t<span class="number">1.</span><span class="built_in">join</span>();</span><br><span class="line">    t<span class="number">2.</span><span class="built_in">join</span>();</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; v &lt;&lt; std::endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Because C++ guarantees that all stack objects will be destroyed at the end of the declaration period, such code is also extremely safe.<br>Whether <code>critical_section()</code> returns normally or if an exception is thrown in the middle, a stack unwinding is thrown, and <code>unlock()</code> is automatically called.</p>
+<blockquote>
+<p>An exception is thrown and not caught (it is implementation-defined whether any stack unwinding is done in this case).</p>
+</blockquote>
+<p><code>std::unique_lock</code> is more flexible than <code>std::lock_guard</code>.<br>Objects of <code>std::unique_lock</code> manage the locking and unlocking operations on the <code>mutex</code> object with exclusive ownership (no other <code>unique_lock</code> objects owning the ownership of a <code>mutex</code> object). So in concurrent programming, it is recommended to use <code>std::unique_lock</code>.</p>
+<p><code>std::lock_guard</code> cannot explicitly call <code>lock</code> and <code>unlock</code>, and <code>std::unique_lock</code> can be called anywhere after the declaration.<br>It can reduce the scope of the lock and provide higher concurrency.</p>
+<p>If you use the condition variable <code>std::condition_variable::wait</code> you must use <code>std::unique_lock</code> as a parameter.</p>
+<p>For instance:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> v = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">critical_section</span><span class="params">(<span class="type">int</span> change_v)</span> </span>&#123;</span><br><span class="line">    <span class="type">static</span> std::mutex mtx;</span><br><span class="line">    <span class="function">std::unique_lock&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mtx)</span></span>;</span><br><span class="line">    <span class="comment">// do contention operations</span></span><br><span class="line">    v = change_v;</span><br><span class="line">    std::cout &lt;&lt; v &lt;&lt; std::endl;</span><br><span class="line">    <span class="comment">// release the lock</span></span><br><span class="line">    lock.<span class="built_in">unlock</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// during this period,</span></span><br><span class="line">    <span class="comment">// others are allowed to acquire v</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// start another group of contention operations</span></span><br><span class="line">    <span class="comment">// lock again</span></span><br><span class="line">    lock.<span class="built_in">lock</span>();</span><br><span class="line">    v += <span class="number">1</span>;</span><br><span class="line">    std::cout &lt;&lt; v &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::thread <span class="title">t1</span><span class="params">(critical_section, <span class="number">2</span>)</span>, <span class="title">t2</span><span class="params">(critical_section, <span class="number">3</span>)</span></span>;</span><br><span class="line">    t<span class="number">1.</span><span class="built_in">join</span>();</span><br><span class="line">    t<span class="number">2.</span><span class="built_in">join</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-3-Future"><a href="#7-3-Future" class="headerlink" title="7.3 Future"></a>7.3 Future</h2><p>The Future is represented by <code>std::future</code>, which provides a way to access the results of asynchronous operations. This sentence is very difficult to understand.<br>To understand this feature, we need to understand the multi-threaded behavior before C++11.</p>
+<p>Imagine if our main thread A wants to open a new thread B to perform some of our expected tasks and return me a result.<br>At this time, thread A may be busy with other things and have no time to take into account the results of B.<br>So we naturally hope to get the result of thread B at a certain time.</p>
+<p>Before the introduction of <code>std::future</code> in C++11, the usual practice is:<br>Create a thread A, start task B in thread A, send an event when it is ready, and save the result in a global variable.<br>The main function thread A is doing other things. When the result is needed, a thread is called to wait for the function to get the result of the execution.</p>
+<p>The <code>std::future</code> provided by C++11 simplifies this process and can be used to get the results of asynchronous tasks.<br>Naturally, we can easily imagine it as a simple means of thread synchronization, namely the barrier.</p>
+<p>To see an example, we use extra <code>std::packaged_task</code>, which can be used to wrap any target that can be called for asynchronous calls. For example:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;future&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// pack a lambda expression that returns 7 into a std::packaged_task</span></span><br><span class="line">    <span class="function">std::packaged_task&lt;<span class="title">int</span><span class="params">()</span>&gt; <span class="title">task</span><span class="params">([]()&#123;<span class="keyword">return</span> <span class="number">7</span>;&#125;)</span></span>;</span><br><span class="line">    <span class="comment">// get the future of task</span></span><br><span class="line">    std::future&lt;<span class="type">int</span>&gt; result = task.<span class="built_in">get_future</span>();    <span class="comment">// run task in a thread</span></span><br><span class="line">    std::<span class="built_in">thread</span>(std::<span class="built_in">move</span>(task)).<span class="built_in">detach</span>();</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;waiting...&quot;</span>;</span><br><span class="line">    result.<span class="built_in">wait</span>(); <span class="comment">// block until future has arrived</span></span><br><span class="line">    <span class="comment">// output result</span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;done!&quot;</span> &lt;&lt; std:: endl &lt;&lt; <span class="string">&quot;future result is &quot;</span> </span><br><span class="line">              &lt;&lt; result.<span class="built_in">get</span>() &lt;&lt; std::endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>After encapsulating the target to be called, you can use <code>get_future()</code> to get a <code>std::future</code> object to implement thread synchronization later.</p>
+<h2 id="7-4-Condition-Variable"><a href="#7-4-Condition-Variable" class="headerlink" title="7.4 Condition Variable"></a>7.4 Condition Variable</h2><p>The condition variable <code>std::condition_variable</code> was born to solve the deadlock and was introduced when the mutex operation was not enough.<br>For example, a thread may need to wait for a condition to be true to continue execution.<br>A dead wait loop can cause all other threads to fail to enter the critical section so that when the condition is true, a deadlock occurs.<br>Therefore, the <code>condition_variable</code> object is created primarily to wake up the waiting thread and avoid deadlocks.<br><code>notify_one()</code> of <code>std::condition_variable</code> is used to wake up a thread;<br><code>notify_all()</code> is to notify all threads. Below is an example of a producer and consumer model:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;condition_variable&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::queue&lt;<span class="type">int</span>&gt; produced_nums;</span><br><span class="line">    std::mutex mtx;</span><br><span class="line">    std::condition_variable cv;</span><br><span class="line">    <span class="type">bool</span> notified = <span class="literal">false</span>;  <span class="comment">// notification sign</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">auto</span> producer = [&amp;]() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; ; i++) &#123;</span><br><span class="line">            std::this_thread::<span class="built_in">sleep_for</span>(std::chrono::<span class="built_in">milliseconds</span>(<span class="number">500</span>));</span><br><span class="line">            <span class="function">std::unique_lock&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mtx)</span></span>;</span><br><span class="line">            std::cout &lt;&lt; <span class="string">&quot;producing &quot;</span> &lt;&lt; i &lt;&lt; std::endl;</span><br><span class="line">            produced_nums.<span class="built_in">push</span>(i);</span><br><span class="line">            notified = <span class="literal">true</span>;</span><br><span class="line">            cv.<span class="built_in">notify_all</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">auto</span> consumer = [&amp;]() &#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            std::unique_lock&lt;std::mutex&gt; <span class="built_in">lock</span>(mtx);</span><br><span class="line">            <span class="keyword">while</span> (!notified) &#123;  <span class="comment">// avoid spurious wakeup</span></span><br><span class="line">                cv.<span class="built_in">wait</span>(lock);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// temporal unlock to allow producer produces more rather than</span></span><br><span class="line">            <span class="comment">// let consumer hold the lock until its consumed.</span></span><br><span class="line">            lock.<span class="built_in">unlock</span>();</span><br><span class="line">            <span class="comment">// consumer is slower</span></span><br><span class="line">            std::this_thread::<span class="built_in">sleep_for</span>(std::chrono::<span class="built_in">milliseconds</span>(<span class="number">1000</span>));</span><br><span class="line">            lock.<span class="built_in">lock</span>();</span><br><span class="line">            <span class="keyword">if</span> (!produced_nums.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">                std::cout &lt;&lt; <span class="string">&quot;consuming &quot;</span> &lt;&lt; produced_nums.<span class="built_in">front</span>() &lt;&lt; std::endl;</span><br><span class="line">                produced_nums.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            notified = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function">std::thread <span class="title">p</span><span class="params">(producer)</span></span>;</span><br><span class="line">    std::thread cs[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; ++i) &#123;</span><br><span class="line">        cs[i] = std::<span class="built_in">thread</span>(consumer);</span><br><span class="line">    &#125;</span><br><span class="line">    p.<span class="built_in">join</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; ++i) &#123;</span><br><span class="line">        cs[i].<span class="built_in">join</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>It is worth mentioning that although we can use <code>notify_one()</code> in the producer, it is not recommended to use it here.<br>Because in the case of multiple consumers, our consumer implementation simply gives up the lock holding, which makes it possible for other consumers to compete for this lock, to better utilize the concurrency between multiple consumers. Having said that, but in fact because of the exclusivity of <code>std::mutex</code>,<br>We simply can’t expect multiple consumers to be able to produce content in a parallel consumer queue, and we still need a more granular approach.</p>
+<h2 id="7-5-Atomic-Operation-and-Memory-Model"><a href="#7-5-Atomic-Operation-and-Memory-Model" class="headerlink" title="7.5 Atomic Operation and Memory Model"></a>7.5 Atomic Operation and Memory Model</h2><p>Careful readers may be tempted by the fact that the example of the producer-consumer model in the previous section may have compiler optimizations that cause program errors.<br>For example, the compiler may have optimizations for the variable <code>notified</code>, such as the value of a register.<br>As a result, the consumer thread can never observe the change of this value. This is a good question. To explain this problem, we need to further discuss the concept of the memory model introduced from C++11. Let’s first look at a question. What is the output of the following code?</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">volatile</span> <span class="type">int</span> flag = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">std::thread <span class="title">t1</span><span class="params">([&amp;]() &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="keyword">while</span> (flag != <span class="number">1</span>);</span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="type">int</span> b = a;</span></span></span><br><span class="line"><span class="params"><span class="function">        std::cout &lt;&lt; <span class="string">&quot;b = &quot;</span> &lt;&lt; b &lt;&lt; std::endl;</span></span></span><br><span class="line"><span class="params"><span class="function">    &#125;)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">std::thread <span class="title">t2</span><span class="params">([&amp;]() &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">        a = <span class="number">5</span>;</span></span></span><br><span class="line"><span class="params"><span class="function">        flag = <span class="number">1</span>;</span></span></span><br><span class="line"><span class="params"><span class="function">    &#125;)</span></span>;</span><br><span class="line"></span><br><span class="line">    t<span class="number">1.</span><span class="built_in">join</span>();</span><br><span class="line">    t<span class="number">2.</span><span class="built_in">join</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Intuitively, it  seems that <code>a = 5;</code> in <code>t2</code> always executes before <code>flag = 1;</code> and <code>while (flag != 1)</code> in <code>t1</code>. It looks like there is a guarantee the line <code>std ::cout &lt;&lt; &quot;b = &quot; &lt;&lt; b &lt;&lt; std::endl;</code> will not be executed before the mark is changed. Logically, it seems that the value of <code>b</code> should be equal to 5.<br>But the actual situation is much more complicated than this, or the code itself is undefined behavior because, for <code>a</code> and <code>flag</code>, they are read and written in two parallel threads.<br>There has been competition. Also, even if we ignore competing for reading and writing, it is still possible to receive out-of-order execution of the CPU and the impact of the compiler on the rearrangement of instructions.<br>Cause <code>a = 5</code> to occur after <code>flag = 1</code>. Thus <code>b</code> may output 0.</p>
+<h3 id="Atomic-Operation"><a href="#Atomic-Operation" class="headerlink" title="Atomic Operation"></a>Atomic Operation</h3><p><code>std::mutex</code> can solve the problem of concurrent read and write, but the mutex is an operating system-level function.<br>This is because the implementation of a mutex usually contains two basic principles:</p>
+<ol>
+<li>Provide automatic state transition between threads, that is, “lock” state</li>
+<li>Ensure that the memory of the manipulated variable is isolated from the critical section during the mutex operation</li>
+</ol>
+<p>This is a very strong set of synchronization conditions, in other words when it is finally compiled into a CPU instruction, it will behave like a lot of instructions (we will look at how to implement a simple mutex later).<br>This seems too harsh for a variable that requires only atomic operations (no intermediate state).</p>
+<p>The research on synchronization conditions has a very long history, and we will not go into details here. Readers should understand that under the modern CPU architecture, atomic operations at the CPU instruction level are provided.<br>Therefore, the <code>std::atomic</code> template is introduced in C++11 for the topic of multi-threaded shared variable reading and writing, which enables us to instantiate atomic types,<br>and minimize an atomic read or write operation from a set of instructions to a single CPU instruction. E.g:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">std::atomic&lt;<span class="type">int</span>&gt; counter;</span><br></pre></td></tr></table></figure>
+
+<p>And provides basic numeric member functions for atomic types of integers or floating-point numbers, for example,<br>Including <code>fetch_add</code>, <code>fetch_sub</code>, etc., and the corresponding <code>+</code>, <code>-</code> version is provided by overload.<br>For example, the following example:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;atomic&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line">std::atomic&lt;<span class="type">int</span>&gt; count = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::thread <span class="title">t1</span><span class="params">([]()&#123;</span></span></span><br><span class="line"><span class="params"><span class="function">        count.fetch_add(<span class="number">1</span>);</span></span></span><br><span class="line"><span class="params"><span class="function">    &#125;)</span></span>;</span><br><span class="line">    <span class="function">std::thread <span class="title">t2</span><span class="params">([]()&#123;</span></span></span><br><span class="line"><span class="params"><span class="function">        count++;        <span class="comment">// identical to fetch_add</span></span></span></span><br><span class="line"><span class="params"><span class="function">        count += <span class="number">1</span>;     <span class="comment">// identical to fetch_add</span></span></span></span><br><span class="line"><span class="params"><span class="function">    &#125;)</span></span>;</span><br><span class="line">    t<span class="number">1.</span><span class="built_in">join</span>();</span><br><span class="line">    t<span class="number">2.</span><span class="built_in">join</span>();</span><br><span class="line">    std::cout &lt;&lt; count &lt;&lt; std::endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Of course, not all types provide atomic operations because the feasibility of atomic operations depends on the architecture of the CPU and whether the type structure being instantiated satisfies the memory alignment requirements of the architecture, so we can always pass <code>std::atomic&lt;T&gt;::is_lock_free</code> to check if the atom type needs to support atomic operations, for example:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;atomic&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="type">float</span> x;</span><br><span class="line">    <span class="type">int</span> y;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> z;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::atomic&lt;A&gt; a;</span><br><span class="line">    std::cout &lt;&lt; std::boolalpha &lt;&lt; a.<span class="built_in">is_lock_free</span>() &lt;&lt; std::endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Consistency-Model"><a href="#Consistency-Model" class="headerlink" title="Consistency Model"></a>Consistency Model</h3><p>Multiple threads executing in parallel, discussed at some macro level, can be roughly considered a distributed system.<br>In a distributed system, any communication or even local operation takes a certain amount of time, and even unreliable communication occurs.</p>
+<p>If we force the operation of a variable <code>v</code> between multiple threads to be atomic, that is, any thread after the operation of <code>v</code><br>Other threads can <strong>synchronize</strong> to perceive changes in <code>v</code>, for the variable <code>v</code>, which appears as a sequential execution of the program, it does not have any efficiency gains due to the introduction of multithreading. Is there any way to accelerate this properly? The answer is to weaken the synchronization conditions between processes in atomic operations.</p>
+<p>In principle, each thread can correspond to a cluster node, and communication between threads is almost equivalent to communication between cluster nodes.<br>Weakening the synchronization conditions between processes, usually we will consider four different consistency models:</p>
+<ol>
+<li><p>Linear consistency: Also known as strong consistency or atomic consistency. It requires that any read operation can read the most recent write of a certain data, and the order of operation of all threads is consistent with the order under the global clock.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">        x.store(1)      x.load()</span><br><span class="line">T1 ---------+----------------+------&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">T2 -------------------+-------------&gt;</span><br><span class="line">                x.store(2)</span><br></pre></td></tr></table></figure>
+
+<p>In this case, thread <code>T1</code>, <code>T2</code> is twice atomic to <code>x</code>, and <code>x.store(1)</code> is strictly before <code>x.store(2)</code>. <code>x.store(2)</code> strictly occurs before <code>x.load()</code>. It is worth mentioning that linear consistency requirements for global clocks are difficult to achieve, which is why people continue to study other consistent algorithms under this weaker consistency.</p>
+</li>
+<li><p>Sequential consistency: It is also required that any read operation can read the last data written by the data, but it is not required to be consistent with the order of the global clock.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">        x.store(1)  x.store(3)   x.load()</span><br><span class="line">T1 ---------+-----------+----------+-----&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">T2 ---------------+----------------------&gt;</span><br><span class="line">              x.store(2)</span><br><span class="line"></span><br><span class="line">or</span><br><span class="line"></span><br><span class="line">        x.store(1)  x.store(3)   x.load()</span><br><span class="line">T1 ---------+-----------+----------+-----&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">T2 ------+-------------------------------&gt;</span><br><span class="line">      x.store(2)</span><br></pre></td></tr></table></figure>
+
+<p>Under the order consistency requirement, <code>x.load()</code> must read the last written data, so <code>x.store(2)</code> and <code>x.store(1)</code> do not have any guarantees, as long as <code>x.store(2)</code> of <code>T2</code> occurs before <code>x.store(3)</code>.</p>
+</li>
+<li><p>Causal consistency: its requirements are further reduced, only the sequence of causal operations is guaranteed, and the order of non-causal operations is not required.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">      a = 1      b = 2</span><br><span class="line">T1 ----+-----------+----------------------------&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">T2 ------+--------------------+--------+--------&gt;</span><br><span class="line">      x.store(3)         c = a + b    y.load()</span><br><span class="line"></span><br><span class="line">or</span><br><span class="line"></span><br><span class="line">      a = 1      b = 2</span><br><span class="line">T1 ----+-----------+----------------------------&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">T2 ------+--------------------+--------+--------&gt;</span><br><span class="line">      x.store(3)          y.load()   c = a + b</span><br><span class="line"></span><br><span class="line">or</span><br><span class="line"></span><br><span class="line">     b = 2       a = 1</span><br><span class="line">T1 ----+-----------+----------------------------&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">T2 ------+--------------------+--------+--------&gt;</span><br><span class="line">      y.load()            c = a + b  x.store(3)</span><br></pre></td></tr></table></figure>
+
+<p>The three examples given above are all causal consistent because, in the whole process, only <code>c</code> has a dependency on <code>a</code> and <code>b</code>, and <code>x</code> and <code>y</code> are not related in this example. (But in actual situations we need more detailed information to determine that <code>x</code> is not related to <code>y</code>)</p>
+</li>
+<li><p>Final Consistency: It is the weakest consistency requirement. It only guarantees that an operation will be observed at a certain point in the future, but does not require the observed time. So we can even strengthen this condition a bit, for example, to specify that the time observed for an operation is always bounded. Of course, this is no longer within our discussion.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    x.store(3)  x.store(4)</span><br><span class="line">T1 ----+-----------+--------------------------------------------&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">T2 ---------+------------+--------------------+--------+--------&gt;</span><br><span class="line">         x.read()      x.read()           x.read()   x.read()</span><br></pre></td></tr></table></figure>
+
+<p>In the above case, if we assume that the initial value of x is 0, then the four times &#96;&#96;x.read()<code>in</code>T2&#96; may be but not limited to the following:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">3 4 4 4 // The write operation of x was quickly observed</span><br><span class="line">0 3 3 4 // There is a delay in the observed time of the x write operation</span><br><span class="line">0 0 0 4 // The last read read the final value of x, </span><br><span class="line">        // but the previous changes were not observed.</span><br><span class="line">0 0 0 0 // The write operation of x is not observed in the current time period, </span><br><span class="line">        // but the situation that x is 4 can be observed </span><br><span class="line">        // at some point in the future.</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="Memory-Orders"><a href="#Memory-Orders" class="headerlink" title="Memory Orders"></a>Memory Orders</h3><p>To achieve the ultimate performance and achieve consistency of various strength requirements, C++11 defines six different memory sequences for atomic operations. The option <code>std::memory_order</code> expresses four synchronization models between multiple threads:</p>
+<ol>
+<li><p>Relaxed model: Under this model, atomic operations within a single thread are executed sequentially, and instruction reordering is not allowed, but the order of atomic operations between different threads is arbitrary. The type is specified by <code>std::memory_order_relaxed</code>. Let’s look at an example:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">std::atomic&lt;<span class="type">int</span>&gt; counter = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">std::vector&lt;std::thread&gt; vt;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; ++i) &#123;</span><br><span class="line">    vt.<span class="built_in">emplace_back</span>([&amp;]()&#123;</span><br><span class="line">        counter.<span class="built_in">fetch_add</span>(<span class="number">1</span>, std::memory_order_relaxed);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp; t : vt) &#123;</span><br><span class="line">    t.<span class="built_in">join</span>();</span><br><span class="line">&#125;</span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;current counter:&quot;</span> &lt;&lt; counter &lt;&lt; std::endl;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Release&#x2F;consumption model: In this model, we begin to limit the order of operations between processes. If a thread needs to modify a value, but another thread will have a dependency on that operation of the value, that is, the latter depends on the former. Specifically, thread A has completed three writes to <code>x</code>, and thread <code>B</code> relies only on the third <code>x</code> write operation, regardless of the first two write behaviors of <code>x</code>, then <code>A </code> When active <code>x.release()</code> (ie using <code>std::memory_order_release</code>), the option <code>std::memory_order_consume</code> ensures that <code>B</code> observes <code>A</code> when calling <code>x.load()</code> Three writes to <code>x</code>. Let’s look at an example:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// initialize as nullptr to prevent consumer load a dangling pointer</span></span><br><span class="line"><span class="function">std::atomic&lt;<span class="type">int</span>*&gt; <span class="title">ptr</span><span class="params">(<span class="literal">nullptr</span>)</span></span>;</span><br><span class="line"><span class="type">int</span> v;</span><br><span class="line"><span class="function">std::thread <span class="title">producer</span><span class="params">([&amp;]() &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">int</span>* p = <span class="keyword">new</span> <span class="type">int</span>(<span class="number">42</span>);</span></span></span><br><span class="line"><span class="params"><span class="function">    v = <span class="number">1024</span>;</span></span></span><br><span class="line"><span class="params"><span class="function">    ptr.store(p, std::memory_order_release);</span></span></span><br><span class="line"><span class="params"><span class="function">&#125;)</span></span>;</span><br><span class="line"><span class="function">std::thread <span class="title">consumer</span><span class="params">([&amp;]() &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">int</span>* p;</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">while</span>(!(p = ptr.load(std::memory_order_consume)));</span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function">    std::cout &lt;&lt; <span class="string">&quot;p: &quot;</span> &lt;&lt; *p &lt;&lt; std::endl;</span></span></span><br><span class="line"><span class="params"><span class="function">    std::cout &lt;&lt; <span class="string">&quot;v: &quot;</span> &lt;&lt; v &lt;&lt; std::endl;</span></span></span><br><span class="line"><span class="params"><span class="function">&#125;)</span></span>;</span><br><span class="line">producer.<span class="built_in">join</span>();</span><br><span class="line">consumer.<span class="built_in">join</span>();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Release&#x2F;Acquire model: Under this model, we can further tighten the order of atomic operations between different threads, specifying the timing between releasing <code>std::memory_order_release</code> and getting <code>std::memory_order_acquire</code>. <strong>All</strong> write operations before the release operation is visible to any other thread, i.e., happens before.</p>
+<p>As you can see, <code>std::memory_order_release</code> ensures that a write before a release does not occur after the release operation, which is a <strong>backward barrier</strong>, and <code>std::memory_order_acquire</code> ensures that a subsequent read or write after a acquire does not occur before the acquire operation, which is a <strong>forward barrier</strong>.<br>For the <code>std::memory_order_acq_rel</code> option, combines the characteristics of the two barriers and determines a unique memory barrier, such that reads and writes of the current thread will not be rearranged across the barrier.</p>
+<p>Let’s check an example:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;<span class="type">int</span>&gt; v;</span><br><span class="line">std::atomic&lt;<span class="type">int</span>&gt; flag = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="function">std::thread <span class="title">release</span><span class="params">([&amp;]() &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">    v.push_back(<span class="number">42</span>);</span></span></span><br><span class="line"><span class="params"><span class="function">    flag.store(<span class="number">1</span>, std::memory_order_release);</span></span></span><br><span class="line"><span class="params"><span class="function">&#125;)</span></span>;</span><br><span class="line"><span class="function">std::thread <span class="title">acqrel</span><span class="params">([&amp;]() &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">int</span> expected = <span class="number">1</span>; <span class="comment">// must before compare_exchange_strong</span></span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">while</span>(!flag.compare_exchange_strong(expected, <span class="number">2</span>, std::memory_order_acq_rel)) </span></span></span><br><span class="line"><span class="params"><span class="function">        expected = <span class="number">1</span>; <span class="comment">// must after compare_exchange_strong</span></span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="comment">// flag has changed to 2</span></span></span></span><br><span class="line"><span class="params"><span class="function">&#125;)</span></span>;</span><br><span class="line"><span class="function">std::thread <span class="title">acquire</span><span class="params">([&amp;]() &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">while</span>(flag.load(std::memory_order_acquire) &lt; <span class="number">2</span>);</span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function">    std::cout &lt;&lt; v.at(<span class="number">0</span>) &lt;&lt; std::endl; <span class="comment">// must be 42</span></span></span></span><br><span class="line"><span class="params"><span class="function">&#125;)</span></span>;</span><br><span class="line">release.<span class="built_in">join</span>();</span><br><span class="line">acqrel.<span class="built_in">join</span>();</span><br><span class="line">acquire.<span class="built_in">join</span>();</span><br></pre></td></tr></table></figure>
+
+<p>In this case we used <code>compare_exchange_strong</code>, which is the Compare-and-swap primitive, which has a weaker version, <code>compare_exchange_weak</code>, which allows a failure to be returned even if the exchange is successful. The reason is due to a false failure on some platforms, specifically when the CPU performs a context switch, another thread loads the same address to produce an inconsistency. In addition, the performance of <code>compare_exchange_strong</code> may be slightly worse than <code>compare_exchange_weak</code>. However, in most cases, <code>compare_exchange_weak</code> is discouraged due to the complexity of its usage.</p>
+</li>
+<li><p>Sequential Consistent Model: Under this model, atomic operations satisfy sequence consistency, which in turn can cause performance loss. It can be specified explicitly by <code>std::memory_order_seq_cst</code>. Let’s look at a final example:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">std::atomic&lt;<span class="type">int</span>&gt; counter = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">std::vector&lt;std::thread&gt; vt;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; ++i) &#123;</span><br><span class="line">    vt.<span class="built_in">emplace_back</span>([&amp;]()&#123;</span><br><span class="line">        counter.<span class="built_in">fetch_add</span>(<span class="number">1</span>, std::memory_order_seq_cst);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp; t : vt) &#123;</span><br><span class="line">    t.<span class="built_in">join</span>();</span><br><span class="line">&#125;</span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;current counter:&quot;</span> &lt;&lt; counter &lt;&lt; std::endl;</span><br></pre></td></tr></table></figure>
+
+<p>This example is essentially the same as the first loose model example. Just change the memory order of the atomic operation to <code>memory_order_seq_cst</code>. Interested readers can write their own programs to measure the performance difference caused by these two different memory sequences.</p>
+</li>
+</ol>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>The C++11 language layer provides support for concurrent programming. This section briefly introduces <code>std::thread</code>&#x2F;<code>std::mutex</code>&#x2F;<code>std::future</code>, an important tool that can’t be avoided in concurrent programming.<br>In addition, we also introduced the “memory model” as one of the most important features of C++11.<br>They provide a critical foundation for standardized high-performance computing for C++.</p>
+<h2 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h2><ol>
+<li><p>Write a simple thread pool that provides the following features:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ThreadPool <span class="title">p</span><span class="params">(<span class="number">4</span>)</span></span>; <span class="comment">// specify four work thread</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// enqueue a task, and return a std::future</span></span><br><span class="line"><span class="keyword">auto</span> f = pool.<span class="built_in">enqueue</span>([](<span class="type">int</span> life) &#123;</span><br><span class="line">    <span class="keyword">return</span> meaning;</span><br><span class="line">&#125;, <span class="number">42</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// fetch result from future</span></span><br><span class="line">std::cout &lt;&lt; f.<span class="built_in">get</span>() &lt;&lt; std::endl;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Use <code>std::atomic&lt;bool&gt;</code> to implement a mutex.</p>
+</li>
+</ol>
+<h2 id="Further-Readings"><a href="#Further-Readings" class="headerlink" title="Further Readings"></a>Further Readings</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.amazon.com/dp/1617294691/ref=cm_sw_em_r_mt_dp_U_siEmDbRMMF960">C++ Concurrency in Action</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/thread">Thread document</a></li>
+<li>Herlihy, M. P., &amp; Wing, J. M. (1990). Linearizability: a correctness condition for concurrent objects. ACM Transactions on Programming Languages and Systems, 12(3), 463–492. <a target="_blank" rel="noopener" href="https://doi.org/10.1145/78969.78972">https://doi.org/10.1145/78969.78972</a></li>
+</ul>
+
+  <div class="guide-links">
+    
+      <span>← <a href="/modern-cpp/en-us/06-regex/index.html">Chapter 06 Regular Expression</a></span>
+    
+    
+      <span style="float: right;"><a href="/modern-cpp/en-us/08-filesystem/index.html">Chapter 08 File System</a> →</span>
+    
+  </div>
+
+  
+    <div class="footer">
+        <p>
+          <a target="_blank" rel="noopener" href="https://changkun.de">Changkun Ou</a> &copy; 2016-2024.
+          The book is licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0</a>, code is open sourced under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> License. </a>
+        </p>
+        <p>
+          If you like the book, you could <a href="/modern-cpp/about/donate.html">donate the author</a>.
+        </p>
+      </div>
+  
+
+
+</div>
+
+      </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.2.1/js/smooth-scroll.min.js"></script>
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="https://cdn.jsdelivr.net/npm/css.escape@1.5.1/css.escape.min.js"></script>
+    <script src="/modern-cpp/js/common.js"></script>
+
+    <!-- fastclick -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Chapter 10 Outlook: Introduction of C++20 现代 C++ 教程: 高速上手 C++ 11/14/17/20 - Modern C++ Tutorial: C++ 11/14/17/20 On the Fly</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Modern C++ Tutorial | C++ 11/14/17/20 On the Fly | 现代 C++ 教程 | 高速上手 C++11/14/17/20">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/modern-cpp/assets/cover-2nd.png">
+    <meta name="msapplication-TileColor" content="#7e2d36">
+    <meta name="theme-color" content="#7e2d36">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80889616-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-80889616-2');
+    </script>
+
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/modern-cpp/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>window.PAGE_TYPE = "book-en-us"</script>
+    <script async src="//changkun.de/urlstat/client.js"></script>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body class="docs">
+    
+      <div id="mobile-bar" data-bg-text="Modern C++ Tutorial" >
+        <a class="menu-button"></a>
+        <a class="logo" href="/modern-cpp/"></a>
+      </div>
+    
+    <div id="header">
+  <a id="logo" href="/modern-cpp/">
+    
+      <img src="/modern-cpp/assets/cover-2nd-en-logo.png">
+      <span>Modern C++ Tutorial: C++ 11/14/17/20 On the Fly</span>
+    
+  </a>
+  <ul id="nav">
+    
+      <li class="nav-dropdown-container resource">
+<a class="nav-link">Resources</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+    <li><a class="nav-link" href="/modern-cpp/en-us/00-preface/" >Book</a></li>
+    <!-- TODO -->
+    <!-- <li><a class="nav-link" href="/modern-cpp/code/1/" >Code</a></li>
+    <li><a class="nav-link" href="/modern-cpp/exercises/1/" >Exercise</a></li>
+    <li><a class="nav-link" href="/modern-cpp/answers/1/" >Answers</a></li> -->
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container about">
+<a class="nav-link">About</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+    <li><a class="nav-link" href="/modern-cpp/about/donate.html" >Donate</a></li>
+    <li><a class="nav-link" href="/modern-cpp/about/copyright.html" >Copyright</a></li>
+    <li><a class="nav-link" href="/modern-cpp/about/ack.html" >Acknowledgements</a></li>
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container language">
+<a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    English
+</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+        <li><a class="nav-link" target="_blank" href="/modern-cpp/zh-cn/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        中文
+    </a></li>
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container about">
+<a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+    
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      
+        <li class="nav-dropdown-container resource">
+<a class="nav-link">Resources</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+    <li><a class="nav-link" href="/modern-cpp/en-us/00-preface/" >Book</a></li>
+    <!-- TODO -->
+    <!-- <li><a class="nav-link" href="/modern-cpp/code/1/" >Code</a></li>
+    <li><a class="nav-link" href="/modern-cpp/exercises/1/" >Exercise</a></li>
+    <li><a class="nav-link" href="/modern-cpp/answers/1/" >Answers</a></li> -->
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container about">
+<a class="nav-link">About</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+    <li><a class="nav-link" href="/modern-cpp/about/donate.html" >Donate</a></li>
+    <li><a class="nav-link" href="/modern-cpp/about/copyright.html" >Copyright</a></li>
+    <li><a class="nav-link" href="/modern-cpp/about/ack.html" >Acknowledgements</a></li>
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container language">
+<a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    English
+</a><span class="arrow"></span>
+<ul class="nav-dropdown">
+    <li><ul>
+        <li><a class="nav-link" target="_blank" href="/modern-cpp/zh-cn/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        中文
+    </a></li>
+    </ul></li>
+</ul>
+</li>
+
+<li class="nav-dropdown-container about">
+<a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+      
+    </ul>
+    <div class="list">
+      <h2>
+        
+          Book-en-us
+        
+      </h2>
+      <ul class="menu-root">
+  
+    <li>
+      <a href="/modern-cpp/en-us/00-preface/index.html" class="sidebar-link">Preface</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/01-intro/index.html" class="sidebar-link">Chapter 01: Towards Modern C++</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/02-usability/index.html" class="sidebar-link">Chapter 02: Language Usability Enhancements</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/03-runtime/index.html" class="sidebar-link">Chapter 03: Language Runtime Enhancements</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/04-containers/index.html" class="sidebar-link">Chapter 04 Containers</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/05-pointers/index.html" class="sidebar-link">Chapter 05 Smart Pointers and Memory Management</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/06-regex/index.html" class="sidebar-link">Chapter 06 Regular Expression</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/07-thread/index.html" class="sidebar-link">Chapter 07 Parallelism and Concurrency</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/08-filesystem/index.html" class="sidebar-link">Chapter 08 File System</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/09-others/index.html" class="sidebar-link">Chapter 09 Minor Features</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/10-cpp20/index.html" class="sidebar-link current">Chapter 10 Outlook: Introduction of C++20</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/appendix1/index.html" class="sidebar-link">Appendix 1: Further Study Materials</a>
+    </li>
+  
+    <li>
+      <a href="/modern-cpp/en-us/appendix2/index.html" class="sidebar-link">Appendix 2: Modern C++ Best Practices</a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="content book-en-us with-sidebar index-guide">
+  <h1 id="Chapter-10-Outlook-Introduction-of-C-20"><a href="#Chapter-10-Outlook-Introduction-of-C-20" class="headerlink" title="Chapter 10 Outlook: Introduction of C++20"></a>Chapter 10 Outlook: Introduction of C++20</h1><p>C++20 seems to be an exciting update.<br>For example, as early as C++11, the <code>Concept</code>,<br>which was eager to call for high-altitude but ultimately lost, is now on the line.<br>The C++ Organizing Committee decided to vote to finalize C++20 with many proposals,<br>such as <strong>Concepts</strong>&#x2F;<strong>Module</strong>&#x2F;<strong>Coroutine</strong>&#x2F;<strong>Ranges</strong>&#x2F; and so on.<br>In this chapter, we’ll take a look at some of the important features that<br>C++20 will introduce.</p>
+<h2 id="Concept"><a href="#Concept" class="headerlink" title="Concept"></a>Concept</h2><p>The concept is a further enhancement to C++ template programming.<br>In simple terms, the concept is a compile-time feature.<br>It allows the compiler to evaluate template parameters at compile-time,<br>greatly enhancing our experience with template programming in C++.<br>When programming with templates, we often encounter a variety of heinous errors.<br>This is because we have so far been unable to check and limit template parameters.<br>For example, the following two lines of code can cause a lot of<br>almost unreadable compilation errors:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::list&lt;<span class="type">int</span>&gt; l = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">    std::<span class="built_in">sort</span>(l.<span class="built_in">begin</span>(), l.<span class="built_in">end</span>());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The root cause of this code error is that <code>std::sort</code> must provide<br>a random iterator for the sorting container, otherwise it will not be used,<br>and we know that <code>std::list</code> does not support random access.<br>In the conceptual language, the iterator in <code>std::list</code> does not satisfy<br>the constraint of the concept of random iterators in <code>std::sort</code>.<br>After introducing the concept, we can constrain the template parameters<br>like this:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">requires</span> Sortable&lt;T&gt; <span class="comment">// Sortable is a concept</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sort</span><span class="params">(T&amp; c)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>abbreviate as:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;Sortable T&gt; <span class="comment">// T is a Sortable typename</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sort</span><span class="params">(T&amp; c)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>Even use it directly as a type:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">sort</span><span class="params">(Sortable&amp; c)</span></span>; <span class="comment">// c is a Sortable type object</span></span><br></pre></td></tr></table></figure>
+
+<p>Let’s look at a practical example.</p>
+<p>TODO:</p>
+<h2 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h2><p>TODO:</p>
+<h2 id="Contract"><a href="#Contract" class="headerlink" title="Contract"></a>Contract</h2><p>TODO:</p>
+<h2 id="Range"><a href="#Range" class="headerlink" title="Range"></a>Range</h2><p>TODO:</p>
+<h2 id="Coroutine"><a href="#Coroutine" class="headerlink" title="Coroutine"></a>Coroutine</h2><p>TODO:</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In general, I finally saw the exciting features of Concepts&#x2F;Ranges&#x2F;Modules in C++20.<br>This is still full of charm for a programming language that is already in its thirties.</p>
+<h2 id="Further-Readings"><a href="#Further-Readings" class="headerlink" title="Further Readings"></a>Further Readings</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://honermann.net/blog/2016/03/06/why-concepts-didnt-make-cxx17/">Why Concepts didn’t make C++17？</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/compiler_support">C++11&#x2F;14&#x2F;17&#x2F;20 Compiler Support</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/language/history">C++ History</a></li>
+</ul>
+
+  <div class="guide-links">
+    
+      <span>← <a href="/modern-cpp/en-us/09-others/index.html">Chapter 09 Minor Features</a></span>
+    
+    
+      <span style="float: right;"><a href="/modern-cpp/en-us/appendix1/index.html">Appendix 1: Further Study Materials</a> →</span>
+    
+  </div>
+
+  
+    <div class="footer">
+        <p>
+          <a target="_blank" rel="noopener" href="https://changkun.de">Changkun Ou</a> &copy; 2016-2024.
+          The book is licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0</a>, code is open sourced under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> License. </a>
+        </p>
+        <p>
+          If you like the book, you could <a href="/modern-cpp/about/donate.html">donate the author</a>.
+        </p>
+      </div>
+  
+
+
+</div>
+
+      </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.2.1/js/smooth-scroll.min.js"></script>
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="https://cdn.jsdelivr.net/npm/css.escape@1.5.1/css.escape.min.js"></script>
+    <script src="/modern-cpp/js/common.js"></script>
+
+    <!-- fastclick -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
+</html>
