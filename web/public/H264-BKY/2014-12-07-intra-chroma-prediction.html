@@ -1,0 +1,439 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Intra Chroma Prediction 现代 C++ 教程: 高速上手 C++ 11/14/17/20 - Modern C++ Tutorial: C++ 11/14/17/20 On the Fly</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Modern C++ Tutorial | C++ 11/14/17/20 On the Fly | 现代 C++ 教程 | 高速上手 C++11/14/17/20">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/modern-cpp/assets/cover-2nd.png">
+    <meta name="msapplication-TileColor" content="#7e2d36">
+    <meta name="theme-color" content="#7e2d36">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80889616-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-80889616-2');
+    </script>
+
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/modern-cpp-tutorial/modern-cpp/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>window.PAGE_TYPE = ""</script>
+    <script async src="//changkun.de/urlstat/client.js"></script>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body class="docs">
+	<!-- body开始 -->
+    
+      <div id="mobile-bar" data-bg-text="现代 C++ 教程" >
+        <a class="menu-button"></a>
+        <a class="logo" href="/modern-cpp/"></a>
+      </div>
+    
+    <div id="header">
+  <a id="logo" href="/modern-cpp-tutorial/">
+      <img src="/modern-cpp-tutorial/modern-cpp/assets/cover-2nd-logo.png">
+      <span>教程：高速上手</span>
+  </a>
+  <ul id="nav">
+    
+      <li class="nav-dropdown-container resource">
+  <a class="nav-link">资源</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/zh-cn/00-preface/" >正文</a></li>
+      <!-- TODO -->
+      <!-- <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/code/1/" >代码</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/exercises/1/" >习题</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/answers/1/" >答案</a></li> -->
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link">关于</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/donate.html" >资助</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/copyright.html" >版权声明</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/ack.html" >致谢</a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    中文
+  </a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" target="_blank" href="/modern-cpp/en-us/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        English
+      </a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+
+    
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  <div class="sidebar">
+    <ul class="main-menu">
+        
+          <li class="nav-dropdown-container resource">
+  <a class="nav-link">资源</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/zh-cn/00-preface/" >正文</a></li>
+      <!-- TODO -->
+      <!-- <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/code/1/" >代码</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/exercises/1/" >习题</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/answers/1/" >答案</a></li> -->
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link">关于</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/donate.html" >资助</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/copyright.html" >版权声明</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/ack.html" >致谢</a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    中文
+  </a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" target="_blank" href="/modern-cpp/en-us/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        English
+      </a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+
+        
+    </ul>
+  </div>
+
+<div class="content  ">
+  <p>帧内预测依赖于当前宏块的相邻宏块，如果任何一个相邻宏块不可用，那么会直接影响到当前宏块的预测方式。<br>那么宏块怎么才谓之可用？<br>满足以下几个条件的相邻宏块为不可用：</p>
+<ol>
+<li><p>相邻宏块超出边界，即（x&lt;0 || x&gt;PicWidthInMbs），（y&lt;0 || y&gt;PicHeightInMbs）</p>
+</li>
+<li><p>相邻宏块与当前处理的宏块不在同一slice</p>
+</li>
+<li><p>如果强制要求当前宏块的相邻宏块为intra（constrained_intra_pred_flag &#x3D; 1），但实际上相邻宏块的编码方式为inter，该相邻宏块就不可用。</p>
+</li>
+</ol>
+<p>当然以上只适用于判断相邻宏块是否可用于intra预测；而对于inter预测，只要判断条件1与2；而在进行deblocking的情况下只需判断条件1。<br>（以下的”可用”都为”可用于Intra预测”）</p>
+<h1 id="Intra-Chroma-Prediction"><a href="#Intra-Chroma-Prediction" class="headerlink" title="Intra Chroma Prediction"></a>Intra Chroma Prediction</h1><p>帧内色度预测有四种预测模式。</p>
+<h4 id="1-Intra-Chroma-DC"><a href="#1-Intra-Chroma-DC" class="headerlink" title="1  . Intra_Chroma_DC"></a>1  . Intra_Chroma_DC</h4><p>DC模式会选取相邻Chroma宏块的相应像素，取像素平均值来预测当前4x4块的像素值。由于预测块大小为4x4，因此相邻块像素值也取四个为一组：<br>$\begin{align*}<br>Sum_{up} &amp;&#x3D;\sum_{x&#x3D;0}^{3}Pixel(x,-1)\<br>Sum_{left} &amp;&#x3D;\sum_{y&#x3D;0}^{3}Pixel(-1,y)\<br>Sum_{default} &amp;&#x3D;1&lt;&lt;(BitDepth-1)<br>\end{align*}$</p>
+<p>DC模式分为三种情况<br>1)如果当前Chroma子块（4x4）的位置位于宏块的(0,0)或者(x,y){x!&#x3D;0 &amp;&amp; y!&#x3D;0}，那么该Chroma子块就可以使用与其位置相应的相邻宏块的像素进行预测。</p>
+<ul>
+<li><p>如果Top与Left可用$Pred_{4\times4}(x,y) &#x3D; (Sum_{up} + Sum_{left})&gt;&gt;3$</p>
+</li>
+<li><p>否则如果只有Top或者只有Left可用$ Pred_{4\times4}(x,y)&#x3D;Sum_{up} &gt;&gt;2$ or $Pred_{4\times4}(x,y)&#x3D;Sum_{left}&gt;&gt;2$</p>
+</li>
+<li><p>否则Top与Left都不可用$Pred_{4\times4}(x,y)&#x3D;Sum_{default}$</p>
+</li>
+</ul>
+<p>2)如果当前Chroma子块的位置位于(x,-1)</p>
+<ul>
+<li><p>如果Top可用$ Pred_{4\times4}(x,y)&#x3D;Sum_{up} &gt;&gt;2$</p>
+</li>
+<li><p>否则如果left可用$Pred_{4\times4}(x,y)&#x3D;Sum_{left}&gt;&gt;2$</p>
+</li>
+<li><p>否则$Pred_{4\times4}(x,y)&#x3D;Sum_{default}$</p>
+</li>
+</ul>
+<p>3)如果当前Chroma子块的位置位于(-1,y)</p>
+<ul>
+<li><p>如果left可用$Pred_{4\times4}(x,y)&#x3D;Sum_{left}&gt;&gt;2$</p>
+</li>
+<li><p>否则如果Top可用$ Pred_{4\times4}(x,y)&#x3D;Sum_{up} &gt;&gt;2$</p>
+</li>
+<li><p>否则$Pred_{4\times4}(x,y)&#x3D;Sum_{default}$</p>
+</li>
+</ul>
+<p><img src="//images0.cnblogs.com/blog/421096/201412/072148194206529.jpg"></p>
+<h4 id="2-Intra-Chroma-Horizon"><a href="#2-Intra-Chroma-Horizon" class="headerlink" title="2  .  Intra Chroma Horizon"></a>2  .  Intra Chroma Horizon</h4><p>只有当左相邻宏块的像素点Pixel(-1,y)被标记为可以用于帧内预测时才能采用这种预测方式<br>$Pred(x,y)&#x3D;Pixel(-1,y)$<br><img src="//images0.cnblogs.com/blog/421096/201412/072148200615401.jpg"></p>
+<h4 id="3-Intra-Chroma-Vertical"><a href="#3-Intra-Chroma-Vertical" class="headerlink" title="3 .    Intra Chroma Vertical"></a>3 .    Intra Chroma Vertical</h4><p>只有当上方相邻宏块的像素点Pixel(x,-1)被标记为可以用于帧内预测时才能采用这种预测方式<br>$Pred(x,y)&#x3D;Pixel(x,-1)$<br><img src="//images0.cnblogs.com/blog/421096/201412/072148207959542.jpg"></p>
+<h4 id="4-Intra-Chroma-Plane"><a href="#4-Intra-Chroma-Plane" class="headerlink" title="4  . Intra Chroma Plane"></a>4  . Intra Chroma Plane</h4><p>只有当左相邻宏块像素点Pixel(-1,y)以及上方相邻宏块像素点Pixel(x,-1)都被标记为可以用于Intra预测时才能采用这种预测方式<br>首先我们来看标准中的两个式子<br>$\begin{align*}<br>H&amp;&#x3D;\sum_{x&#x3D;0}^{3+xCF}(x+1)\times{(Pixel(4+xCF+x,-1)-Pixel(2+xCF-x,-1))}\<br>V&amp;&#x3D;\sum_{y&#x3D;0}^{3+yCF}(y+1)\times{(Pixel(-1,4+yCF+y)-Pixel(-1,2+yCF-y))}<br>\end{align*}$<br>由于xCF与yCF是YUV格式相关参数，当为0时表示为4:2:0<br>$\begin{align*}<br>H&amp;&#x3D;\sum_{x&#x3D;0}^{3}(x+1)\times{(Pixel(4+x,-1)-Pixel(2-x,-1))}\<br>V&amp;&#x3D;\sum_{y&#x3D;0}^{3}(y+1)\times{(Pixel(-1,4+y)-Pixel(-1,2-y))}<br>\end{align*}$<br>我们在这里令$M&#x3D; Pixel(4+x,-1)-Pixel(2-x,-1)$，令x为x轴，M为y轴，H为z轴，得到以下图像<br><img src="//images0.cnblogs.com/blog/421096/201412/082310523683560.jpg"><br>可以看出在x越大的情况下（趋向于宏块两端），如果M（两端像素差）越大，那么得到的值也就越大，因此该参数H表明了Pixel(x,-1)的变化趋势，是变大呢（H值很大），变小呢（H值为负，很小），还是平缓（H值在0附近）。<br>同理，V在y轴上也是这种情况。<br>按照上面的说法，这就是一个线性系数，那么我们就可以把H与V做一下调整，归一化得到线性系数b与c<br>$\begin{align*}<br>b &amp;&#x3D; (34+29\times{H})&gt;&gt;6 \<br>c &amp;&#x3D; (34+29\times{V})&gt;&gt;6<br>\end{align*}$<br>得到系数后，再确定常量（基准值）就可以得到一个完整的式子了。那么如何确定基准值？这里假设像素是按照左下-&gt;右上的方式变化的，即像素值在该方向上线性变化。<br><img src="//images0.cnblogs.com/blog/421096/201412/072148216398884.jpg"><br>那么取中心点为基准值，该基准值为左相邻宏块的最低端与上相邻宏块最右端的平均值<br>$Pred(3,3)&#x3D;(Pixel(width-1,-1)+Pixel(-1,height-1))&gt;&gt;1$<br>$a &#x3D;16\times{(Pixel(width-1,-1)+Pixel(-1,height-1))}$</p>
+<p>最后得到预测公式<br>$Pred(x,y)&#x3D;(a+b\times{(x-3-xCF)}+c\times{(y-3-yCF)}+16)&gt;&gt;5$</p>
+<p>JM18.6<br>&#x2F;*!</p>
+<hr>
+<ul>
+<li>\brief</li>
+<li>Intra prediction of the chrminance layers of one macroblock</li>
+</ul>
+<hr>
+<p> *&#x2F;<br>void intra_chroma_prediction (Macroblock *currMB, int *mb_up, int <em>mb_left, int</em>mb_up_left)<br>{<br>  int s, i, j;</p>
+<p>  int      uv;<br>  int      b8, b4;<br>  imgpel   vline[16];</p>
+<p>  int      mb_available_up;<br>  int      mb_available_left[2];<br>  int      mb_available_up_left;</p>
+<p>  PixelPos pix_c;  &#x2F;&#x2F;!&lt; pixel position  p(0,-1)<br>  PixelPos pix_d;<br>  PixelPos pix_a;  &#x2F;&#x2F;!&lt; pixel positions p(-1, -1..15)</p>
+<p>  Slice *currSlice &#x3D; currMB-&gt;p_Slice;<br>  VideoParameters *p_Vid &#x3D; currSlice-&gt;p_Vid;<br>  InputParameters *p_Inp &#x3D; currSlice-&gt;p_Inp;<br>  int      cr_MB_x &#x3D; p_Vid-&gt;mb_cr_size_x;<br>  int      cr_MB_y &#x3D; p_Vid-&gt;mb_cr_size_y;<br>  imgpel **cur_pred &#x3D; NULL;</p>
+<p>  imgpel *hline &#x3D; NULL;</p>
+<p>  int      yuv &#x3D; p_Vid-&gt;yuv_format - 1;<br>  int      dc_pred_value_chroma &#x3D; p_Vid-&gt;dc_pred_value_comp[1];<br>  int      max_imgpel_value_uv  &#x3D; p_Vid-&gt;max_pel_value_comp[1];</p>
+<p>  static const int block_pos[3][4][4]&#x3D; &#x2F;&#x2F;[yuv][b8][b4]<br>  {<br>    { {0, 1, 2, 3},{0, 0, 0, 0},{0, 0, 0, 0},{0, 0, 0, 0}},<br>    { {0, 1, 2, 3},{2, 3, 2, 3},{0, 0, 0, 0},{0, 0, 0, 0}},<br>    { {0, 1, 2, 3},{1, 1, 3, 3},{2, 3, 2, 3},{3, 3, 3, 3}}<br>  };</p>
+<p>  p_Vid-&gt;getNeighbour(currMB, -1, -1, p_Vid-&gt;mb_size[IS_CHROMA], &amp;pix_d);<br>  p_Vid-&gt;getNeighbour(currMB, -1,  0, p_Vid-&gt;mb_size[IS_CHROMA], &amp;pix_a);<br>  p_Vid-&gt;getNeighbour(currMB,  0, -1, p_Vid-&gt;mb_size[IS_CHROMA], &amp;pix_c);</p>
+<p>  mb_available_up      &#x3D; pix_c.available;<br>  mb_available_up_left &#x3D; pix_d.available;<br>  mb_available_left[0] &#x3D; mb_available_left[1] &#x3D; pix_a.available;</p>
+<p>&#x2F;&#x2F;强制要求相邻宏块使用帧内预测,否则不可用<br>  if(p_Inp-&gt;UseConstrainedIntraPred)<br>  {<br>    mb_available_up      &#x3D; pix_c.available ? p_Vid-&gt;intra_block[pix_c.mb_addr] : 0;<br>    mb_available_left[0] &#x3D; mb_available_left[1] &#x3D; pix_a.available ? p_Vid-&gt;intra_block[pix_a.mb_addr] : 0;<br>    mb_available_up_left &#x3D; pix_d.available ? p_Vid-&gt;intra_block[pix_d.mb_addr] : 0;<br>  }</p>
+<p>  if (mb_up)<br>    *mb_up &#x3D; mb_available_up;<br>  if (mb_left)<br>    *mb_left &#x3D; mb_available_left[0];<br>  if (mb_up_left)<br>    *mb_up_left &#x3D; mb_available_up_left;</p>
+<p>  &#x2F;&#x2F; compute all chroma intra prediction modes for both U and V<br>  for (uv&#x3D;0; uv&lt;2; uv++)<br>  {<br>    imgpel **image &#x3D; p_Vid-&gt;enc_picture-&gt;imgUV[uv];<br>    imgpel ***curr_mpr_16x16 &#x3D; currSlice-&gt;mpr_16x16[uv + 1];</p>
+<pre><code>// DC prediction
+for(b8=0; b8&lt;p_Vid-&gt;num_blk8x8_uv &gt;&gt; 1;b8++)
+&#123;
+  for (b4 = 0; b4 &lt; 4; b4++)
+  &#123;
+    int block_y = subblk_offset_y[yuv][b8][b4];
+    int block_x = subblk_offset_x[yuv][b8][b4];
+    int blk_x = block_x;
+
+    s = dc_pred_value_chroma;
+
+    //===== get prediction value =====
+    switch (block_pos[yuv][b8][b4])
+    &#123;
+    case 0:  //===== TOP LEFT =====
+      &#123;
+        int s0 = 0, s2 = 0;
+        if (mb_available_up)       
+        &#123;
+          int pos_x = pix_c.pos_x + blk_x;
+          int pos_y = pix_c.pos_y;
+
+          for (i = 0; i &lt; BLOCK_SIZE; i++)  
+            s0 += image[pos_y][pos_x++];
+        &#125;
+        if (mb_available_left[0]) 
+        &#123;
+          int pos_x = pix_a.pos_x;
+          int pos_y = pix_a.pos_y + block_y; 
+
+          for (i = 0; i &lt; BLOCK_SIZE;i++)
+            s2 += image[pos_y++][pos_x];
+        &#125;
+        if (mb_available_up &amp;&amp; mb_available_left[0])  
+          s = (s0 + s2 + 4) &gt;&gt; 3;
+        else if (mb_available_up)                          
+          s = (s0 + 2) &gt;&gt; 2;
+        else if (mb_available_left[0])                     
+          s = (s2 + 2) &gt;&gt; 2;
+      &#125;
+      break;
+    case 1: //===== TOP RIGHT =====
+      &#123;
+        int s1 = 0, s2 = 0;
+        if (mb_available_up)
+        &#123;
+          int pos_x = pix_c.pos_x + blk_x;
+          int pos_y = pix_c.pos_y;
+          for (i = 0; i &lt; BLOCK_SIZE; i++)  
+            s1 += image[pos_y][pos_x++];
+        &#125;
+        else if (mb_available_left[0])
+        &#123;
+          int pos_x = pix_a.pos_x;
+          int pos_y = pix_a.pos_y + block_y; 
+
+          for (i = 0; i &lt; BLOCK_SIZE; i++)  
+            s2 += image[pos_y++][pos_x];
+        &#125;
+        if      (mb_available_up)       
+          s  = (s1   +2) &gt;&gt; 2;
+        else if (mb_available_left[0])                    
+          s  = (s2   +2) &gt;&gt; 2;
+      &#125;
+      break;
+    case 2: //===== BOTTOM LEFT =====
+      if      (mb_available_left[0])  
+      &#123;
+        int pos_x = pix_a.pos_x;
+        int pos_y = pix_a.pos_y + block_y; 
+        int s3 = 0;
+
+        for (i = 0; i &lt; BLOCK_SIZE; i++)
+          s3 += image[pos_y++][pos_x];
+        s  = (s3 + 2) &gt;&gt; 2;
+      &#125;
+      else if (mb_available_up)       
+      &#123;
+        int pos_x = pix_c.pos_x + blk_x;
+        int pos_y = pix_c.pos_y;
+
+        int s0 = 0;
+        for (i = 0; i &lt; BLOCK_SIZE; i++)  
+          s0 += image[pos_y][pos_x++];
+        s  = (s0 + 2) &gt;&gt; 2;
+      &#125;
+      break;
+    case 3: //===== BOTTOM RIGHT =====
+      &#123;
+        int s1 = 0, s3 = 0;
+        if (mb_available_up)       
+          for (i=blk_x;i&lt;(blk_x+4);i++)  
+            s1 += image[pix_c.pos_y][pix_c.pos_x + i];
+        if (mb_available_left[0])  
+        &#123;
+          int pos_x = pix_a.pos_x;
+          int pos_y = pix_a.pos_y + block_y; 
+          for (i = 0; i &lt; BLOCK_SIZE;i++)  
+            s3 += image[pos_y++][pos_x];
+        &#125;
+        if      (mb_available_up &amp;&amp; mb_available_left[0])  
+          s  = (s1 + s3 + 4) &gt;&gt; 3;
+        else if (mb_available_up)                          
+          s  = (s1 + 2) &gt;&gt; 2;
+        else if (mb_available_left[0])                     
+          s  = (s3 + 2) &gt;&gt; 2;
+      &#125;
+      break;
+    &#125;
+
+    //===== prediction =====
+    cur_pred = curr_mpr_16x16[DC_PRED_8];
+    for (j = block_y; j &lt; block_y+4; j++)
+    &#123;
+      for (i = block_x; i &lt; block_x+4; i++)
+      &#123;
+        cur_pred[j][i] = (imgpel) s;
+      &#125;
+    &#125;
+  &#125;
+&#125;
+
+// vertical prediction    
+if (mb_available_up)
+&#123;
+  cur_pred = curr_mpr_16x16[VERT_PRED_8];      
+  hline = &amp;image[pix_c.pos_y][pix_c.pos_x];
+  for (j=0; j&lt;cr_MB_y; j++)
+    memcpy(cur_pred[j], hline, cr_MB_x * sizeof(imgpel));
+&#125;
+
+// horizontal prediction
+if (mb_available_left[0])
+&#123;
+  int pos_x = pix_a.pos_x;
+  int pos_y = pix_a.pos_y;
+  cur_pred = curr_mpr_16x16[HOR_PRED_8];
+  for (i=0; i&lt;cr_MB_y; i++)
+    vline[i] = image[pos_y++][pos_x];
+  
+  for (j=0; j&lt;cr_MB_y; j++)
+  &#123;
+    int predictor = vline[j];
+    for (i = 0; i &lt; cr_MB_x; i++)        
+      cur_pred[j][i] = (imgpel) predictor;
+  &#125;
+&#125;
+
+// plane prediction
+if (mb_available_left[0] &amp;&amp; mb_available_up &amp;&amp; mb_available_up_left)
+&#123;
+  int cr_x = (cr_MB_x &gt;&gt; 1);
+  int cr_y = (cr_MB_y &gt;&gt; 1);
+
+  int iaa, iv, ib, ic;
+  int ih = cr_x * (hline[cr_MB_x-1] - image[pix_d.pos_y][pix_d.pos_x]);
+  
+  for (i = 0; i &lt; cr_x - 1; i++)
+    ih += (i + 1)*(hline[cr_x + i] - hline[cr_x - 2 - i]);
+
+  iv = cr_y * (vline[cr_MB_y-1] - image[pix_d.pos_y][pix_d.pos_x]);
+  for (i = 0; i &lt; cr_y - 1; i++)
+    iv += (i + 1) * (vline[cr_y + i] - vline[cr_y - 2 - i]);
+
+  if (cr_MB_x == 8)
+    ib = (17 * ih + 2 * cr_MB_x) &gt;&gt; 5;
+  else
+    ib = ( 5 * ih + 2 * cr_MB_x) &gt;&gt; 6;
+
+  if (cr_MB_y == 8)
+    ic = (17 * iv + 2 * cr_MB_y) &gt;&gt; 5;
+  else
+    ic = ( 5 * iv + 2 * cr_MB_y) &gt;&gt; 6;
+
+  iaa = 16 * (hline[cr_MB_x - 1] + vline[cr_MB_y - 1]);
+  cur_pred = curr_mpr_16x16[PLANE_8];
+  iaa += (1 - cr_x) * ib + (1 - cr_y) * ic;
+  for (j = 0; j &lt; cr_MB_y; j++)
+    for (i = 0; i &lt; cr_MB_x; i++)
+      cur_pred[j][i]= (imgpel) iClip1( max_imgpel_value_uv, (iaa + i * ib + j * ic + 16)&gt;&gt;5);
+&#125;
+</code></pre>
+<p>  }</p>
+<p>  if (!p_Inp-&gt;rdopt)      &#x2F;&#x2F; the rd-opt part does not work correctly (see encode_one_macroblock)<br>  {                       &#x2F;&#x2F; since ipredmodes could be overwritten &#x3D;&gt; encoder-decoder-mismatches<br>    currSlice-&gt;rdo_low_intra_chroma_decision(currMB, mb_available_up, mb_available_left, mb_available_up_left);<br>  }<br>}</p>
+
+  <div class="guide-links">
+    
+    
+  </div>
+
+  
+    <div class="footer">
+        <p>
+          <a target="_blank" rel="noopener" href="https://changkun.de">欧长坤</a> &copy; 2016-2024 版权所有，
+          采用<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议许可</a>，代码使用 <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> 协议开源。</a>
+        </p>
+        <p>
+            如果你认为本书对你起到了帮助，可以<a href="/modern-cpp/about/donate.html">资助作者</a>。
+        </p>
+      </div>
+  
+
+
+</div>
+
+      </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.2.1/js/smooth-scroll.min.js"></script>
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="https://cdn.jsdelivr.net/npm/css.escape@1.5.1/css.escape.min.js"></script>
+    <script src="/modern-cpp-tutorial/modern-cpp/js/common.js"></script>
+
+    <!-- fastclick -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
+</html>

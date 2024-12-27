@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>h.264参考图像列表、解码图像缓存 现代 C++ 教程: 高速上手 C++ 11/14/17/20 - Modern C++ Tutorial: C++ 11/14/17/20 On the Fly</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Modern C++ Tutorial | C++ 11/14/17/20 On the Fly | 现代 C++ 教程 | 高速上手 C++11/14/17/20">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/modern-cpp/assets/cover-2nd.png">
+    <meta name="msapplication-TileColor" content="#7e2d36">
+    <meta name="theme-color" content="#7e2d36">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80889616-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-80889616-2');
+    </script>
+
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/modern-cpp-tutorial/modern-cpp/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>window.PAGE_TYPE = ""</script>
+    <script async src="//changkun.de/urlstat/client.js"></script>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body class="docs">
+	<!-- body开始 -->
+    
+      <div id="mobile-bar" data-bg-text="现代 C++ 教程" >
+        <a class="menu-button"></a>
+        <a class="logo" href="/modern-cpp/"></a>
+      </div>
+    
+    <div id="header">
+  <a id="logo" href="/modern-cpp-tutorial/">
+      <img src="/modern-cpp-tutorial/modern-cpp/assets/cover-2nd-logo.png">
+      <span>教程：高速上手</span>
+  </a>
+  <ul id="nav">
+    
+      <li class="nav-dropdown-container resource">
+  <a class="nav-link">资源</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/zh-cn/00-preface/" >正文</a></li>
+      <!-- TODO -->
+      <!-- <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/code/1/" >代码</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/exercises/1/" >习题</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/answers/1/" >答案</a></li> -->
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link">关于</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/donate.html" >资助</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/copyright.html" >版权声明</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/ack.html" >致谢</a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    中文
+  </a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" target="_blank" href="/modern-cpp/en-us/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        English
+      </a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+
+    
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  <div class="sidebar">
+    <ul class="main-menu">
+        
+          <li class="nav-dropdown-container resource">
+  <a class="nav-link">资源</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/zh-cn/00-preface/" >正文</a></li>
+      <!-- TODO -->
+      <!-- <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/code/1/" >代码</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/exercises/1/" >习题</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/answers/1/" >答案</a></li> -->
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link">关于</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/donate.html" >资助</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/copyright.html" >版权声明</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/ack.html" >致谢</a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    中文
+  </a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" target="_blank" href="/modern-cpp/en-us/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        English
+      </a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+
+        
+    </ul>
+  </div>
+
+<div class="content  ">
+  <h4 id="1-参考图像列表（reference-picture-list）"><a href="#1-参考图像列表（reference-picture-list）" class="headerlink" title="1.参考图像列表（reference picture list）"></a>1.参考图像列表（reference picture list）</h4><p>一般来说，h.264会把需要编码的图像分为三种类型：I、P、B，其中的B、P类型的图像由于采用了帧间编码的这种编码方式，而帧间编码又是以参考图像为基础进行的，因此需要有个参考图像列表来管理之前生成的参考图像，方便用于对当前图像进行编码。</p>
+<h4 id="2-解码图像缓存（decoded-picture-buffer）"><a href="#2-解码图像缓存（decoded-picture-buffer）" class="headerlink" title="2.解码图像缓存（decoded picture buffer）"></a>2.解码图像缓存（decoded picture buffer）</h4><p>随着图像编码的进行，（解码阶段）会不断有新的图像生成（重建图像），已解码图像会被放到解码图像缓存区中（或直接输出，这个在下面DPB讲）。但是由于内存大小与效率的限制，不可能一直保存参考图像而不丢弃，所以会有个对解码图像缓存这块内存区的管理策略。<br><img src="//images0.cnblogs.com/i/421096/201405/111516451353375.jpg"></p>
+<h1 id="参考图像列表"><a href="#参考图像列表" class="headerlink" title="参考图像列表"></a>参考图像列表</h1><h4 id="1-来源"><a href="#1-来源" class="headerlink" title="1. 来源"></a>1. 来源</h4><p>参考图像列表中的参考图像来自于解码图像缓存（DPB）中的已解码参考图像，DPB中可能包含参考以及非参考图像，参考图像列表把DPB中的参考图像整合成列表（数组）的形式，便于后续的排序等操作</p>
+<h4 id="2-结构"><a href="#2-结构" class="headerlink" title="2. 结构"></a>2. 结构</h4><h5 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h5><p>如标准8.4.1.2.3的注1所说：</p>
+<ul>
+<li>如果当前宏块是场宏块（mb_field），则refIdxL0和refIdxL1指的是一系列的场；</li>
+<li>如果当前宏块是帧宏块（!mb_field），则refIdxL0和refIdxL1指的是一系列的帧或者互补场对</li>
+</ul>
+<p>但是参考图像列表的排列方式是不可能根据每个宏块的帧场时时刻刻做出改变，参考图像列表当前图像编码前就通过图像的帧场属性确定下来了:</p>
+<ul>
+<li>如果当前图像为帧（structure &#x3D;&#x3D; Frame），参考图像列表中存放的是一系列的帧或者互补场对</li>
+<li>如果当前图像为场（structure &#x3D;&#x3D; Field），参考图像列表中存放的是一系列的场<br>这就造成了当采用的是mbaff，且当前宏块为mb_field的时候参考图像列表的帧场不匹配，标准中的解决方法是：先得到参考帧RefPicListX[ refIdxLX &#x2F; 2 ]，然后选择该参考帧中对应的场进行编码（8.4.2.1），而JM则采用了一种巧妙的方法：如果当前图像是mbaff，则专门构造另外存放场参考图像列表RefPicListX（X &#x3D; 2,3,4,5）方便进行提取参考场（JM中的list_offset就是用于决定X的值）。<br><img src="//images0.cnblogs.com/i/421096/201405/092354122762478.jpg"></li>
+</ul>
+<h5 id="长度"><a href="#长度" class="headerlink" title="长度"></a>长度</h5><p>参考图像列表的最大长度取决于当前宏块是以何种方式进行编码</p>
+<ul>
+<li><p>如果当前宏块为帧宏块（纯帧图像 或 mbaff &amp;&amp; !mb_field），默认情况下参考图像列表的长度为16，也可以通过num_ref_idx_l0_active_minus1指定最大长度为（num_ref_idx_l0_active_minus1 + 1）</p>
+</li>
+<li><p>如果当前宏块为场宏块（场图像 或 mbaff &amp;&amp; mb_field），默认情况下参考图像列表长度为32，也可以通过num_ref_idx_l0_active_minus1指定长度为（2 * num_ref_idx_l0_active_minus1 + 2）<br>——标准7.4.5.2<br>参考图像列表中的条目数目可能存在大于，或小于等于最大长度的情况：</p>
+</li>
+<li><p>如果条目数大于最大长度，将删除最大长度之外位置的条目</p>
+</li>
+<li><p>如果条目数小于最大长度，将把空余的条目设置为“非参考图像”<br>——标准8.2.4.2</p>
+</li>
+</ul>
+<h4 id="3-排序"><a href="#3-排序" class="headerlink" title="3. 排序"></a>3. 排序</h4><p>参考图像分为短期参考图像（short-term reference）与长期参考图像（long-term reference），在某一个时间点上，参考图像只能是这两种的其中一种（非短即长）。参考图像列表分为两个部分：短期参考部分，长期参考部分。短期参考部分排在列表前头，长期排在后面。</p>
+<h5 id="P帧排序"><a href="#P帧排序" class="headerlink" title="P帧排序"></a>P帧排序</h5><p>一般来说，距离当前图像最近的参考图像会被当前图像用作最多的参考，距离越远则参考得越少，短期参考图像列表就是依据这种规律来进行排序的。<br>短期参考图像的序号由FrameNumWrap进行标记，以GOP为一个周期，GOP的第一帧的FrameNumWrap为0，后面持续递增，到当前帧是FrameNumWrap为最大，因此FrameNumWrap越大代表距离当前图像越近，因此将参考帧以FrameNumWrap降序方式放在refPicList0的起始位置<br>——标准8.2.4.1<br>也可以参考<a target="_blank" rel="noopener" href="http://www.cnblogs.com/TaigaCon/p/3551001.html">h.264的POC计算</a><br>长期参考图像的序号由LongTermPicNum进行标记，以升序的方式进行排序，（LongTermPicNum由MMCO分配）</p>
+<p><img src="//images0.cnblogs.com/i/421096/201405/101801159953457.jpg"></p>
+<h5 id="B帧排序"><a href="#B帧排序" class="headerlink" title="B帧排序"></a>B帧排序</h5><p>B帧的参考帧排列方式与P帧并不完全相同，B帧的短期参考帧是以POC进行排序，其中有前向参考列表refPicList0与后向参考列表refPicList1</p>
+<ul>
+<li>当参考帧的POC小于当前图像的POC时，将参考帧以POC降序方式放在refPicList0的起始位置上。然后剩余的短期参考图像按照POC升序的方式附加到refPicList0</li>
+<li>当参考帧的POC大于当前图像的POC时，将参考帧以POC升序方式放在refPicList1的起始位置上。然后剩余的短期参考图像按照POC降序的方式附加到refPicList1<br>——标准8.2.4.2.3<br>长期参考图像的序号由LongTermPicNum进行标记，以升序的方式进行排序，分别放进refPicList0与refPicList1中（LongTermPicNum由MMCO分配）<br>注：一个未配对的场不能用于帧间预测，即表明如果当前为帧，那么其参考帧不可能为一个单一的场<br><img src="//images0.cnblogs.com/i/421096/201405/101813419637356.jpg"></li>
+</ul>
+<h5 id="场的处理"><a href="#场的处理" class="headerlink" title="场的处理"></a>场的处理</h5><p>无论是P还是B，如果当前图像是场编码时，需要对上述的步骤做进一步处理，即把列表内的帧分为两个场，从与当前场具有相同奇偶性的场（如果存在）开始，对参考场进行排序</p>
+<ul>
+<li>如果当前场为Top_field，则列表中为|top|bottom|top|bottom..</li>
+<li>如果当前场为Bottom_field，则列表中为|bottom|top|bottom|top..</li>
+<li>如果其中某一帧缺少了某个场作为参考场，那么将忽略该缺少的场<br>——标准8.2.4.2.5<br><img src="//images0.cnblogs.com/i/421096/201405/101833456208378.jpg"></li>
+</ul>
+<h4 id="4-参考图像列表重排序"><a href="#4-参考图像列表重排序" class="headerlink" title="4. 参考图像列表重排序"></a>4. 参考图像列表重排序</h4><p>在某些特殊情况下会需要把已经得到的参考图像列表重新排序，可以参考JM18.6的HierarchicalCoding，下面主要演示重排序过程：</p>
+<p><img src="//images0.cnblogs.com/i/421096/201405/102044175885290.jpg"></p>
+<ul>
+<li>当中的紫灰色格子为重排序操作，对于短期参考图像，重拍序有符号与操作数，对于长期参考图像，直接通过操作数指定图像；</li>
+<li>后面还没进行到的列表项会被后移；</li>
+<li>划掉的格子为重复的图像，会被消除，如果被消除项后面还有其他项，后面的项会被前移填补前面被消除项的空格；</li>
+<li>重排序的初始操作是以当前图像的FrameNumWrap为基础。<br>——标准8.2.4.3</li>
+</ul>
+<h1 id="解码图像缓存"><a href="#解码图像缓存" class="headerlink" title="解码图像缓存"></a>解码图像缓存</h1><h4 id="1-参考图像标记过程"><a href="#1-参考图像标记过程" class="headerlink" title="1.参考图像标记过程"></a>1.参考图像标记过程</h4><p>在当前图像解码过后、插入DPB之前，会进行标记过程Decoded reference picture marking process，对先前已经解码并存在于DPB中的图像进行标记。该过程会对DPB中已经存在的图像（当然不包括当前图像）重新标记。标记过程有两种情况：<br><strong>1.当前图像为IDR</strong><br>如果指定了no_output_of_prior_pics_flag，表示DPB中所有的图像不进行输出，但是需要从DPB中移除<br>否则，从DPB中移除所有图像并输出到磁盘<br><strong>2.当前图像不为IDR，且指定了adaptive_ref_pic_buffering_flag</strong><br>表明需要对当前DPB进行重新标记，其中有6种标记方法，即内存管理控制操作（memory management control operation）</p>
+<p>其中</p>
+<ul>
+<li>短期参考图像序号为picNumX &#x3D; CurrPicNum − ( difference_of_pic_nums_minus1 + 1 )</li>
+<li>长期参考图像序号为LongTermPicNum &#x3D; long_term_pic_num（也就是说长期参考图像可以从上表3,6项指定）<br>注：把图像作为参考或者非参考，对于参考场对来说，两个场必须共同作为参考图像或者非参考图像，也就是说当你想为一个场标记的时候，其实标准需要你对整个帧（两场）都进行标记<br>——标准8.2.5</li>
+</ul>
+<h4 id="2-DPB"><a href="#2-DPB" class="headerlink" title="2.DPB"></a>2.DPB</h4><p>DPB标记完成后，需要把当前图像插入DPB（如果需要）。</p>
+<h5 id="DPB结构"><a href="#DPB结构" class="headerlink" title="DPB结构"></a>DPB结构</h5><p>解码图像缓存（DPB）是真正管理与存储图像数据的地方，凡是已经解码的图像，如果需要存储在内存中，都需要通过DPB进行管理，基本操作包括对解码图像的插入与删除。在JM中有个dpb结构体表示解码图像缓存。<br>&#x2F;&#x2F;! Decoded Picture Buffer<br>typedef struct decoded_picture_buffer<br>{<br>  FrameStore  **fs;     &#x2F;&#x2F;参考图像列表，该指针主要用于管理一帧图像，其中包括一个帧与两个场，其成员frame管理帧，top_field与bottom_field会用于管理场<br>  FrameStore  **fs_ref;  &#x2F;&#x2F;短期参考图像列表(当然，在这里是未经排序的)<br>  FrameStore  **fs_ltref; &#x2F;&#x2F;长期参考图像列表<br>  unsigned      size;  &#x2F;&#x2F;dpb最大容量，能容得下多少帧,最大不超过16<br>  unsigned      used_size; &#x2F;&#x2F;dpb实际存了多少帧,以帧为单位,如果只有其中一场,也被看做一帧<br>  unsigned      ref_frames_in_buffer;&#x2F;&#x2F;chj fs中用做short-term reference的帧的个数，短期参考帧,遇到下个I(IDR)会清空缓存<br>  unsigned      ltref_frames_in_buffer; &#x2F;&#x2F;长期参考帧个数<br>  int           last_output_poc;  &#x2F;&#x2F;上一个从dpb输出的poc序号<br>  int           max_long_term_pic_idx; &#x2F;&#x2F;最大长期参考帧个数</p>
+<p>  int           init_done;&#x2F;&#x2F;是否已经初始化dpb</p>
+<p>  FrameStore   *last_picture;&#x2F;&#x2F;如果当前帧为场编码，则用于存其中一场，等待下一场编码完成后合并<br>} DecodedPictureBuffer;</p>
+<h5 id="DPB最大长度"><a href="#DPB最大长度" class="headerlink" title="DPB最大长度"></a>DPB最大长度</h5><p>当然DPB的大小也是有限制的，标准附件A就对DPB大小做出了限定：MaxDpbSize  &#x3D; Min( 1024 * MaxDPB &#x2F; ( PicWidthInMbs * FrameHeightInMbs * 384 ), 16 )<br>——标准附件A.3.2</p>
+<h5 id="DPB管理策略"><a href="#DPB管理策略" class="headerlink" title="DPB管理策略"></a>DPB管理策略</h5><p>另外DPB对解码图像的存储有个策略：<strong>更倾向于存储对后面编码有用的图像（也就是参考图像）。</strong><br>虽然说DPB中也可以存储非参考图像，在DPB没满的时候，会无差别地把参考图像与非参考图像一并插入DPB中；<br>但是一旦DPB满了之后：<br><strong>如果新重建的图像为参考图像，该参考图像需要插入DPB</strong></p>
+<ul>
+<li><p>如果DPB中没有非参考图像，会按照滑动窗口模式把DPB序号最小的参考图像移除； （1）</p>
+</li>
+<li><p>如果DPB中存在非参考图像，会把DPB中已经输出到磁盘的非参考图像移除；  （2）<br><strong>如果新重建的图像为非参考图像</strong></p>
+</li>
+<li><p>如果DPB中不存在比当前图像POC更小的非参考图像，当前非参考图像会被直接输出到磁盘，而不插入DPB； （3）</p>
+</li>
+<li><p>如果DPB中存在比当前图像POC更小的非参考图像，会把DPB中POC最小的参考图像移除，插入当前非参考图像；（4）<br>可以对应下面代码中的四段：<br>void store_picture_in_dpb(StorablePicture* p)<br>{<br>…<br>  &#x2F;&#x2F; sliding window, if necessary  （1）<br>if ((!img-&gt;currentPicture-&gt;idr_flag)&amp;&amp;(p-&gt;used_for_reference &amp;&amp; (!img-&gt;adaptive_ref_pic_buffering_flag)))<br>{<br>  sliding_window_memory_management(p);<br>} </p>
+<p>&#x2F;&#x2F; first try to remove unused frames （2）<br>if (dpb.used_size&#x3D;&#x3D;dpb.size)<br>{<br>  remove_unused_frame_from_dpb();<br>}</p>
+<p>&#x2F;&#x2F; then output frames until one can be removed<br>while (dpb.used_size&#x3D;&#x3D;dpb.size)<br>{<br>  &#x2F;&#x2F; non-reference frames may be output directly（3）<br>  if (!p-&gt;used_for_reference)<br>  {<br>get_smallest_poc(&amp;poc, &amp;pos);<br>if ((-1&#x3D;&#x3D;pos) || (p-&gt;poc &lt; poc))<br>{<br>  direct_output(p, p_dec);<br>  return;<br>}<br>  }<br>  &#x2F;&#x2F; flush a frame（4）<br>  output_one_frame_from_dpb();<br>}</p>
+</li>
+</ul>
+<p>insert_picture_in_dpb(dpb.fs[dpb.used_size],p);<br>  …<br>}</p>
+
+  <div class="guide-links">
+    
+    
+  </div>
+
+  
+    <div class="footer">
+        <p>
+          <a target="_blank" rel="noopener" href="https://changkun.de">欧长坤</a> &copy; 2016-2024 版权所有，
+          采用<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议许可</a>，代码使用 <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> 协议开源。</a>
+        </p>
+        <p>
+            如果你认为本书对你起到了帮助，可以<a href="/modern-cpp/about/donate.html">资助作者</a>。
+        </p>
+      </div>
+  
+
+
+</div>
+
+      </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.2.1/js/smooth-scroll.min.js"></script>
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="https://cdn.jsdelivr.net/npm/css.escape@1.5.1/css.escape.min.js"></script>
+    <script src="/modern-cpp-tutorial/modern-cpp/js/common.js"></script>
+
+    <!-- fastclick -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
+</html>

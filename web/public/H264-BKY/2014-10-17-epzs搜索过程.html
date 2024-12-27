@@ -1,0 +1,523 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>EPZS搜索过程 现代 C++ 教程: 高速上手 C++ 11/14/17/20 - Modern C++ Tutorial: C++ 11/14/17/20 On the Fly</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Modern C++ Tutorial | C++ 11/14/17/20 On the Fly | 现代 C++ 教程 | 高速上手 C++11/14/17/20">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/modern-cpp/assets/cover-2nd.png">
+    <meta name="msapplication-TileColor" content="#7e2d36">
+    <meta name="theme-color" content="#7e2d36">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80889616-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-80889616-2');
+    </script>
+
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/modern-cpp-tutorial/modern-cpp/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>window.PAGE_TYPE = ""</script>
+    <script async src="//changkun.de/urlstat/client.js"></script>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body class="docs">
+	<!-- body开始 -->
+    
+      <div id="mobile-bar" data-bg-text="现代 C++ 教程" >
+        <a class="menu-button"></a>
+        <a class="logo" href="/modern-cpp/"></a>
+      </div>
+    
+    <div id="header">
+  <a id="logo" href="/modern-cpp-tutorial/">
+      <img src="/modern-cpp-tutorial/modern-cpp/assets/cover-2nd-logo.png">
+      <span>教程：高速上手</span>
+  </a>
+  <ul id="nav">
+    
+      <li class="nav-dropdown-container resource">
+  <a class="nav-link">资源</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/zh-cn/00-preface/" >正文</a></li>
+      <!-- TODO -->
+      <!-- <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/code/1/" >代码</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/exercises/1/" >习题</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/answers/1/" >答案</a></li> -->
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link">关于</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/donate.html" >资助</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/copyright.html" >版权声明</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/ack.html" >致谢</a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    中文
+  </a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" target="_blank" href="/modern-cpp/en-us/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        English
+      </a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+
+    
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  <div class="sidebar">
+    <ul class="main-menu">
+        
+          <li class="nav-dropdown-container resource">
+  <a class="nav-link">资源</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/zh-cn/00-preface/" >正文</a></li>
+      <!-- TODO -->
+      <!-- <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/code/1/" >代码</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/exercises/1/" >习题</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/answers/1/" >答案</a></li> -->
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link">关于</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/donate.html" >资助</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/copyright.html" >版权声明</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/ack.html" >致谢</a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    中文
+  </a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" target="_blank" href="/modern-cpp/en-us/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        English
+      </a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+
+        
+    </ul>
+  </div>
+
+<div class="content  ">
+  <p>EPZS(Enhance Predictive Zonal Search) 增强预测区域搜索，是一种整像素运动估计的搜索算法。<br>EPZS采用的是相关性较高的预测方法。这里的相关性较高是指，更多地根据已有的条件，来进行运动向量的预测（如采用相邻块的mv作为当前搜索块的mv进行预测）。</p>
+<h1 id="Search-Set"><a href="#Search-Set" class="headerlink" title="Search Set"></a>Search Set</h1><p>在搜索范围内的所有mv，可以被归结为集合$S$，EPZS会从$S$中按照其算法的规律来选择特定的子集$S’$。$S’$可以包含以下几种搜索方式。</p>
+<h4 id="1-S-1-，mvp，-0-0"><a href="#1-S-1-，mvp，-0-0" class="headerlink" title="1.$S_1$，mvp，(0, 0)"></a>1.$S_1$，mvp，(0, 0)</h4><p>$mv_{prev} ,  mv(0, 0)$<br><img src="//images0.cnblogs.com/blog/421096/201410/170000022636240.jpg"></p>
+<h4 id="2-S-2-，当前块的相邻块mv，包括ABCD四个mv，co-located块mv，做mv-scale，即对于POC的距离进行比例增减。"><a href="#2-S-2-，当前块的相邻块mv，包括ABCD四个mv，co-located块mv，做mv-scale，即对于POC的距离进行比例增减。" class="headerlink" title="2.$S_2$，当前块的相邻块mv，包括ABCD四个mv，co-located块mv，做mv_scale，即对于POC的距离进行比例增减。"></a>2.$S_2$，当前块的相邻块mv，包括ABCD四个mv，co-located块mv，做mv_scale，即对于POC的距离进行比例增减。</h4><p>$mv_a,mv_b,mv_c,mv_d,mv_{co}$<br><img src="//images0.cnblogs.com/blog/421096/201410/170024489355460.jpg"></p>
+<h4 id="3-S-3-，这种方式基于第0个参考图像的mv，当前参考图像的mv需要由ref0的mv以POC的距离做mv-scale后得到"><a href="#3-S-3-，这种方式基于第0个参考图像的mv，当前参考图像的mv需要由ref0的mv以POC的距离做mv-scale后得到" class="headerlink" title="3.$S_3$，这种方式基于第0个参考图像的mv，当前参考图像的mv需要由ref0的mv以POC的距离做mv_scale后得到"></a>3.$S_3$，这种方式基于第0个参考图像的mv，当前参考图像的mv需要由ref0的mv以POC的距离做mv_scale后得到</h4><p>$mv_{refn} &#x3D; {mv_{ref0}} \cdot {\frac{POC_{cur}-POC_{n}}{POC_{cur}-POC_{0}}}$</p>
+<p><img src="//images0.cnblogs.com/blog/421096/201410/170023318262702.jpg"></p>
+<h4 id="4-S-4-，以mvp或者（0-0）为中心，呈正方形窗口的mv集合"><a href="#4-S-4-，以mvp或者（0-0）为中心，呈正方形窗口的mv集合" class="headerlink" title="4.$S_4$，以mvp或者（0, 0）为中心，呈正方形窗口的mv集合"></a>4.$S_4$，以mvp或者（0, 0）为中心，呈正方形窗口的mv集合</h4><p>$mv_{window}$</p>
+<p><img src="//images0.cnblogs.com/blog/421096/201410/170025288738859.jpg"></p>
+<h4 id="5-S-5-，由于运动有可能不是匀速地运动，而是以相同加速度来进行，因此可以用前两张编码图像的mv计算出当前mv"><a href="#5-S-5-，由于运动有可能不是匀速地运动，而是以相同加速度来进行，因此可以用前两张编码图像的mv计算出当前mv" class="headerlink" title="5.$S_5$，由于运动有可能不是匀速地运动，而是以相同加速度来进行，因此可以用前两张编码图像的mv计算出当前mv"></a>5.$S_5$，由于运动有可能不是匀速地运动，而是以相同加速度来进行，因此可以用前两张编码图像的mv计算出当前mv</h4><p>$mv_{cur} &#x3D; mv_{t-1} + (mv_{t-1} - mv_{t-2})$</p>
+<p><img src="//images0.cnblogs.com/blog/421096/201410/170027180446912.jpg"></p>
+<h4 id="6-S-6-，co-located块的相邻mv，需做mv-scale"><a href="#6-S-6-，co-located块的相邻mv，需做mv-scale" class="headerlink" title="6.$S_6$，co-located块的相邻mv，需做mv_scale"></a>6.$S_6$，co-located块的相邻mv，需做mv_scale</h4><p>$mv_{cola},mv_{colb},mv_{colc},mv_{cold}$</p>
+<p><img src="//images0.cnblogs.com/blog/421096/201410/170028467323908.jpg"></p>
+<h4 id="7-S-7-，Memory-Prediction即采用同一块位置中，上一个块类型（Block-type-1）做预测得到的mv，采用其相邻mv，做mv-scale"><a href="#7-S-7-，Memory-Prediction即采用同一块位置中，上一个块类型（Block-type-1）做预测得到的mv，采用其相邻mv，做mv-scale" class="headerlink" title="7.$S_7$，Memory Prediction即采用同一块位置中，上一个块类型（Block type - 1）做预测得到的mv，采用其相邻mv，做mv_scale"></a>7.$S_7$，Memory Prediction即采用同一块位置中，上一个块类型（Block type - 1）做预测得到的mv，采用其相邻mv，做mv_scale</h4><p>$mv_{preva},mv_{prevb},mv_{prevc},mv_{prevd}$</p>
+<p><img src="//images0.cnblogs.com/blog/421096/201410/170030065449923.jpg"></p>
+<h4 id="8-S-8-，如果采用的是HME（Hierarchical-Motion-Estimation）分层运动估计的编码方式，那么应该选择该次HME运动估计的参考图像，从参考图像中选择co-located块，以及co-located块周边的块（带col块共9个块）的mv作为候选mv"><a href="#8-S-8-，如果采用的是HME（Hierarchical-Motion-Estimation）分层运动估计的编码方式，那么应该选择该次HME运动估计的参考图像，从参考图像中选择co-located块，以及co-located块周边的块（带col块共9个块）的mv作为候选mv" class="headerlink" title="8.$S_8$，如果采用的是HME（Hierarchical Motion Estimation）分层运动估计的编码方式，那么应该选择该次HME运动估计的参考图像，从参考图像中选择co-located块，以及co-located块周边的块（带col块共9个块）的mv作为候选mv"></a>8.$S_8$，如果采用的是HME（Hierarchical Motion Estimation）分层运动估计的编码方式，那么应该选择该次HME运动估计的参考图像，从参考图像中选择co-located块，以及co-located块周边的块（带col块共9个块）的mv作为候选mv</h4><p>$mv_{hme_co},mv_{hme_surround_of_co}$</p>
+<p><img src="//images0.cnblogs.com/blog/421096/201410/170031168881249.jpg"></p>
+<h4 id="9-S-9-，上层块mv，做mv-scale"><a href="#9-S-9-，上层块mv，做mv-scale" class="headerlink" title="9.$S_9$，上层块mv，做mv_scale"></a>9.$S_9$，上层块mv，做mv_scale</h4><p>$mv_{4 \times 4} &#x3D; mv_{8 \times 4},mv_{8 \times 4} &#x3D; mv{8 \times 8},…$</p>
+<p><img src="//images0.cnblogs.com/blog/421096/201410/170035529664324.jpg"></p>
+<p>从如上的mv集合明显看出，基本上，如果当前mv是由参考图像已有mv预测出来的情况，都需要进行mv_scale，以此提高mv预测的准确性。</p>
+<p>在预测完所有mv的可能位置后，得到mv集合$S$，由于此处进行的是整像素预测，所以需要对mv求整。接下来需要在$S$中求出mv_cost最小的mv，当然，mv需要在search range内。</p>
+<h1 id="Termination"><a href="#Termination" class="headerlink" title="Termination"></a>Termination</h1><p>Termination用于判断当前mv预测是否满足停止条件（mv_cost &lt; stopCriterion）,满足则代表当前mv预测已经足够准确，可以退出。</p>
+<ol>
+<li><p>在求出第一个子集$S_1$的mv_cost后，进行第一次Termination，记为$T_1$。$T_1$是由当前块类型的像素点个数（如16x16像素点个数为256）与lambda联合组成。JM18.6中$T_1$，即stopCriterion的值为如下形式:$stopCriterion &#x3D; (N_{pixel} \times \frac{3}{4}) \times 2^{LAMBDA_ACCURACY_BITS} + LAMBDA_DIST $</p>
+</li>
+<li><p>如果第一个停止条件不能满足，则接下来需要对所有的mv集合进行预测，从中选出mv_cost最小的mv。在得到最小mv后，进行第二次Termination，记为$T_2$。$T_2$由3块类型的相邻块中最小SAD，用$stopCriterion_{T_1}$修正计算得来。</p>
+</li>
+</ol>
+<ul>
+<li><p>首先定义上界与下界:$\begin{align*}<br>Upper &amp;&#x3D; (N_{pixel} \times 3) \times 2^{LAMBDA_ACCURACY_BITS} + LAMBDA_DIST \<br>Lower &amp;&#x3D; (N_{pixel} \times \frac{1}{4}) \times 2^{LAMBDA_ACCURACY_BITS} + LAMBDA_DIST<br>\end{align*}$</p>
+</li>
+<li><p>上下界修正:$tmpStopCriterion &#x3D; Mid( Min(SAD_A,SAD_B,SAD_C), Upper, Lower)$</p>
+</li>
+<li><p>StopCriterion修正:$stopCriterion &#x3D; \frac{(Max(tmpStopCriterion, stopCriterion) \times 8 + stopCriterion)}{8} + LAMBDA_DIST $</p>
+</li>
+</ul>
+<ol start="3">
+<li>如果第二个停止条件仍然不满足，接下来进行最后的小区域搜索，搜索方式有菱形，正方形，大菱形等。如果搜索得到最佳mv为菱形（或正方形）的中心点，则停止搜索，得到最终的最佳整数mv。可以参考<a target="_blank" rel="noopener" href="http://www.cnblogs.com/TaigaCon/p/3788984.html">http://www.cnblogs.com/TaigaCon/p/3788984.html</a></li>
+</ol>
+<p>相对于UMHS，EPZS更多地考虑了运动的相关性，基本上采用的都是用已得到的mv预测当前mv，这种方式在规律运动图像的预测中会比UMHS更有效率。但是UMHS的预测更加考虑周全，对搜索范围进行了更细密的搜索，一旦碰上无规律运动图像，UMHS预测可以得到比EPZS更准确的预测效果。因此，根据图像性质来选择不同的搜索算法将能更好地提升编码质量。</p>
+<p>jm18.6:<br>&#x2F;*!</p>
+<hr>
+<ul>
+<li>\brief</li>
+<li>FAST Motion Estimation using EPZS</li>
+<li>AMT&#x2F;HYC</li>
+</ul>
+<hr>
+<p>*&#x2F;<br>distblk                                            &#x2F;&#x2F;  &#x3D;&#x3D;&gt; minimum motion cost after search<br>EPZS_motion_estimation (Macroblock * currMB,     &#x2F;&#x2F; &lt;–  current Macroblock<br>                          MotionVector * pred_mv,  &#x2F;&#x2F; &lt;–  motion vector predictor in sub-pel units<br>                          MEBlock * mv_block,      &#x2F;&#x2F; &lt;–  motion vector information<br>                          distblk min_mcost,       &#x2F;&#x2F; &lt;–  minimum motion cost (cost for center or huge value)<br>                          int lambda_factor        &#x2F;&#x2F; &lt;–  lagrangian parameter for determining motion cost<br>                          )<br>{<br>  Slice *currSlice &#x3D; currMB-&gt;p_Slice;<br>  VideoParameters *p_Vid &#x3D; currMB-&gt;p_Vid;<br>  InputParameters *p_Inp &#x3D; currMB-&gt;p_Inp;<br>  EPZSParameters *p_EPZS &#x3D; currSlice-&gt;p_EPZS;<br>  PicMotionParams **motion &#x3D; p_Vid-&gt;enc_picture-&gt;mv_info;</p>
+<p>  int blocktype &#x3D; mv_block-&gt;blocktype;</p>
+<p>  int list &#x3D; mv_block-&gt;list;<br>  int cur_list &#x3D; list + currMB-&gt;list_offset;<br>  short ref &#x3D; mv_block-&gt;ref_idx;<br>  MotionVector *mv &#x3D; &amp;mv_block-&gt;mv[list];<br>  SearchWindow *searchRange &#x3D; &amp;mv_block-&gt;searchRange;<br>  int mapCenter_x &#x3D; searchRange-&gt;max_x - mv-&gt;mv_x;<br>  int mapCenter_y &#x3D; searchRange-&gt;max_y - mv-&gt;mv_y;<br>  StorablePicture *ref_picture &#x3D; currSlice-&gt;listX[cur_list][ref];</p>
+<p>  distblk lambda_dist &#x3D; weighted_cost(lambda_factor, 2);<br>  distblk stopCriterion &#x3D; p_EPZS-&gt;medthres[blocktype] + lambda_dist;<br>  distblk *prevSad &#x3D; &amp;p_EPZS-&gt;distortion[cur_list][blocktype - 1][mv_block-&gt;pos_x2];</p>
+<p>  MotionVector *p_motion &#x3D; NULL; &#x2F;&#x2F;only work for EPZSSpatialMem</p>
+<p>  EPZSStructure *searchPatternF &#x3D; p_EPZS-&gt;searchPattern;<br>  uint16 **EPZSMap &#x3D; &amp;p_EPZS-&gt;EPZSMap[mapCenter_y];<br>  uint16 *EPZSPoint &#x3D; &amp;p_EPZS-&gt;EPZSMap[searchRange-&gt;max_y][searchRange-&gt;max_x];</p>
+<p>  MotionVector center &#x3D; pad_MVs (*mv, mv_block);<br>  MotionVector pred &#x3D; pad_MVs (*pred_mv, mv_block);<br>  MotionVector tmp &#x3D; *mv, cand &#x3D; center;</p>
+<p>  ++p_EPZS-&gt;BlkCount;<br>  if (p_EPZS-&gt;BlkCount &#x3D;&#x3D; 0)<br>    ++p_EPZS-&gt;BlkCount;</p>
+<p>  if (p_Inp-&gt;EPZSSpatialMem)<br>  {<br>#if EPZSREF<br>    p_motion &#x3D; &amp;p_EPZS-&gt;p_motion[cur_list][ref][blocktype - 1][mv_block-&gt;block_y][mv_block-&gt;pos_x2];<br>#else<br>    p_motion &#x3D; &amp;p_EPZS-&gt;p_motion[cur_list][blocktype - 1][mv_block-&gt;block_y][mv_block-&gt;pos_x2];<br>#endif<br>  }</p>
+<p>  &#x2F;&#x2F; Clear EPZSMap<br>  &#x2F;&#x2F; memset(EPZSMap[0],FALSE,searcharray*searcharray);<br>  &#x2F;&#x2F; Check median candidate;<br>  &#x2F;&#x2F;p_EPZS-&gt;EPZSMap[0][0] &#x3D; p_EPZS-&gt;BlkCount;<br>  *EPZSPoint &#x3D; p_EPZS-&gt;BlkCount;</p>
+<p>  &#x2F;&#x2F;— initialize motion cost (cost for motion vector) and check —<br>  &#x2F;&#x2F;(0,0)作为mv<br>  min_mcost &#x3D; mv_cost (p_Vid, lambda_factor, &amp;cand, &amp;pred);</p>
+<p>  &#x2F;&#x2F;— add residual cost to motion cost —<br>  min_mcost +&#x3D; mv_block-&gt;computePredFPel (ref_picture, mv_block, DISTBLK_MAX - min_mcost, &amp;cand);</p>
+<p>  &#x2F;&#x2F; Additional threshold for ref&gt;0<br>  if ((ref &gt; 0 &amp;&amp; currSlice-&gt;structure &#x3D;&#x3D; FRAME) &amp;&amp; (*prevSad &lt; distblkmin (p_EPZS-&gt;medthres[blocktype] + lambda_dist, min_mcost)))<br>  {&#x2F;&#x2F;满足返回条件<br>#if EPZSREF<br>    if (p_Inp-&gt;EPZSSpatialMem)<br>#else<br>    if (p_Inp-&gt;EPZSSpatialMem &amp;&amp; ref &#x3D;&#x3D; 0)<br>#endif<br>    {<br>      *p_motion &#x3D; tmp;<br>    }<br>    return min_mcost;<br>  }</p>
+<p>  &#x2F;&#x2F;! If p_EPZS-&gt;medthres satisfied, then terminate, otherwise generate Predictors<br>  &#x2F;&#x2F;! Condition could be strengthened by consideration distortion of adjacent partitions.<br>  if (min_mcost &gt; stopCriterion)<br>  {<br>    SPoint *p_EPZS_point &#x3D; p_EPZS-&gt;predictor-&gt;point;<br>    Boolean checkMedian &#x3D; FALSE;<br>    distblk second_mcost &#x3D; DISTBLK_MAX;<br>    distblk mcost;<br>    int prednum &#x3D; 5;<br>    int conditionEPZS;<br>    MotionVector tmp2 &#x3D; {0, 0}, tmv;<br>    int pos;<br>    short invalid_refs &#x3D; 0;</p>
+<pre><code>stopCriterion = EPZSDetermineStopCriterion (p_EPZS, prevSad, mv_block, lambda_dist);
+
+if (min_mcost &lt; (stopCriterion &gt;&gt; 1))
+&#123;
+</code></pre>
+<p>#if EPZSREF<br>      if (p_Inp-&gt;EPZSSpatialMem)<br>#else<br>      if (p_Inp-&gt;EPZSSpatialMem &amp;&amp; ref &#x3D;&#x3D; 0)<br>#endif<br>      {<br>        *p_motion &#x3D; tmp;<br>      }</p>
+<pre><code>  return min_mcost;
+&#125;
+
+//! Add Spatial Predictors in predictor list.
+//! Scheme adds zero, left, top-left, top, top-right. Note that top-left adds very little
+//! in terms of performance and could be removed with little penalty if any.
+//当前块相邻mv,做mv_scale
+invalid_refs = EPZS_spatial_predictors (p_EPZS, mv_block, 
+  list, currMB-&gt;list_offset, ref, motion);
+
+
+
+//当前类型的block_type(8x4)的上一个block_type(8x8),相同位置留下来的mv,采用其相邻mv
+/*
+ *      
+ *   +--------+----+----+                 
+ *   |        |    B    |                 
+ *   |        |____A____|                 
+ *   |        |         |                 
+ *   |        |         |                 
+ *   |        +----+----+                 
+ *   |                  |                 
+ *   |                  |                 
+ *   |                  |                 
+ *   |                  |                 
+ *   +------------------+                 
+ *    
+ *   B : 8x4    A 8x8
+ *     macroblock                      
+ *                                     
+ *memory_mv_b = surrounding_of_mv_a
+ *采用mv_a的相邻mv
+ *
+ */
+if (p_Inp-&gt;EPZSSpatialMem)
+  EPZS_spatial_memory_predictors (p_EPZS, mv_block, cur_list, &amp;prednum, ref_picture-&gt;size_x &gt;&gt; 2);
+
+//if (p_Inp-&gt;HMEEnable == 1 &amp;&amp; p_Inp-&gt;EPZSUseHMEPredictors == 1 &amp;&amp; blocktype == 4)
+//if (p_Inp-&gt;HMEEnable == 1 &amp;&amp; p_Inp-&gt;EPZSUseHMEPredictors == 1 &amp;&amp; (currSlice-&gt;slice_type == P_SLICE || currSlice-&gt;slice_type == SP_SLICE || p_Inp-&gt;EnableReorderBslice) )
+//如果采用HME(Hierarchical Motion Estimate),即B帧的参考图像选择方式有所不同
+//选择此时的分层参考图像(Hierarchical ref pic)对应块的相邻mv
+if (p_Inp-&gt;HMEEnable == 1 &amp;&amp; p_Inp-&gt;EPZSUseHMEPredictors == 1)
+  EPZS_hierarchical_predictors (p_EPZS, mv_block, &amp;prednum, ref_picture, currSlice);
+</code></pre>
+<p>#if (MVC_EXTENSION_ENABLE)<br>    if ( p_Inp-&gt;EPZSTemporal[currSlice-&gt;view_id] &amp;&amp; blocktype &lt; 5 )<br>#else<br>    &#x2F;&#x2F; Temporal predictors<br>    &#x2F;&#x2F;colocate块的相邻块mv<br>    if (p_Inp-&gt;EPZSTemporal &amp;&amp; blocktype &lt; 5)<br>#endif<br>    {<br>      EPZS_temporal_predictors (currMB, ref_picture, p_EPZS, mv_block, &amp;prednum, stopCriterion, min_mcost);<br>    }</p>
+<pre><code>//! Window Size Based Predictors
+//! Basically replaces a Hierarchical ME concept and helps escaping local minima, or
+//! determining large motion variations.
+//! Following predictors can be adjusted further (i.e. removed, conditioned etc)
+//! based on distortion, correlation of adjacent MVs, complexity etc. These predictors
+//! and their conditioning could also be moved after all other predictors have been
+//! tested. Adaptation could also be based on type of material and coding mode (i.e.
+//! field/frame coding,MBAFF etc considering the higher dependency with opposite parity field
+//conditionEPZS = ((min_mcost &gt; stopCriterion)
+// &amp;&amp; (p_Inp-&gt;EPZSFixed &gt; 1 || (p_Inp-&gt;EPZSFixed &amp;&amp; currSlice-&gt;slice_type == P_SLICE)));
+//conditionEPZS = ((ref == 0) &amp;&amp; (blocktype &lt; 5) &amp;&amp; (min_mcost &gt; stopCriterion)
+//&amp;&amp; (p_Inp-&gt;EPZSFixed &gt; 1 || (p_Inp-&gt;EPZSFixed &amp;&amp; currSlice-&gt;slice_type == P_SLICE)));
+//conditionEPZS = ((min_mcost &gt; stopCriterion) &amp;&amp; ((ref &lt; 2 &amp;&amp; blocktype &lt; 4)
+conditionEPZS = (p_Inp-&gt;EPZSFixed == 3 &amp;&amp; (currMB-&gt;mb_x == 0 || currMB-&gt;mb_y == 0))
+  || ((min_mcost &gt; 3 * stopCriterion) &amp;&amp; ((ref &lt; 2 &amp;&amp; blocktype &lt; 4) || (ref &lt; 1 &amp;&amp; blocktype == 4)
+  || ((currSlice-&gt;structure != FRAME || currMB-&gt;list_offset)
+  &amp;&amp; ref &lt; 3))
+  &amp;&amp; (p_Inp-&gt;EPZSFixed &gt; 1 || (p_Inp-&gt;EPZSFixed &amp;&amp; currSlice-&gt;slice_type == P_SLICE)));
+
+//正方形窗口mv
+if (conditionEPZS)
+  EPZSWindowPredictors (mv, p_EPZS-&gt;predictor, &amp;prednum, 
+  (p_Inp-&gt;EPZSAggressiveWindow != 0) || ((blocktype &lt; 5) &amp;&amp; (invalid_refs &gt; 2) &amp;&amp; (ref &lt; 1 + (currSlice-&gt;structure != FRAME || currMB-&gt;list_offset)))
+  ? p_EPZS-&gt;window_predictor_ext : p_EPZS-&gt;window_predictor);
+
+//! Blocktype/Reference dependent predictors.
+//! Since already mvs for other blocktypes/references have been computed, we can reuse
+//! them in order to easier determine the optimal point. Use of predictors could depend
+//! on cost,
+//conditionEPZS = (ref == 0 || (ref &gt; 0 &amp;&amp; min_mcost &gt; stopCriterion) || currSlice-&gt;structure != FRAME || currMB-&gt;list_offset);
+conditionEPZS = (ref == 0 || (ref &gt; 0 &amp;&amp; min_mcost &gt; 2 * stopCriterion));
+
+//上层宏块mv,做mv_scale
+if (conditionEPZS &amp;&amp; currMB-&gt;mbAddrX != 0 &amp;&amp; p_Inp-&gt;EPZSBlockType)
+  EPZSBlockTypePredictorsMB (currSlice, mv_block, p_EPZS_point, &amp;prednum);
+
+//! Check all predictors
+
+//循环内,对所有的cand mv(S1,S2,S3,S4)做cost.取出最佳mv
+for (pos = 0; pos &lt; prednum; ++pos)
+&#123;
+  tmv = p_EPZS_point[pos].motion;
+  set_integer_mv(&amp;tmv);
+
+  //if (((iabs (tmv.mv_x - mv-&gt;mv_x) &gt; searchRange-&gt;max_x || iabs (tmv.mv_y - mv-&gt;mv_y) &gt; searchRange-&gt;max_y)) &amp;&amp; (tmv.mv_x || tmv.mv_y))
+  if ((iabs (tmv.mv_x - mv-&gt;mv_x) - searchRange-&gt;max_x &lt;= 0) &amp;&amp; (iabs (tmv.mv_y - mv-&gt;mv_y) - searchRange-&gt;max_y &lt;= 0))
+  &#123;
+    EPZSPoint = &amp;EPZSMap[tmv.mv_y][mapCenter_x + tmv.mv_x];
+    if (*EPZSPoint != p_EPZS-&gt;BlkCount)
+    &#123;
+      *EPZSPoint = p_EPZS-&gt;BlkCount;
+      cand = pad_MVs (tmv, mv_block);
+
+      //--- set motion cost (cost for motion vector) and check ---
+      mcost = mv_cost (p_Vid, lambda_factor, &amp;cand, &amp;pred);
+
+      if (mcost &lt; second_mcost)
+      &#123;
+        mcost += mv_block-&gt;computePredFPel (ref_picture, mv_block, second_mcost - mcost, &amp;cand);
+
+        //--- check if motion cost is less than minimum cost ---
+        if (mcost &lt; min_mcost)
+        &#123;
+          tmp2 = tmp;
+          tmp = tmv;
+          second_mcost = min_mcost;
+          min_mcost = mcost;
+          checkMedian = TRUE;
+        &#125;
+        //else if (mcost &lt; second_mcost &amp;&amp; (tmp.mv_x != tmv.mv_x || tmp.mv_y != tmv.mv_y))
+        else if (mcost &lt; second_mcost)
+        &#123;
+          tmp2 = tmv;
+          second_mcost = mcost;
+          checkMedian = TRUE;
+        &#125;
+      &#125;
+    &#125;
+  &#125;
+&#125;
+
+//! Refine using EPZS pattern if needed
+//! Note that we are using a conservative threshold method. Threshold
+//! could be tested after checking only a certain number of predictors
+//! instead of the full set. Code could be easily modified for this task.
+if (min_mcost &gt; stopCriterion)
+&#123;
+  const int mv_range = 10;
+  int patternStop = 0, pointNumber = 0, checkPts, nextLast = 0;
+  int totalCheckPts = 0, motionDirection = 0;
+
+  //! Adapt pattern based on different conditions.
+  if (p_Inp-&gt;EPZSPattern != 0)
+  &#123;
+    if ((min_mcost &lt; stopCriterion + ((3 * p_EPZS-&gt;medthres[blocktype]) &gt;&gt; 1)))
+    &#123;
+      if ((tmp.mv_x == 0 &amp;&amp; tmp.mv_y == 0) 
+        || (iabs (tmp.mv_x - mv-&gt;mv_x) &lt; (mv_range) &amp;&amp; iabs (tmp.mv_y - mv-&gt;mv_y) &lt; (mv_range)))
+        searchPatternF = p_Vid-&gt;sdiamond;
+      else
+        searchPatternF = p_Vid-&gt;square;
+    &#125;
+    else if (blocktype &gt; 4 || (ref &gt; 0 &amp;&amp; blocktype != 1))
+      searchPatternF = p_Vid-&gt;square;
+    else
+      searchPatternF = p_EPZS-&gt;searchPattern;
+  &#125;
+
+  //! center on best predictor
+  center = tmp;
+
+  for (;;)
+  &#123;
+    totalCheckPts = searchPatternF-&gt;searchPoints;
+    do
+    &#123;//循环对得到的最佳mv是做小范围搜索:square,dimond,etc.
+      checkPts = totalCheckPts;
+      do
+      &#123;//循环对小范围进行各个像素点的搜索
+        tmv = add_MVs (center, &amp;(searchPatternF-&gt;point[pointNumber].motion));
+
+        if (((iabs (tmv.mv_x - mv-&gt;mv_x) - searchRange-&gt;max_x) &lt;= 0) &amp;&amp; ((iabs (tmv.mv_y - mv-&gt;mv_y) - searchRange-&gt;max_y) &lt;= 0))
+        &#123;
+          //EPZSMap用于记录当前点是否被搜索过,一旦搜索过,则不再搜索,这样的话就不会跟//! Check all predictors重复了
+          EPZSPoint = &amp;EPZSMap[tmv.mv_y][mapCenter_x + tmv.mv_x];
+          if (*EPZSPoint != p_EPZS-&gt;BlkCount)
+          &#123;
+            *EPZSPoint = p_EPZS-&gt;BlkCount;
+            cand = pad_MVs (tmv, mv_block);
+
+            mcost = mv_cost (p_Vid, lambda_factor, &amp;cand, &amp;pred);
+
+            if (mcost &lt; min_mcost)
+            &#123;
+              mcost += mv_block-&gt;computePredFPel (ref_picture, mv_block, min_mcost - mcost, &amp;cand);
+
+              if (mcost &lt; min_mcost)
+              &#123;
+                tmp = tmv;
+                min_mcost = mcost;
+                motionDirection = pointNumber;
+              &#125;
+            &#125;
+          &#125;
+        &#125;
+        ++pointNumber;
+        if (pointNumber &gt;= searchPatternF-&gt;searchPoints)
+          pointNumber -= searchPatternF-&gt;searchPoints;
+        checkPts--;
+      &#125;
+      while (checkPts &gt; 0);
+      
+      //对得到的最佳mv,如果是center(第一次的center是mvp),则停止当前循环
+      if (nextLast || ((tmp.mv_x == center.mv_x) &amp;&amp; (tmp.mv_y == center.mv_y)))
+      &#123;
+        patternStop = searchPatternF-&gt;stopSearch;
+        searchPatternF = searchPatternF-&gt;nextpattern;
+        totalCheckPts = searchPatternF-&gt;searchPoints;
+        nextLast = searchPatternF-&gt;nextLast;
+        motionDirection = 0;
+        pointNumber = 0;
+      &#125;
+      else
+      &#123;
+        totalCheckPts = searchPatternF-&gt;point[motionDirection].next_points;
+        pointNumber = searchPatternF-&gt;point[motionDirection].start_nmbr;
+        center = tmp;
+      &#125;
+    &#125;
+    while (patternStop != 1);
+
+    if ((ref &gt; 0) &amp;&amp; (currSlice-&gt;structure == FRAME) 
+      &amp;&amp; ((4 * *prevSad &lt; min_mcost) || ((3 * *prevSad &lt; min_mcost) &amp;&amp; (*prevSad &lt;= stopCriterion))))
+    &#123;
+      *mv = tmp;
+</code></pre>
+<p>#if EPZSREF<br>          if (p_Inp-&gt;EPZSSpatialMem)<br>#else<br>          if (p_Inp-&gt;EPZSSpatialMem &amp;&amp; ref &#x3D;&#x3D; 0)<br>#endif<br>          {<br>            *p_motion &#x3D; tmp;<br>          }</p>
+<pre><code>      return min_mcost;
+    &#125;
+
+    //! Check Second best predictor with EPZS pattern
+    conditionEPZS = (checkMedian == TRUE)
+      &amp;&amp; ((currSlice-&gt;slice_type == P_SLICE) || (blocktype &lt; 5))
+      &amp;&amp; (min_mcost &gt; stopCriterion) &amp;&amp; (p_Inp-&gt;EPZSDual &gt; 0);
+
+    if (!conditionEPZS)
+      break; 
+    //如果上方条件有多于0个不满足的，则退出循环
+    //退出条件1:  EPZSDual = 0 ,即循环只需要执行一次
+    //        2:  cost足够小了
+    //        3:  blocktypc = 5,6,7
+    //        4:  不为P_SLICE
+    //        5:  checkMedian = false,即由于EPZSDual,而执行完了第二次
+
+    pointNumber = 0;
+    patternStop = 0;
+    motionDirection = 0;
+    nextLast = 0;
+
+    if ((tmp.mv_x == 0 &amp;&amp; tmp.mv_y == 0) || (tmp.mv_x == mv-&gt;mv_x &amp;&amp; tmp.mv_y == mv-&gt;mv_y))
+    &#123;
+      if (iabs (tmp.mv_x - mv-&gt;mv_x) &lt; (mv_range) &amp;&amp; iabs (tmp.mv_y - mv-&gt;mv_y) &lt; (mv_range))
+        searchPatternF = p_Vid-&gt;sdiamond;
+      else
+        searchPatternF = p_Vid-&gt;square;
+    &#125;
+    else
+      searchPatternF = p_EPZS-&gt;searchPatternD;
+
+    //! Second best. Note that following code is identical as for best predictor.
+    //由于EPZSDual &gt; 0,开启第二次循环,以原点(当前mv_block所在坐标)为中心,开始搜索
+    center = tmp2;
+    checkMedian = FALSE;
+  &#125;
+&#125;
+</code></pre>
+<p>  }</p>
+<p>  if ((ref &#x3D;&#x3D; 0) || (*prevSad &gt; min_mcost))<br>    *prevSad &#x3D; min_mcost;<br>#if EPZSREF<br>  if (p_Inp-&gt;EPZSSpatialMem)<br>#else<br>  if (p_Inp-&gt;EPZSSpatialMem &amp;&amp; ref &#x3D;&#x3D; 0)<br>#endif<br>  {<br>    *p_motion &#x3D; tmp;<br>    &#x2F;&#x2F;printf(“value %d %d %d %d\n”, p_motion-&gt;mv_x, p_motion-&gt;mv_y, p_motion[cur_list][ref][0][0][0].mv_x, p_motion[list + list_offset][ref][0][0][0].mv_y);<br>    &#x2F;&#x2F;printf(“xxxxx %d %d %d %d\n”, p_motion-&gt;mv_x, p_motion-&gt;mv_y, p_motion[cur_list][ref][blocktype - 1][mv_block-&gt;block_y][pic_pix_x2].mv_x, p_motion[cur_list][ref][blocktype - 1][mv_block-&gt;block_y][pic_pix_x2].mv_y);<br>  }</p>
+<p>  *mv &#x3D; tmp;</p>
+<p>  return min_mcost;<br>}<br>View Code</p>
+
+  <div class="guide-links">
+    
+    
+  </div>
+
+  
+    <div class="footer">
+        <p>
+          <a target="_blank" rel="noopener" href="https://changkun.de">欧长坤</a> &copy; 2016-2024 版权所有，
+          采用<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议许可</a>，代码使用 <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> 协议开源。</a>
+        </p>
+        <p>
+            如果你认为本书对你起到了帮助，可以<a href="/modern-cpp/about/donate.html">资助作者</a>。
+        </p>
+      </div>
+  
+
+
+</div>
+
+      </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.2.1/js/smooth-scroll.min.js"></script>
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="https://cdn.jsdelivr.net/npm/css.escape@1.5.1/css.escape.min.js"></script>
+    <script src="/modern-cpp-tutorial/modern-cpp/js/common.js"></script>
+
+    <!-- fastclick -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Intra Luma Prediction 现代 C++ 教程: 高速上手 C++ 11/14/17/20 - Modern C++ Tutorial: C++ 11/14/17/20 On the Fly</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Modern C++ Tutorial | C++ 11/14/17/20 On the Fly | 现代 C++ 教程 | 高速上手 C++11/14/17/20">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/modern-cpp/assets/cover-2nd.png">
+    <meta name="msapplication-TileColor" content="#7e2d36">
+    <meta name="theme-color" content="#7e2d36">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80889616-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-80889616-2');
+    </script>
+
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/modern-cpp-tutorial/modern-cpp/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>window.PAGE_TYPE = ""</script>
+    <script async src="//changkun.de/urlstat/client.js"></script>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body class="docs">
+	<!-- body开始 -->
+    
+      <div id="mobile-bar" data-bg-text="现代 C++ 教程" >
+        <a class="menu-button"></a>
+        <a class="logo" href="/modern-cpp/"></a>
+      </div>
+    
+    <div id="header">
+  <a id="logo" href="/modern-cpp-tutorial/">
+      <img src="/modern-cpp-tutorial/modern-cpp/assets/cover-2nd-logo.png">
+      <span>教程：高速上手</span>
+  </a>
+  <ul id="nav">
+    
+      <li class="nav-dropdown-container resource">
+  <a class="nav-link">资源</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/zh-cn/00-preface/" >正文</a></li>
+      <!-- TODO -->
+      <!-- <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/code/1/" >代码</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/exercises/1/" >习题</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/answers/1/" >答案</a></li> -->
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link">关于</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/donate.html" >资助</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/copyright.html" >版权声明</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/ack.html" >致谢</a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    中文
+  </a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" target="_blank" href="/modern-cpp/en-us/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        English
+      </a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+
+    
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  <div class="sidebar">
+    <ul class="main-menu">
+        
+          <li class="nav-dropdown-container resource">
+  <a class="nav-link">资源</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/zh-cn/00-preface/" >正文</a></li>
+      <!-- TODO -->
+      <!-- <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/code/1/" >代码</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/exercises/1/" >习题</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/answers/1/" >答案</a></li> -->
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link">关于</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/donate.html" >资助</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/copyright.html" >版权声明</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/ack.html" >致谢</a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    中文
+  </a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" target="_blank" href="/modern-cpp/en-us/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        English
+      </a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+
+        
+    </ul>
+  </div>
+
+<div class="content  ">
+  <h1 id=""><a href="#" class="headerlink" title=""></a></h1><p>在宏块的帧内预测过程中，有四种宏块类型：I_4x4，I_8x8，I16x16，I_PCM。他们都需要在相邻块做去块滤波之前进行帧内预测。</p>
+<h1 id="亮度帧内预测的总体流程"><a href="#亮度帧内预测的总体流程" class="headerlink" title="亮度帧内预测的总体流程"></a>亮度帧内预测的总体流程</h1><p>1-4获取当前block的帧内预测模式的预测，5-7获得最佳预测模式并对应预测模式的预测做后续处理</p>
+<ol>
+<li><p>首先需要获得当前4x4（8x8）预测块有左、上的4x4（8x8）相邻块A、B，假设其所在宏块为mbAddrA、mbAddrB。</p>
+</li>
+<li><p>如果mbAddrA或mbAddrB中任意一个宏块不可用于帧内预测（<a target="_blank" rel="noopener" href="http://www.cnblogs.com/TaigaCon/p/4149938.html">请参考</a>），那么就会设置DC &#x3D; 1，否则DC &#x3D; 0。</p>
+</li>
+<li><p>如果DC &#x3D; 1，或者相邻宏块mbAddrA，mbAddrB不是以I_8x8或者I_4x4方式编码的，表明A、B不适用于当前的预测过程，那么设置A、B为PredModeA &#x3D; PredModeB &#x3D; 2。<br>否则DC &#x3D; 0，并且mbAddrA与mbAddrB都是以I_8x8或者I_4x4方式编码的，则分别取得A与B的预测模式PredModeA, PredModeB。<br>预测模式的选取分为三种情况：</p>
+</li>
+<li><p>左与上的相邻块都在当前宏块，即此时当前宏块还未决定是采用I_8x8还是I_4x4或者其他的预测方式。那么当前块的相邻块A,B的预测模式就采用与这轮的宏块模式相同的方式的预测模式。如，当前正以I_8x8进行帧内预测，那PredModeA &#x3D; PredMode8x8A，PredModeB &#x3D; PredMode8x8_B.<br><img src="//images0.cnblogs.com/blog/421096/201412/282304539976993.jpg"></p>
+</li>
+<li><p>左与上的宏块都位于相邻宏块，即当前块位于宏块的左上角。此时左与上块所在的宏块都已选定了所采用的帧内宏块预测方式，因此无论当前块是在哪轮的帧内预测上（I_4x4或I_8x8），都应采用相邻宏块的预测方式来作为当前块的相邻块的帧内预测模式，PredModeA &#x3D; PredModeMacroBlockA，PredModeB &#x3D; PredModeMacroBlockB.<br><img src="//images0.cnblogs.com/blog/421096/201412/282304546385864.jpg"></p>
+</li>
+<li><p>左或上的其中一个块为相邻宏块，仅有一个（左或上）块位于当前宏块。这种情况下，位于其他宏块的相邻块采用其所在宏块的帧内预测模式，位于当前宏块的相邻块采用这一轮预测模式。PredModeA &#x3D; PredMode4x4A，PredModeB &#x3D; PredModeMacroblockB.<br><img src="//images0.cnblogs.com/blog/421096/201412/282304551224549.jpg"></p>
+</li>
+<li><p>根据相邻块的帧内预测模式得到当前预测模式的预测：<br>PredPredMode &#x3D; Min(PredModeA, PredModeB)</p>
+</li>
+<li><p>上面得到的只是一个预测值，并不是当前块实际的预测模式。因此还需要通过计算得到最适合当前块的预测模式PredMode</p>
+</li>
+<li><p>如果PredPredMode &#x3D;&#x3D; PredMode，说明上方的预测是准确的，设置PredModeFlag &#x3D; 1;<br>否则PredModeFlag &#x3D; 0。</p>
+</li>
+<li><p>I_4x4与I_8x8都有9个模式，但是在PredModeFlag &#x3D; 0的时候，说明预测得到的预测模式PredPredMode可以被排除在外了，因此剩下的模式只有8个，这样刚刚好只用上3个bit就能表示。所以按照下方的做法，可以使原来4个bit才能表示的mode用3个bit就能表示：</p>
+</li>
+<li><p>如果PredMode &lt; PredPredMode，remPredMode &#x3D; PredMode</p>
+</li>
+<li><p>如果PredMode &gt; PredPredMode，remPredMode &#x3D; PredMode -1</p>
+</li>
+</ol>
+<p>remPredMode为最后用来编码的mode<br><img src="//images0.cnblogs.com/blog/421096/201412/282304556389692.jpg"></p>
+<p>现在所剩下的唯一疑点就是步骤5的：如何通过计算得当前块的最优预测模式。</p>
+<p>预测模式一共有9种。他们的序号与名称见下方表格</p>
+<p>可见4x4与8x8的预测模式都是以一样的顺序排列。<br>除了序号为2的DC模式外，其他模式都是通过相邻块的边缘像素点来进行线性预测的，预测方向如下<br><img src="//images0.cnblogs.com/blog/421096/201412/282304560138877.jpg"><br>在图像上，像素点坐标是按照左上至右下的顺序递增的。按照这种规律，可以得到一个坐标轴如下<br><img src="//images0.cnblogs.com/blog/421096/201412/282304563258848.jpg"><br>这样的话，预测模式就可以看做是斜率，只要知道坐标轴上的点（相邻块边界像素值），即可通过斜率（预测模式），得到该斜线上的坐标。<br><img src="//images0.cnblogs.com/blog/421096/201412/282304566696277.jpg"><br>就以上图的这种情况为例，可以看到当mode&#x3D;4时，斜率为1，即<br>$y&#x3D;x+b$<br>$-b&#x3D;x-y$<br>$-b$就是当$y&#x3D;0$时，在x轴上的偏移，因此有<br>$p[-b,0]&#x3D;p[x –y,0]$<br>由于同一条线上的值相等，所以有<br>$p[x,y]&#x3D;p[x-y,0]$<br>同理，当$mode&#x3D;5$时，斜率为2，有<br>$y&#x3D;2\times{(x+b)}$<br>得到<br>$p[-b,0]&#x3D;p[x-\frac{y}{2},0]&#x3D;p[x,y]$</p>
+<p>当然，以上只是大致阐述了用帧内预测来得到像素点的值的方式，在实际进行帧内预测的时候并不会这么简单，而且Intra4x4与Intra8x8在细节上也会有一些差别。下面会更详细地讨论Intra4x4预测模式。</p>
+<h1 id="Intra4x4"><a href="#Intra4x4" class="headerlink" title="Intra4x4"></a>Intra4x4</h1><p>对于一个4x4块来说，在进行帧内预测时会用到相邻像素点有13个，如上方图片中红色方块所示。但是在相邻宏块不可用于intra预测的时候，该相邻宏块上的像素点是不可用的，也就是说会存在相邻像素点不可用的情况。但是存在一个特殊情况：如果不可用的是（4<del>7，-1），而（3，-1）是可用的，那会令（4</del>7，-1）的值等于（3，-1）的像素点的值去进行预测。<br><img src="//images0.cnblogs.com/blog/421096/201412/282304570608691.jpg"></p>
+<ol>
+<li><p>Intra 4x4 Vertical Prediction Mode<br><img src="//images0.cnblogs.com/blog/421096/201412/282304573416905.jpg"><br>$Pred{4}\times{4}_{L}[x,y] &#x3D; p[x,-1]$</p>
+</li>
+<li><p>Intra 4x4 Horizontal Prediction mode<br><img src="//images0.cnblogs.com/blog/421096/201412/282304578884805.jpg"><br>$Pred{4}\times{4}_{L}[x,y] &#x3D; p[-1,y]$</p>
+</li>
+<li><p>Intra 4x4 DC Prediction Mode</p>
+</li>
+</ol>
+<ul>
+<li><p>If (0<del>3,-1) and (-1,0</del>3) is available for Intra 4x4 prediction$Pred{4}\times{4}<em>{L}[x,y] &#x3D; \displaystyle{\sum</em>{y&#x3D;0}^{3}{p[-1,y]} + \sum_{x&#x3D;0}^{3}{p[x,-1]}}$</p>
+</li>
+<li><p>Else if only (0~3, -1) is available for Intra 4x4 prediction$Pred{4}\times{4}<em>{L}[x,y] &#x3D; \displaystyle{\sum</em>{x&#x3D;0}^{3}{p[x,-1]}}$</p>
+</li>
+<li><p>Else if only (-1, 0~3) is available for Intra 4x4 prediction$Pred{4}\times{4}<em>{L}[x,y] &#x3D; \displaystyle{\sum</em>{y&#x3D;0}^{3}{p[-1,y]}} $</p>
+</li>
+<li><p>Else none is available for Intra 4x4 prediction$Pred{4}\times{4}_{L}[x,y] &#x3D; 1&lt;&lt;(BitDepth-1)$</p>
+</li>
+</ul>
+<ol start="4">
+<li>Intra 4x4 Diagonal Down Left Prediction Mode<br><img src="//images0.cnblogs.com/blog/421096/201412/282304582004775.jpg"></li>
+</ol>
+<ul>
+<li><p>If $x &#x3D; y &#x3D; 3$$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[6,-1] + 3\times{p[7,-1]} + 2) &gt;&gt; 2$</p>
+</li>
+<li><p>Else$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[x + y,-1] + 2\times{p[x + y + 1,-1]} + p[x + y +2, -1] + 2) &gt;&gt; 2$</p>
+</li>
+</ul>
+<p>由上面的式子可以看出，在斜的方向上预测时，会参考不止一个相邻像素点，而是周围的两到三个。</p>
+<ol start="5">
+<li>Intra 4x4 Diagonal Down Right Prediction Mode<br><img src="//images0.cnblogs.com/blog/421096/201412/282304586858161.jpg"></li>
+</ol>
+<ul>
+<li><p>If $x &gt; y$$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[x-y-2,-1] + 2\times{p[x-y-1,-1]} + p[x-y, -1] + 2) &gt;&gt; 2$</p>
+</li>
+<li><p>Else if $x &lt; y$$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[-1,y-x-2] + 2\times{p[-1,y-x-1]} + p[-1,y-x] + 2) &gt;&gt; 2$</p>
+</li>
+<li><p>Else$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[0,-1] + 2\times{p[-1,-1]} + p[-1,0] +2)&gt;&gt;2$</p>
+</li>
+</ul>
+<ol start="6">
+<li>Intra 4x4 Vertical Right Prediction Mode<img src="//images0.cnblogs.com/blog/421096/201412/282304590444118.jpg"><br>$zVR &#x3D; 2\times{x}+y$</li>
+</ol>
+<ul>
+<li><p>If $zVR &#x3D; 0,2,4,6$$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[x-\frac{y}{2}-1,-1] + p[x-\frac{y}{2}, -1] + 1) &gt;&gt; 1$</p>
+</li>
+<li><p>Else if $zVR &#x3D; 1,3,5$$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[x-\frac{y}{2}-2,-1]+2\times{p[x-\frac{y}{2}-1,-1]} + p[x-\frac{y}{2}, -1] + 2) &gt;&gt; 2$</p>
+</li>
+<li><p>Else if $zVR &#x3D; -1$$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[-1,0]+2\times{p[-1,-1]} + p[0, -1] + 2) &gt;&gt; 2$</p>
+</li>
+<li><p>Else $zVR &#x3D; -2, -3$$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[-1,y-1]+2\times{p[-1,y-2]} + p[-1,y-3] + 2) &gt;&gt; 2$</p>
+</li>
+</ul>
+<ol start="7">
+<li>Intra 4x4 Horizontal Down Prediction<br><img src="//images0.cnblogs.com/blog/421096/201412/282304596535531.jpg"><br>$zHD &#x3D; 2\times{y}-x$</li>
+</ol>
+<ul>
+<li><p>If $zHD &#x3D; 0,2,4,6$$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[-1,y-\frac{x}{2}-1] + p[-1,y-\frac{x}{2}] + 1) &gt;&gt; 1$</p>
+</li>
+<li><p>Else if $zHD &#x3D; 1,3,5$$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[-1,y-\frac{x}{2}-2]+2\times{p[-1,y-\frac{x}{2}-1]} + p[-1,y-\frac{x}{2}] + 2) &gt;&gt; 2$</p>
+</li>
+<li><p>Else if $zHD &#x3D; -1$$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[-1,0]+2\times{p[-1,-1]} + p[0, -1] + 2) &gt;&gt; 2$</p>
+</li>
+<li><p>Else $zHD &#x3D; -2, -3$$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[x-1,-1]+2\times{p[x-2,-1]} + p[x-3,-1] + 2) &gt;&gt; 2$</p>
+</li>
+</ul>
+<ol start="8">
+<li>Intra 4x4 Vertical Left Prediction Mode<br><img src="//images0.cnblogs.com/blog/421096/201412/282304599818730.jpg"></li>
+</ol>
+<ul>
+<li><p>If $y &#x3D; 0,2$$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[x+\frac{y}{2},-1] + p[x+\frac{y}{2}+1,-1] + 1) &gt;&gt; 1$</p>
+</li>
+<li><p>Else $ y &#x3D; 1,3$$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[x-1,-1]+2\times{p[x-2,-1]} + p[x-3,-1] + 2) &gt;&gt; 2$</p>
+</li>
+</ul>
+<ol start="9">
+<li>Intra 4x4 Horizontal Up Predition<br><img src="//images0.cnblogs.com/blog/421096/201412/282305003256159.jpg"><br>$zHU &#x3D; x + 2\times{y}$</li>
+</ol>
+<ul>
+<li><p>If $zHU &#x3D; 0,2,4$$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[-1,y+\frac{x}{2}] + p[-1,y+\frac{x}{2}+1] + 1) &gt;&gt; 1$</p>
+</li>
+<li><p>Else if $zHU &#x3D; 1,3$$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[-1,y+\frac{x}{2}]+2\times{p[-1,y+\frac{x}{2}+1]} + p[-1,y+\frac{x}{2}+2] + 2) &gt;&gt; 2$</p>
+</li>
+<li><p>Else if $zHU &#x3D; 5$$Pred{4}\times{4}_{L}[x,y] &#x3D; (p[-1,2]+3\times{p[-1,3]} + 2) &gt;&gt; 2$</p>
+</li>
+<li><p>Else $zHU &gt; 5$$Pred{4}\times{4}_{L}[x,y] &#x3D; p[-1,3]$</p>
+</li>
+</ul>
+<p>以上，可以看到Intra4x4预测的整个流程。在上面的图可以看到各个预测所需要的相邻像素点，如果该像素点不可用于Intra4x4的预测，那么依赖于该像素点的预测模式是不可用的。</p>
+<h1 id="Intra8x8"><a href="#Intra8x8" class="headerlink" title="Intra8x8"></a>Intra8x8</h1><p>8x8块的帧内预测跟4x4的基本上是一样的，可以看做放大了的4x4块。例如上面提到的相邻宏块不可用的情况，8x8块在预测时也会用(7,-1)去补全(8~15,-1)。而预测的方向也是与上面4x4预测的9个完全一样。<br>但是有一个不同的地方，就是8x8块在预测之前会去做一次边界像素点的滤波，滤波后所得的新像素点会被用于当前8x8块的预测，不同于4x4会直接去用边界像素点了进行预测。<br><img src="//images0.cnblogs.com/blog/421096/201412/282305007471331.jpg"></p>
+<h1 id="Intra16x16"><a href="#Intra16x16" class="headerlink" title="Intra16x16"></a>Intra16x16</h1><p>Intra16x16是对整个宏块进行帧内预测，这种比4x4的更为简单，只有四种预测模式</p>
+<p>其中模式0,1,2可以看做是Intra4x4模式的放大版，模式3可以参考<a target="_blank" rel="noopener" href="http://www.cnblogs.com/TaigaCon/p/4149938.html">Chroma Intra Prediction的模式3</a>。</p>
+<h1 id="I-PCM"><a href="#I-PCM" class="headerlink" title="I_PCM"></a>I_PCM</h1><p>PCM模式就是把一个宏块共256个像素点的值不做任何处理，直接进行熵编码的模式，Chroma也有PCM这个模式。</p>
+
+  <div class="guide-links">
+    
+    
+  </div>
+
+  
+    <div class="footer">
+        <p>
+          <a target="_blank" rel="noopener" href="https://changkun.de">欧长坤</a> &copy; 2016-2024 版权所有，
+          采用<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议许可</a>，代码使用 <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> 协议开源。</a>
+        </p>
+        <p>
+            如果你认为本书对你起到了帮助，可以<a href="/modern-cpp/about/donate.html">资助作者</a>。
+        </p>
+      </div>
+  
+
+
+</div>
+
+      </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.2.1/js/smooth-scroll.min.js"></script>
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="https://cdn.jsdelivr.net/npm/css.escape@1.5.1/css.escape.min.js"></script>
+    <script src="/modern-cpp-tutorial/modern-cpp/js/common.js"></script>
+
+    <!-- fastclick -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
+</html>

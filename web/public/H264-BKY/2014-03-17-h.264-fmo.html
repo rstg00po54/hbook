@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>h.264 FMO 现代 C++ 教程: 高速上手 C++ 11/14/17/20 - Modern C++ Tutorial: C++ 11/14/17/20 On the Fly</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Modern C++ Tutorial | C++ 11/14/17/20 On the Fly | 现代 C++ 教程 | 高速上手 C++11/14/17/20">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/modern-cpp/assets/cover-2nd.png">
+    <meta name="msapplication-TileColor" content="#7e2d36">
+    <meta name="theme-color" content="#7e2d36">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80889616-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-80889616-2');
+    </script>
+
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/modern-cpp-tutorial/modern-cpp/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>window.PAGE_TYPE = ""</script>
+    <script async src="//changkun.de/urlstat/client.js"></script>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body class="docs">
+	<!-- body开始 -->
+    
+      <div id="mobile-bar" data-bg-text="现代 C++ 教程" >
+        <a class="menu-button"></a>
+        <a class="logo" href="/modern-cpp/"></a>
+      </div>
+    
+    <div id="header">
+  <a id="logo" href="/modern-cpp-tutorial/">
+      <img src="/modern-cpp-tutorial/modern-cpp/assets/cover-2nd-logo.png">
+      <span>教程：高速上手</span>
+  </a>
+  <ul id="nav">
+    
+      <li class="nav-dropdown-container resource">
+  <a class="nav-link">资源</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/zh-cn/00-preface/" >正文</a></li>
+      <!-- TODO -->
+      <!-- <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/code/1/" >代码</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/exercises/1/" >习题</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/answers/1/" >答案</a></li> -->
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link">关于</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/donate.html" >资助</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/copyright.html" >版权声明</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/ack.html" >致谢</a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    中文
+  </a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" target="_blank" href="/modern-cpp/en-us/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        English
+      </a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+
+    
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  <div class="sidebar">
+    <ul class="main-menu">
+        
+          <li class="nav-dropdown-container resource">
+  <a class="nav-link">资源</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/zh-cn/00-preface/" >正文</a></li>
+      <!-- TODO -->
+      <!-- <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/code/1/" >代码</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/exercises/1/" >习题</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/answers/1/" >答案</a></li> -->
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link">关于</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/donate.html" >资助</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/copyright.html" >版权声明</a></li>
+      <li><a class="nav-link" href="/modern-cpp-tutorial/modern-cpp/about/ack.html" >致谢</a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">
+    <span style="content: url(/modern-cpp/assets/lang/cn.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+    中文
+  </a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+      <li><ul>
+      <li><a class="nav-link" target="_blank" href="/modern-cpp/en-us/00-preface/">
+        <span style="content: url(/modern-cpp/assets/lang/en.svg); width: 15px; height: 15px; margin-right: 5px; vertical-align: middle; margin-bottom: 2px;"></span>
+        English
+      </a></li>
+      </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container about">
+  <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/changkun/modern-cpp-tutorial">GitHub</a>
+</li>
+
+
+        
+    </ul>
+  </div>
+
+<div class="content  ">
+  <p>在H.264之前的标准中，比如H.263，其比特流中的数据是按照一个宏块接一个宏块的方式排列的，一旦发生丢包，很多相邻宏块信息都会丢失，很难进行错误隐藏处理。在H.264中加入了一项新特性：把宏块在比特流中的数据按照一定的映射规则进行排列，而不一定按照原本的光栅扫描顺序排列，这种方称为灵活的宏块重拍FMO(Flexible Macroblock Ordering)。<br>FMO是基于组的方式将宏块集合起来，把一帧内的宏块划分到不同的条带组（slice group）。当然在最后也需要对条带组按光栅扫描顺序划分条带（slice）。在h.264中，当slice group被设为大于1时才使用FMO。在代码端看来，FMO时，主要是对映射表（数组）的设置，如下第一个表：</p>
+<p>对一帧进行FMO：</p>
+<p>得到slice group有三个：</p>
+<p>然后再对每个slice group按照光栅扫描顺序进行排序，分割出slice，下面为分割slice group 0（假设slice长度为16）<br>slice 1 in slice group 0:</p>
+<p>slice 2 in slice group 0:</p>
+<p>FMO在h.264中有7种（FMO0 ~ FMO6）</p>
+<h4 id="FMO0"><a href="#FMO0" class="headerlink" title="FMO0"></a>FMO0</h4><p>FMO0，交织映射。交织映射是指不同的slice group交替出现。<br>如下设置了slice group 0 &#x3D; 10，slice group 1 &#x3D; 15，slice group 2 &#x3D; 18</p>
+<p>JM code如下：<br>&#x2F;*!</p>
+<hr>
+<ul>
+<li>\brief</li>
+<li>Generate interleaved slice group map type MapUnit map (type 0)</li>
+<li></li>
+<li>\param img</li>
+<li>Image Parameter to be used for map generation</li>
+<li>\param pps</li>
+<li>Picture Parameter set to be used for map generation</li>
+</ul>
+<hr>
+<p> *&#x2F;<br>static void FmoGenerateType0MapUnitMap (ImageParameters * img, pic_parameter_set_rbsp_t * pps )<br>{<br>  unsigned iGroup, j;<br>  unsigned i &#x3D; 0;<br>  do<br>  {<br>    for( iGroup &#x3D; 0;<br>    (iGroup &lt;&#x3D; pps-&gt;num_slice_groups_minus1) &amp;&amp; (i &lt; PicSizeInMapUnits);<br>    i +&#x3D; pps-&gt;run_length_minus1[iGroup++] + 1)<br>    {<br>      for( j &#x3D; 0; j &lt;&#x3D; pps-&gt;run_length_minus1[ iGroup ] &amp;&amp; i + j &lt; PicSizeInMapUnits; j++ )<br>        MapUnitToSliceGroupMap[i+j] &#x3D; iGroup;<br>    }<br>  }<br>  while( i &lt; PicSizeInMapUnits );<br>}</p>
+<h4 id="FMO1"><a href="#FMO1" class="headerlink" title="FMO1"></a>FMO1</h4><p>FMO1，分散映射。每个宏块相邻的宏块都不在同一组。x方向上的宏块按照slice group序号递增分配，y方向第一个宏块按照0，slice group numbers&#x2F;2交替分配。</p>
+<p>JM code 如下：<br>&#x2F;*!</p>
+<hr>
+<ul>
+<li>\brief</li>
+<li>Generate dispersed slice group map type MapUnit map (type 1)</li>
+<li></li>
+<li>\param img</li>
+<li>Image Parameter to be used for map generation</li>
+<li>\param pps</li>
+<li>Picture Parameter set to be used for map generation</li>
+</ul>
+<hr>
+<p> <em>&#x2F;<br>static void FmoGenerateType1MapUnitMap (ImageParameters * img, pic_parameter_set_rbsp_t * pps )<br>{<br>  unsigned i;<br>  for( i &#x3D; 0; i &lt; PicSizeInMapUnits; i++ )<br>  {<br>    MapUnitToSliceGroupMap[i] &#x3D; ((i%img-&gt;PicWidthInMbs)+(((i&#x2F;img-&gt;PicWidthInMbs)</em>(pps-&gt;num_slice_groups_minus1+1))&#x2F;2))<br>      %(pps-&gt;num_slice_groups_minus1+1);<br>  }<br>}</p>
+<h4 id="FMO2"><a href="#FMO2" class="headerlink" title="FMO2"></a>FMO2</h4><p>FMO2，前后景映射。以整个帧作为背景，该模式可以通过（左上角坐标，右下角坐标）的方式指定前景，每个前景都为一个slice group，最先指定的前景可以覆盖后来指定的前景。<br>假设有<br>slice group 0（3,4）（8,8）<br>slice group 1（1,2）（6,6）</p>
+<p>JM code如下：<br>&#x2F;*!</p>
+<hr>
+<ul>
+<li>\brief</li>
+<li>Generate foreground with left-over slice group map type MapUnit map (type 2)</li>
+<li></li>
+<li>\param img</li>
+<li>Image Parameter to be used for map generation</li>
+<li>\param pps</li>
+<li>Picture Parameter set to be used for map generation</li>
+</ul>
+<hr>
+<p> *&#x2F;<br>static void FmoGenerateType2MapUnitMap (ImageParameters * img, pic_parameter_set_rbsp_t * pps )<br>{<br>  int iGroup;<br>  unsigned i, x, y;<br>  unsigned yTopLeft, xTopLeft, yBottomRight, xBottomRight;</p>
+<p>  for( i &#x3D; 0; i &lt; PicSizeInMapUnits; i++ )<br>    MapUnitToSliceGroupMap[ i ] &#x3D; pps-&gt;num_slice_groups_minus1;</p>
+<p>  for( iGroup &#x3D; pps-&gt;num_slice_groups_minus1 - 1 ; iGroup &gt;&#x3D; 0; iGroup– )<br>  {<br>    yTopLeft &#x3D; pps-&gt;top_left[ iGroup ] &#x2F; img-&gt;PicWidthInMbs;<br>    xTopLeft &#x3D; pps-&gt;top_left[ iGroup ] % img-&gt;PicWidthInMbs;<br>    yBottomRight &#x3D; pps-&gt;bottom_right[ iGroup ] &#x2F; img-&gt;PicWidthInMbs;<br>    xBottomRight &#x3D; pps-&gt;bottom_right[ iGroup ] % img-&gt;PicWidthInMbs;<br>    for( y &#x3D; yTopLeft; y &lt;&#x3D; yBottomRight; y++ )<br>      for( x &#x3D; xTopLeft; x &lt;&#x3D; xBottomRight; x++ )<br>        MapUnitToSliceGroupMap[ y * img-&gt;PicWidthInMbs + x ] &#x3D; iGroup;<br>  }<br>}</p>
+<h4 id="FMO3"><a href="#FMO3" class="headerlink" title="FMO3"></a>FMO3</h4><p>FMO3，环形扫描映射。在JM中，环形扫描映射把一帧分为两个slice group，一个是以一帧为背景，另一个是以环作为的前景（其实环可以扩展到更多的group）。环的起点是帧的中心位置，通过指定环的运动方向（顺时针或逆时针）以及环的长度即可得到前景。<br>以下为顺时针，环长度为32</p>
+<p>JM code 如下：<br>&#x2F;*!</p>
+<hr>
+<ul>
+<li>\brief</li>
+<li>Generate box-out slice group map type MapUnit map (type 3)</li>
+<li></li>
+<li>\param img</li>
+<li>Image Parameter to be used for map generation</li>
+<li>\param pps</li>
+<li>Picture Parameter set to be used for map generation</li>
+</ul>
+<hr>
+<p> *&#x2F;<br>static void FmoGenerateType3MapUnitMap (ImageParameters * img, pic_parameter_set_rbsp_t * pps )<br>{<br>  unsigned i, k;<br>  int leftBound, topBound, rightBound, bottomBound;<br>  int x, y, xDir, yDir;<br>  int mapUnitVacant;</p>
+<p>  unsigned mapUnitsInSliceGroup0 &#x3D; min((pps-&gt;slice_group_change_rate_minus1 + 1) * img-&gt;slice_group_change_cycle, PicSizeInMapUnits);</p>
+<p>  for( i &#x3D; 0; i &lt; PicSizeInMapUnits; i++ )<br>    MapUnitToSliceGroupMap[ i ] &#x3D; 2;</p>
+<p>  x &#x3D; ( img-&gt;PicWidthInMbs - pps-&gt;slice_group_change_direction_flag ) &#x2F; 2;<br>  y &#x3D; ( img-&gt;PicHeightInMapUnits - pps-&gt;slice_group_change_direction_flag ) &#x2F; 2;</p>
+<p>  leftBound   &#x3D; x;<br>  topBound    &#x3D; y;<br>  rightBound  &#x3D; x;<br>  bottomBound &#x3D; y;</p>
+<p>  xDir &#x3D;  pps-&gt;slice_group_change_direction_flag - 1;<br>  yDir &#x3D;  pps-&gt;slice_group_change_direction_flag;</p>
+<p>  for( k &#x3D; 0; k &lt; PicSizeInMapUnits; k +&#x3D; mapUnitVacant )<br>  {<br>    mapUnitVacant &#x3D; ( MapUnitToSliceGroupMap[ y * img-&gt;PicWidthInMbs + x ]  &#x3D;&#x3D;  2 );<br>    if( mapUnitVacant )<br>      MapUnitToSliceGroupMap[ y * img-&gt;PicWidthInMbs + x ] &#x3D; ( k &gt;&#x3D; mapUnitsInSliceGroup0 );</p>
+<pre><code>if( xDir  ==  -1  &amp;&amp;  x  ==  leftBound ) 
+&#123;
+  leftBound = max( leftBound - 1, 0 );
+  x = leftBound;
+  xDir = 0;
+  yDir = 2 * pps-&gt;slice_group_change_direction_flag - 1;
+&#125;
+else 
+  if( xDir  ==  1  &amp;&amp;  x  ==  rightBound ) 
+  &#123;
+    rightBound = min( rightBound + 1, (int)img-&gt;PicWidthInMbs - 1 );
+    x = rightBound;
+    xDir = 0;
+    yDir = 1 - 2 * pps-&gt;slice_group_change_direction_flag;
+  &#125;
+  else
+    if( yDir  ==  -1  &amp;&amp;  y  ==  topBound ) 
+    &#123;
+      topBound = max( topBound - 1, 0 );
+      y = topBound;
+      xDir = 1 - 2 * pps-&gt;slice_group_change_direction_flag;
+      yDir = 0;
+    &#125;
+    else 
+      if( yDir  ==  1  &amp;&amp;  y  ==  bottomBound ) 
+      &#123;
+        bottomBound = min( bottomBound + 1, (int)img-&gt;PicHeightInMapUnits - 1 );
+        y = bottomBound;
+        xDir = 2 * pps-&gt;slice_group_change_direction_flag - 1;
+        yDir = 0;
+      &#125;
+      else
+      &#123;
+        x = x + xDir;
+        y = y + yDir;
+      &#125;
+</code></pre>
+<p>  }</p>
+<p>}</p>
+<h4 id="FMO4"><a href="#FMO4" class="headerlink" title="FMO4"></a>FMO4</h4><p>FMO4，光栅扫描映射。该模式只支持两个slice group，按照光栅扫描顺序来分组，方向有正向与反向之分。<br>如下为反向FMO4(始于右下角):</p>
+<p>JM code 如下：<br>&#x2F;*!</p>
+<hr>
+<ul>
+<li>\brief</li>
+<li>Generate raster scan slice group map type MapUnit map (type 4)</li>
+<li></li>
+<li>\param img</li>
+<li>Image Parameter to be used for map generation</li>
+<li>\param pps</li>
+<li>Picture Parameter set to be used for map generation</li>
+</ul>
+<hr>
+<p> *&#x2F;<br>static void FmoGenerateType4MapUnitMap (ImageParameters * img, pic_parameter_set_rbsp_t * pps )<br>{</p>
+<p>  unsigned mapUnitsInSliceGroup0 &#x3D; min((pps-&gt;slice_group_change_rate_minus1 + 1) * img-&gt;slice_group_change_cycle, PicSizeInMapUnits);<br>  unsigned sizeOfUpperLeftGroup &#x3D; pps-&gt;slice_group_change_direction_flag ? ( PicSizeInMapUnits - mapUnitsInSliceGroup0 ) : mapUnitsInSliceGroup0;</p>
+<p>  unsigned i;</p>
+<p>  for( i &#x3D; 0; i &lt; PicSizeInMapUnits; i++ )<br>    if( i &lt; sizeOfUpperLeftGroup )<br>      MapUnitToSliceGroupMap[ i ] &#x3D; pps-&gt;slice_group_change_direction_flag;<br>    else<br>      MapUnitToSliceGroupMap[ i ] &#x3D; 1 - pps-&gt;slice_group_change_direction_flag;</p>
+<p>}</p>
+<h4 id="FMO5"><a href="#FMO5" class="headerlink" title="FMO5"></a>FMO5</h4><p>FMO5，擦式扫描映射。仅支持两个slice group，扫描方式为纵向，也有正反两个方向<br>如下为正向FMO5（始于左上角）：</p>
+<p>JM code 如下：<br>&#x2F;*!</p>
+<hr>
+<ul>
+<li>\brief</li>
+<li>Generate wipe slice group map type MapUnit map (type 5)</li>
+<li></li>
+<li>\param img</li>
+<li>Image Parameter to be used for map generation</li>
+<li>\param pps</li>
+<li>Picture Parameter set to be used for map generation</li>
+</ul>
+<hr>
+<p>*&#x2F;<br>static void FmoGenerateType5MapUnitMap (ImageParameters * img, pic_parameter_set_rbsp_t * pps )<br>{</p>
+<p>  unsigned mapUnitsInSliceGroup0 &#x3D; min((pps-&gt;slice_group_change_rate_minus1 + 1) * img-&gt;slice_group_change_cycle, PicSizeInMapUnits);<br>  unsigned sizeOfUpperLeftGroup &#x3D; pps-&gt;slice_group_change_direction_flag ? ( PicSizeInMapUnits - mapUnitsInSliceGroup0 ) : mapUnitsInSliceGroup0;</p>
+<p>  unsigned i,j, k &#x3D; 0;</p>
+<p>  for( j &#x3D; 0; j &lt; img-&gt;PicWidthInMbs; j++ )<br>    for( i &#x3D; 0; i &lt; img-&gt;PicHeightInMapUnits; i++ )<br>      if( k++ &lt; sizeOfUpperLeftGroup )<br>        MapUnitToSliceGroupMap[ i * img-&gt;PicWidthInMbs + j ] &#x3D; 1 - pps-&gt;slice_group_change_direction_flag;<br>      else<br>        MapUnitToSliceGroupMap[ i * img-&gt;PicWidthInMbs + j ] &#x3D; pps-&gt;slice_group_change_direction_flag;</p>
+<p>}</p>
+<h4 id="FMO6"><a href="#FMO6" class="headerlink" title="FMO6"></a>FMO6</h4><p>FMO6，显示控制映射。可以在配置文件中自由地指定每个宏块所属的slice group。</p>
+<p>顺带一提JM支持一帧中最多为8个slice group<br>JM code 如下：<br>&#x2F;*!</p>
+<hr>
+<ul>
+<li>\brief</li>
+<li>Generate explicit slice group map type MapUnit map (type 6)</li>
+<li></li>
+<li>\param img</li>
+<li>Image Parameter to be used for map generation</li>
+<li>\param pps</li>
+<li>Picture Parameter set to be used for map generation</li>
+</ul>
+<hr>
+<p> *&#x2F;<br>static void FmoGenerateType6MapUnitMap (ImageParameters * img, pic_parameter_set_rbsp_t * pps )<br>{<br>  unsigned i;<br>  for (i&#x3D;0; i&lt;PicSizeInMapUnits; i++)<br>  {<br>    MapUnitToSliceGroupMap[i] &#x3D; pps-&gt;slice_group_id[i];<br>  }<br>}</p>
+
+  <div class="guide-links">
+    
+    
+  </div>
+
+  
+    <div class="footer">
+        <p>
+          <a target="_blank" rel="noopener" href="https://changkun.de">欧长坤</a> &copy; 2016-2024 版权所有，
+          采用<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议许可</a>，代码使用 <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> 协议开源。</a>
+        </p>
+        <p>
+            如果你认为本书对你起到了帮助，可以<a href="/modern-cpp/about/donate.html">资助作者</a>。
+        </p>
+      </div>
+  
+
+
+</div>
+
+      </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.2.1/js/smooth-scroll.min.js"></script>
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="https://cdn.jsdelivr.net/npm/css.escape@1.5.1/css.escape.min.js"></script>
+    <script src="/modern-cpp-tutorial/modern-cpp/js/common.js"></script>
+
+    <!-- fastclick -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
+</html>

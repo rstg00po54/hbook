@@ -1,8 +1,9 @@
+/* Generated from src/styles/index.styl */
 .gutter pre {
   color: #999;
 }
 pre {
-  color: #525252;
+  color: #b4aea4;
 }
 pre .function .keyword,
 pre .constant {
@@ -37,7 +38,7 @@ pre .regexp {
   color: #7e2d36;
 }
 pre .title {
-  color: #7e2d36;
+  color: #d2818a;
 }
 pre .tag .value,
 pre .string,
@@ -63,7 +64,7 @@ pre .apache .tag,
 pre .apache .cbracket,
 pre .tex .command,
 pre .prompt {
-  color: #7e2d36;
+  color: #d2818a;
 }
 pre .comment,
 pre .java .annotation,
@@ -91,8 +92,8 @@ body {
   font-size: 15px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #34495e;
-  background-color: #fff;
+  color: #a6bcce;
+  background-color: #181a1b;
   margin: 0;
 }
 body.docs {
@@ -105,7 +106,7 @@ body.docs {
 }
 a {
   text-decoration: none;
-  color: #34495e;
+  color: #a6bcce;
 }
 img {
   border: none;
@@ -116,13 +117,13 @@ h3,
 h4,
 strong {
   font-weight: 600;
-  color: #2c3e50;
+  color: #aec2d3;
 }
 code,
 pre {
   font-family: "Roboto Mono", Monaco, courier, monospace;
-  font-size: 0.8em;
-  background-color: #f8f8f8;
+  font-size: 1em;
+  background-color: #1c1e1f;
   -webkit-font-smoothing: initial;
   -moz-osx-font-smoothing: initial;
 }
@@ -164,7 +165,7 @@ a.button:hover {
 }
 .highlight {
   overflow-x: auto;
-  background-color: #f8f8f8;
+  background-color: #1c1e1f;
   padding: 0.4em 0 0;
   line-height: 1.1em;
   border-radius: 2px;
@@ -297,7 +298,7 @@ a.button:hover {
   border-top: 5px solid #fff;
 }
 #header {
-  background-color: #7e2d36;
+  background-color: #65242b;
   height: 40px;
   padding: 10px 60px;
   position: relative;
@@ -491,11 +492,11 @@ body.docs #mobile-bar::before {
   font-size: 0.85em;
 }
 .sidebar .sidebar-link {
-  color: #7f8c8d;
+  color: #9c9386;
 }
 .sidebar .sidebar-link.current {
   font-weight: 600;
-  color: #7e2d36;
+  color: #d2818a;
 }
 .sidebar .sidebar-link.new:after {
   content: "NEW";
@@ -517,7 +518,7 @@ body.docs #mobile-bar::before {
 }
 .sidebar .section-link.active {
   font-weight: bold;
-  color: #7e2d36;
+  color: #d2818a;
 }
 .sidebar .main-menu {
   margin-bottom: 20px;
@@ -558,7 +559,7 @@ body.docs #mobile-bar::before {
   }
 }
 body {
-  background-color: #fff;
+  background-color: #242627;
   margin-bottom: 200px;
 }
 #logo span {
@@ -579,7 +580,7 @@ body {
 }
 #hero {
   padding: 100px 40px 40px 200px;
-  background-color: #fff;
+  background-color: #242628;
 }
 #hero .inner {
   max-width: 900px;
