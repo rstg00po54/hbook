@@ -48,7 +48,7 @@ relative_link: false
 future: true
 syntax_highlighter: highlight.js
 highlight:
-  line_number: true
+  line_number: false
   auto_detect: false
   tab_replace: ''
   wrap: true
@@ -93,6 +93,8 @@ pagination_dir: page
 # Include / Exclude file(s)
 ## include:/exclude: options only apply to the 'source/' folder
 include:
+  - 'src/H264-BKY/*.md'  # 包括 folder1 文件夹下的所有 .md 文件
+  - 'src/H264-CSDN/*.md'  # 包括 folder2 文件夹下的所有 .md 文件
 exclude:
 ignore:
 
@@ -108,4 +110,7 @@ deploy:
   type: git
   repository: git@github.com:rstg00po54/modern-cpp-tutorial.git
   branch: page1
+
+
+
 

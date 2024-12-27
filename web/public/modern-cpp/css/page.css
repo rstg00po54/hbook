@@ -93,6 +93,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #a6bcce;
+/*background-color: white*/
   background-color: #181a1b;
   margin: 0;
 }
@@ -106,6 +107,7 @@ body.docs {
 }
 a {
   text-decoration: none;
+/*color: $medium*/
   color: #a6bcce;
 }
 img {
@@ -123,6 +125,8 @@ code,
 pre {
   font-family: "Roboto Mono", Monaco, courier, monospace;
   font-size: 1em;
+/*font-size: $code-font-size*/
+/*background-color: $codebg*/
   background-color: #1c1e1f;
   -webkit-font-smoothing: initial;
   -moz-osx-font-smoothing: initial;
@@ -165,6 +169,7 @@ a.button:hover {
 }
 .highlight {
   overflow-x: auto;
+/*background-color: $codebg*/
   background-color: #1c1e1f;
   padding: 0.4em 0 0;
   line-height: 1.1em;

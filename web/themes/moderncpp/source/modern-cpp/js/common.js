@@ -3,7 +3,7 @@
 	initMobileMenu()
 	if (PAGE_TYPE) {
 		initVersionSelect()
-		initSubHeaders()
+		// initSubHeaders()
 	}
 
 	/**
@@ -70,7 +70,6 @@
 	/**
 	 * Sub headers in sidebar
 	 */
-
 	function initSubHeaders() {
 		var each = [].forEach
 		var main = document.getElementById('main')
@@ -85,6 +84,9 @@
 			contentClasses.contains('api') ||
 			contentClasses.contains('style-guide')
 		)
+		console.log(contentClasses.contains('api'))
+		console.log(contentClasses.contains('style-guide'))
+
 		if (currentPageAnchor || isAPIOrStyleGuide) {
 			var allHeaders = []
 			var sectionContainer
@@ -96,23 +98,24 @@
 				currentPageAnchor.parentNode.appendChild(sectionContainer)
 			}
 			var headers = content.querySelectorAll('h2')
-			if (headers.length) {
-				each.call(headers, function (h) {
-					sectionContainer.appendChild(makeLink(h))
-					var h3s = collectH3s(h)
-					allHeaders.push(h)
-					allHeaders.push.apply(allHeaders, h3s)
-					if (h3s.length) {
-						sectionContainer.appendChild(makeSubLinks(h3s, isAPIOrStyleGuide))
-					}
-				})
-			} else {
-				headers = content.querySelectorAll('h3')
-				each.call(headers, function (h) {
-					sectionContainer.appendChild(makeLink(h))
-					allHeaders.push(h)
-				})
-			}
+			// if (headers.length) {
+			// 	each.call(headers, function (h) {
+			// 		console.log("h2 "+h.id)
+			// 		sectionContainer.appendChild(makeLink(h))
+			// 		var h3s = collectH3s(h)
+			// 		allHeaders.push(h)
+			// 		allHeaders.push.apply(allHeaders, h3s)
+			// 		if (h3s.length) {
+			// 			sectionContainer.appendChild(makeSubLinks(h3s, isAPIOrStyleGuide))
+			// 		}
+			// 	})
+			// } else {
+			// 	headers = content.querySelectorAll('h3')
+			// 	each.call(headers, function (h) {
+			// 		sectionContainer.appendChild(makeLink(h))
+			// 		allHeaders.push(h)
+			// 	})
+			// }
 
 			var animating = false
 			sectionContainer.addEventListener('click', function (e) {
