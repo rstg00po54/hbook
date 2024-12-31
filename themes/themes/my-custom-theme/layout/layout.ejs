@@ -1,6 +1,6 @@
 
 <!-- layout -->
-<% console.log('----') %>
+
 <% console.log('pag:'+ page.path) %>
 
 <!doctype html>
@@ -12,13 +12,15 @@
 <link rel="stylesheet" href="<%= url_for('css/styl.css') %>">
 <body>
 
-	layout.ejs
-	<!-- body -->
-	<!-- 替换 post.ejs/index.ejs -->
-	<%- body %>
-	<!-- body -->
-
-	<script src="<%- url_for("js/init.js") %>"></script>
+	<div class="body">
+		
+		<!-- body -->
+		<!-- 替换 post.ejs/index.ejs -->
+		<%- body %>
+		<!-- body -->
+		
+		<script src="<%- url_for("js/init.js") %>"></script>
+	</div>
 </body>
 </html>
 <!-- layout -->
