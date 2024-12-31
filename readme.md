@@ -220,3 +220,8 @@ https://your-username.github.io/your-repo-name/
 ### 总结
 
 将 Hexo 博客推送到 GitHub Pages 后，你可以直接通过浏览器访问你的博客页面。使用 GitHub Pages 免费托管博客并且支持自定义域名，是许多开发者用来发布个人博客的流行方式。
+
+
+```bash
+hexo s --watch --debug
+```

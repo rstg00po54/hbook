@@ -16,7 +16,8 @@ timezone: ''
 # url: http://example.com
 # rstg00po54.github.io/modern-cpp-tutorial/
 # url: http://rstg00po54.github.io/modern-cpp-tutorial/
-root: /modern-cpp-tutorial/
+# root: /modern-cpp-tutorial/
+# root: /modern-cpp/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -24,7 +25,8 @@ pretty_urls:
   trailing_html: true # Set to false to remove trailing '.html' from permalinks
 
 # Directory
-source_dir: src
+source_dir: src/
+
 public_dir: public
 tag_dir: tags
 archive_dir: archives
@@ -96,12 +98,12 @@ include:
   - 'src/H264-BKY/*.md'  # 包括 folder1 文件夹下的所有 .md 文件
   - 'src/H264-CSDN/*.md'  # 包括 folder2 文件夹下的所有 .md 文件
 exclude:
-ignore:
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: moderncpp
+# theme: my-custom-theme
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

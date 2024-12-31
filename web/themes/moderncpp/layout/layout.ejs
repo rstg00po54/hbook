@@ -1,4 +1,5 @@
 <% var isIndex = page.path === 'index.html' %>
+<% console.log('pag:'+page.path+':isIndex:'+isIndex) %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,23 +35,29 @@
   <body class="<%- isIndex ? '' : 'docs' -%>">
 	<!-- body开始 -->
     <% if (page.type == 'book-en-us') { %>
+		<!-- mobile-bar 1-->
       <div id="mobile-bar" data-bg-text="Modern C++ Tutorial" <%- isIndex ? 'class="top"' : '' %>>
         <a class="menu-button"></a>
         <a class="logo" href="/modern-cpp/"></a>
       </div>
     <% } else {%>
+		<!-- mobile-bar 2-->
       <div id="mobile-bar" data-bg-text="现代 C++ 教程" <%- isIndex ? 'class="top"' : '' %>>
         <a class="menu-button"></a>
         <a class="logo" href="/modern-cpp/"></a>
       </div>
     <% } %>
+	<!-- include header -->
     <%- partial('partials/header') %>
     <% if (!isIndex) { %>
       <div id="main" class="fix-sidebar">
+		<!-- body 111 -->
         <%- body %>
-      </div>
+	</div>
     <% } else { %>
+		<!-- body 222 -->
         <%- body %>
+		<!-- body 2220 -->
     <% } %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.2.1/js/smooth-scroll.min.js"></script>
 
