@@ -5,6 +5,7 @@ const path = require('path');
 const yamlFront = require('yaml-front-matter');  // 用于读取 front-matter（Hexo的文件头信息）
 // const chalk = require('chalk');
 const chalk = require('chalk');
+const { page } = require('hexo/dist/plugins/helper/is');
 function printColoredJSON(data) {
 	// console.log("Input Data:", data);  // 打印输入数据，检查其结构
 	const jsonStr = JSON.stringify(data, null, 2);
@@ -18,6 +19,64 @@ function printColoredJSON(data) {
 	console.log("Colored JSON:", coloredJson);  // 打印彩色输出
 	console.log(coloredJson);
 }
+
+
+// 带颜色和缩进的打印函数
+function logWithDetails(data) {
+	try {
+		// 获取当前的调用栈信息
+		const stack = new Error().stack.split("\n")[2];
+		const regex = /at (\S+) \((.*):(\d+):(\d+)\)/;
+		const match = stack.match(regex);
+
+		if (match) {
+			const [_, functionName, fileName, lineNumber] = match;
+			const fileNameShort = fileName.split('/').pop(); // 获取文件名，不包括路径
+
+			// 打印日志，带颜色，显示函数名和文件行号
+			console.log(
+				chalk.green(`[${fileNameShort}:${lineNumber}]`),  // 文件名和行号
+				chalk.cyan(functionName),  // 函数名
+				chalk.yellow('Output:')  // 输出提示
+			);
+		}
+	} catch (err) {
+		console.error(chalk.red('Error in logging details:', err));
+	}
+
+	// 打印数据，带颜色并格式化为 JSON
+	console.log(chalk.blue(JSON.stringify(data, null, 2)));
+}
+
+// 示例对象
+const allTocData = [{
+	title: "Sample Article",
+	url: "https://example.com/sample-article",
+	toc: [
+		{
+			level: 1,
+			text: "Introduction",
+			id: "introduction",
+			link: "#introduction"
+		},
+		{
+			level: 2,
+			text: "Subsection 1.1",
+			id: "subsection-1-1",
+			link: "#subsection-1-1"
+		},
+		{
+			level: 2,
+			text: "Subsection 1.2",
+			id: "subsection-1-2",
+			link: "#subsection-1-2"
+		}
+	]
+}];
+
+// 调用函数打印
+logWithDetails(allTocData);
+console.log(JSON.stringify(allTocData, null, 2))
 
 
 function log(message) {
@@ -72,7 +131,7 @@ function log(message) {
 	const relativeFilePath = path.basename(fileNameWithPath);
 
 	// 格式化对齐的长度
-	const maxFunctionNameLength = 15;
+	const maxFunctionNameLength = 20;
 	const maxFilePathLength = 10;
 	const maxMessageLength = 50;
 
@@ -92,6 +151,7 @@ function eFunction() {
 
 // 调用示例函数
 eFunction();
+
 
 hexo.extend.filter.register('before_generate', function () {
 	const postsDir = path.join(hexo.source_dir);  // _posts 目录
@@ -120,7 +180,7 @@ hexo.extend.filter.register('before_generate', function () {
 				const text = match[2]; // 标题的文本
 
 				log(level + "-" + text)
-				const id = text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, ''); // 生成一个符合 ID 格式的字符串
+				const id = text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\u4e00-\u9fa5-]/g, ''); // 生成一个符合 ID 格式的字符串
 				const atoc = {
 					level: level,
 					text: text,
@@ -166,45 +226,67 @@ hexo.extend.filter.register('before_generate', function () {
 	// 将所有文章的目录传递到全局模板
 	hexo.locals.set('allToc', allToc);
 });
-
-
-// 注册一个自定义的 Hexo 标签
-hexo.extend.helper.register('generateToc', function () {
-	toc = hexo.locals.get('allToc')
-	console.log("generateToc")
-	console.log(hexo.locals.get('allToc'))
-
-	// 假设 toc 是一个 JSON 对象
-	const to = {
-		title: "Main Title",
-		sections: [
-			{ id: 1, name: "Introduction" },
-			{ id: 2, name: "Chapter 1" }
-		]
-	};
-
-	//   printColoredJSON(to);
-
-	return "123\n456";
-});
-
+function square(post) {
+	log('in square'+post.title)
+	return 'r'
+}
 
 hexo.extend.helper.register('generateTocLinks', function () {
-	let links = '';
-	console.log("generateTocLinks")
+	let links = '\n';
+
+	const pageTitle = this.page.title || '默认标题';
+	log('----------------')
+	log("generateTocLinks")
+	log('pageTitle:'+pageTitle)
+	log('pagepath:'+this.page.path)
 	// 获取 allToc 数据
 	const allToc = hexo.locals.get('allToc');
 
+	if (this.page.path != 'title01.html') {
+		log('return')
+		return ''
+	}
+	log("congi")
+/*
+<h1 id="section1">第一部分</h1>
+			<h2>书签</h2>
+			<ul>
+				<li>
+					<a href="#section1" class="item0" id="1">项目 1</a>
+					<ul class="sub-list">
+						<li><a href="#" class="sub-text" id="1.1">子项 1.1</a></li>
+						<li><a href="#" class="sub-text" id="1.2">子项 1.2</a></li>
+					</ul>
+				</li>
+			</ul>
+
+*/
+
 	if (allToc && allToc.length > 0) {
+		const squret = allToc.map(square)
+		log(''+squret[0])
+		links += '<ul>\n'
 		allToc.forEach(post => {
+			// square(post)
+			log(post.title)
+			log(JSON.stringify(post, null, 2))
 			// 为每篇文章生成一个链接
-			links += `<div><a href="${post.url}">${post.title}</a></div>\n`;
+			links += '\t<li>\n'
+			links += `\t<a href="${post.url}">${post.title} 0</a>\n`;
+			links += '\t<ul>\n'
 
 			// 为文章中的每个标题生成链接
 			post.toc.forEach(item => {
-				links += `<div><a href="#${item.id}">${item.text}</a></div>\n`;  // 使用 <div> 确保换行
+				log('level:'+ item.level)
+				log(JSON.stringify(item, null, 2))
+				links += '\t\t<li>'
+				links += `<a href="#${item.id}">${item.text}</a>`;  // 使用 <div> 确保换行
+				links += '</li>\n'
 			});
+			links += '\t</ul>\n'
+			links += '\t</li>\n'
 		});
+		links += '</ul>\n'
 	}
 
 	return links;
