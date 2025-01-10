@@ -1,0 +1,22 @@
+<ul class="menu-root">
+	  <!-- 引入外部的 JS 文件 -->
+  <!-- <script src="/modern-cpp/js/menu.js"></script> -->
+
+	<% site.pages.find({type: type}).sort('order').each(function (p) { %>
+
+		<li>
+		  <a 
+			href="<%- url_for(p.path) %>" 
+			class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"
+			>
+			<%- p.title %>
+		</a>
+		</li>
+	<% }) %>
+  <!-- 传递数据到 JavaScript -->
+  <%- generateSidebar() %>
+
+  <%= myHelper() %>
+
+
+</ul>
