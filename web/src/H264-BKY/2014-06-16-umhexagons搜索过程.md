@@ -1,5 +1,6 @@
 ---
 title: UMHexagonS搜索过程
+type: book-zh-cn
 date: 2014-06-16 00:33
 tag: 
 ---

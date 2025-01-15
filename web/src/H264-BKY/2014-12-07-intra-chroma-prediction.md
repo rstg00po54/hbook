@@ -1,5 +1,6 @@
 ---
 title: Intra Chroma Prediction
+type: book-zh-cn
 date: 2014-12-07 21:48
 tag: 
 ---
