@@ -18,7 +18,7 @@ timezone: ''
 # url: http://rstg00po54.github.io/modern-cpp-tutorial/
 # root: /modern-cpp-tutorial/
 # root: /modern-cpp/
-permalink: :year/:month/:day/:title/
+# permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -34,6 +34,7 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+permalink: :title/
 archive:
   # Disable archive generation
   enable: false

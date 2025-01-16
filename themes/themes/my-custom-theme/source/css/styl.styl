@@ -1,7 +1,13 @@
+*
+	margin: 0
+	padding: 0
+	border: 1px solid rgb(252, 190, 190) !important;
 body
-  font-family: Arial, sans-serif
-  background-color: #202322
-  color: rgb(174, 194, 211)
+	font-family: Arial, sans-serif
+	background-color: #202322
+	color: rgb(174, 194, 211)
+	// max-width: 1000px
+	margin: auto
 a
 	color: rgb(156, 147, 134)
 	text-decoration: none;
@@ -16,12 +22,55 @@ a
 .content
 	background-color: #023333
 	margin-left: 300px
+.index
+	padding: 100px, 40px, 40px, 200px
+	max-width 600px
+	max-height: 300px
+	margin: auto
+	padding-top: 100px
+
+
 .post
 	display: flex
 	height: 100%;
 	flex-direction: row; 
 	padding: 20px;
+.centor
+	display: inline-block
+	margin: auto
+	max-width: 800px
+.logo
+	display: inline-block
+	vertical-align: middle
+.right
+	display: inline-block
+	margin: 3px
+	vertical-align: middle
 //   
   /* 文字 未选中的小标题 rgb(174, 194, 211) */
   /* 选中的标题 rgb(210, 129, 138) */
   /* 未选中的标题 rgb(156, 147, 134) */
+
+  a.button {
+  padding: 0.75em 2em;
+  border-radius: 2em;
+  display: inline-block;
+  color: #8d8d8d;
+  background-color: #92343f;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+  border: 1px solid #92343f;
+  width: 150px;
+}
+a.button.white {
+  background-color: #7e7e7e;
+  color: #7e2d36;
+}
+a.button.download {
+  background-color: #7e2d36;
+  color: #fff;
+}
+a.button:hover {
+  background-color: #7e2d36;
+  color: #fff;
+}

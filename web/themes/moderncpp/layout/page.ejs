@@ -1,16 +1,9 @@
-<% if (page.type) { %>
-  <%- partial('partials/sidebar', { type: page.type, index: page.index }) %>
-<% } else { %>
-  <div class="sidebar">
-    <ul class="main-menu">
-        <% if (page.type == 'book-en-us') { %>
-          <%- partial('partials/main_menu_en', { context: 'nav' }) %>
-        <% } else {%>
-          <%- partial('partials/main_menu', { context: 'nav' }) %>
-        <% } %>
-    </ul>
-  </div>
-<% } %>
+
+<%- console.log("xxx2 ", page.title) %>
+<%- console.log("xxx3 ", page.type) %>
+<%- console.log("xxx4 ", page.index) %>
+  <%- partial('partials/sidebar', { type: page.type?page.type:'un', index: page.index }) %>
+
 <div class="content <%- page.type ? page.type + ' with-sidebar' : '' %> <%- page.type ? page.path.replace(/.+\//, '').replace('.html', '') + '-guide' : '' %>">
   <%- page.content %>
   <div class="guide-links">

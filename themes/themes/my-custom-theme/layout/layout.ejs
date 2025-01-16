@@ -1,6 +1,6 @@
 
 <!-- layout -->
-
+<% var isIndex = page.path === 'index.html' %>
 <% console.log('pag:'+ page.path) %>
 
 <!doctype html>
@@ -10,8 +10,9 @@
 		<title><%= page.title %></title>
 		<!-- 引入自定义 CSS 文件 -->
 <link rel="stylesheet" href="<%= url_for('css/styl.css') %>">
-<body>
-
+<link rel="stylesheet" href="<%= url_for('css/header.css') %>">
+<body class="<%- isIndex ? '' : 'docs' -%>">
+	<%- partial('partials/header') %>
 	<div class="body">
 		<!-- 引入头 -->
 		<%- partial('partials/header') %>

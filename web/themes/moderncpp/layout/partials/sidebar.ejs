@@ -9,6 +9,7 @@
     </ul>
     <div class="list">
       <h2>
+		<%# console.log("type sidebar:"+type) %>
         <% if (page.type == 'book-en-us') { %>
           <%-
           type === 'exercises'
@@ -36,6 +37,7 @@
         <% } %>
       </h2>
       <%- partial('partials/toc', { type: type }) %>
+	  <%- console.log("sisdebra", type) %>
     </div>
   </div>
 </div>

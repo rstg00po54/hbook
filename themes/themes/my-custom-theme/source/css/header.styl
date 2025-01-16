@@ -46,6 +46,8 @@ body.docs
   top: $heading-padding-vertical
   height: $header-height
   line-height: $header-height
+  .nav-dropdown 
+    display: none; /* 默认隐藏 */
   .break
     display: none
   li
@@ -70,7 +72,8 @@ body.docs
           top: 50%
           margin-top: -4px
           left: 8px
-
+  .nav-dropdown-container:hover .nav-dropdown
+    display: block; /* 鼠标悬停时显示菜单 */
 .nav-link
   padding-bottom: 3px
   &:hover, &.current

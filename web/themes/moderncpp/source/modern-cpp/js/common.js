@@ -112,6 +112,7 @@
 			} else {
 				headers = content.querySelectorAll('h3')
 				each.call(headers, function (h) {
+					console.log("h3 "+h.id)
 					sectionContainer.appendChild(makeLink(h))
 					allHeaders.push(h)
 				})
@@ -173,6 +174,7 @@
 		}
 
 		function makeLink(h) {
+			console.log("common.js+  "+h.id)
 			var link = document.createElement('li')
 			window.arst = h
 			var text = [].slice.call(h.childNodes).map(function (node) {
@@ -205,6 +207,7 @@
 			var next = h.nextSibling
 			while (next && next.tagName !== 'H2') {
 				if (next.tagName === 'H3') {
+					console.log("h3 "+next.id)
 					h3s.push(next)
 				}
 				next = next.nextSibling

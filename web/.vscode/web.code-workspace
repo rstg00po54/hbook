@@ -6,7 +6,6 @@
 	],
 	"settings": {
 		"workbench.editor.enablePreview": true,
-		"window.title": "${rootNameShort} - ${activeEditorShort}" ,
-		"liveServer.settings.port": 5502
+		"window.title": "${rootNameShort} - ${activeEditorShort}"  
 	}
 }
