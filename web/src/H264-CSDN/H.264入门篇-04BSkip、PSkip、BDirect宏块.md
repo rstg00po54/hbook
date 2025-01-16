@@ -1,10 +1,4 @@
----
-title: H.264 入门篇 - 04 (B_Skip、P_Skip 、B_Direct宏块)
-type: book-zh-cn
-order: 0
----
-# H.264 入门篇 - 04 (B_Skip、P_Skip 、B_Direct宏块)
-
+#H.264 入门篇 - 04 (B_Skip、P_Skip 、B_Direct宏块)
 可知，在宏块中，会存在 Skip 类型的 MB，这个 Skip 又分为了 B_Skip 和 P_Skip；
 <li>B_Skip 类型宏块： 
   <ul>- 无像素残差，无运动矢量残差（MVD）。 解码时，通过Direct预测模式（时间或空间）计算出前、后向MV后，直接利用前、后向MV得到像素预测值。像素重构值=像素预测值。- 无像素残差，无运动矢量残差（MVD）。也就是COPY宏块。直接利用预测 MV 得到像素预测值。像素重构值=像素预测值。- 有像素残差，无运动矢量残差（MVD）。解码时，通过Direct预测模式（时间或空间）计算出前、 后MV后，利用前、后MV得到像素预测值。然后，像素重构值=像素预测值+像素残差解码值。
