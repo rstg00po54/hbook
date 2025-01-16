@@ -1,0 +1,51 @@
+{
+  "id": "4807162",
+  "name": "ck",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "666891",
+      "name": "图片",
+      "font_class": "tupian",
+      "unicode": "e695",
+      "unicode_decimal": 59029
+    },
+    {
+      "icon_id": "750883",
+      "name": "二维码",
+      "font_class": "erweima",
+      "unicode": "e7ad",
+      "unicode_decimal": 59309
+    },
+    {
+      "icon_id": "5387619",
+      "name": "盾牌保险认证",
+      "font_class": "dunpaibaoxianrenzheng",
+      "unicode": "eb17",
+      "unicode_decimal": 60183
+    },
+    {
+      "icon_id": "18978466",
+      "name": "钱包",
+      "font_class": "qianbao",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "6049256",
+      "name": "调色板",
+      "font_class": "tiaoseban",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "5387402",
+      "name": "仓库",
+      "font_class": "cangku",
+      "unicode": "eac9",
+      "unicode_decimal": 60105
+    }
+  ]
+}
