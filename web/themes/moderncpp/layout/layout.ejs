@@ -34,19 +34,13 @@
   </head>
   <body class="<%- isIndex ? '' : 'docs' -%>">
 	<!-- body开始 -->
-    <% if (page.type == 'book-en-us') { %>
-		<!-- mobile-bar 1-->
-      <div id="mobile-bar" data-bg-text="Modern C++ Tutorial" <%- isIndex ? 'class="top"' : '' %>>
-        <a class="menu-button"></a>
-        <a class="logo" href="/modern-cpp/"></a>
-      </div>
-    <% } else {%>
+
 		<!-- mobile-bar 2-->
       <div id="mobile-bar" data-bg-text="现代 C++ 教程" <%- isIndex ? 'class="top"' : '' %>>
         <a class="menu-button"></a>
         <a class="logo" href="/modern-cpp/"></a>
       </div>
-    <% } %>
+
 	<!-- include header -->
     <%- partial('partials/header') %>
     <% if (!isIndex) { %>

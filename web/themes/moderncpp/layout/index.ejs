@@ -2,11 +2,9 @@
 <div class="sidebar">
   <div class="sidebar-inner-index">
     <ul class="main-menu">
-      <% if (page.type == 'book-en-us') { %>
-        <%- partial('partials/main_menu_en', { context: 'nav' }) %>
-      <% } else {%>
+
         <%- partial('partials/main_menu', { context: 'nav' }) %>
-      <% } %>
+
     </ul>
   </div>
 </div>

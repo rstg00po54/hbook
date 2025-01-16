@@ -4,10 +4,6 @@
       <span>教程：高速上手</span>
   </a>
   <ul id="nav">
-    <% if (page.type == 'book-en-us') { %>
-      <%- partial('partials/main_menu_en', { context: 'nav' }) %>
-    <% } else {%>
       <%- partial('partials/main_menu', { context: 'nav' }) %>
-    <% } %>
   </ul>
 </div>
