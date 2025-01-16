@@ -2,6 +2,7 @@
 title: Intra Chroma Prediction
 date: 2014-12-07 21:48
 tag: 
+type: book-zh-cn
 ---
 
 
