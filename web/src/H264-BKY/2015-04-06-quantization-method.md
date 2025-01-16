@@ -10,7 +10,7 @@ type: book-zh-cn
 
 
 #### **Static Offset**
-H.264参考模型建议：当帧内预测时：$f = \frac{1}{3}\bigtriangleup$;当帧间预测时$f = \frac{1}{6}\bigtriangleup$。这种采用固定的比例作为量化的offset。![](2015-04-06-quantization-method/060113170406149.jpg)
+H.264参考模型建议：当帧内预测时：$f = \frac{1}{3}\bigtriangleup$;当帧间预测时$f = \frac{1}{6}\bigtriangleup$。这种采用固定的比例作为量化的offset。![](img/2015-04-06-quantization-method/060113170406149.jpg)
 
 
 #### **Around Offset**
@@ -19,8 +19,8 @@ Around Offset会采用当前位置的上一次量化结果对这次的量化offs
 $ M_{i+1} = M_i + weight \times ((coeff_i – level_i << Qbits_i) >> (Qbits_i + 1))$
 $ f_{i+1} = M_{i+1} << Qbits_{i+1}$
 
-![](2015-04-06-quantization-method/060113179934991.jpg)
-![](2015-04-06-quantization-method/ContractedBlock.gif)![](2015-04-06-quantization-method/ExpandedBlockStart.gif)//Q_offsets.c//fi+1 = Mi+1 << Qbitsi+1staticinlinevoidupdate_q_offset4x4(LevelQuantParams **q_params,short*offsetList,intq_bits)  
+![](img/2015-04-06-quantization-method/060113179934991.jpg)
+![](img/2015-04-06-quantization-method/ContractedBlock.gif)![](img/2015-04-06-quantization-method/ExpandedBlockStart.gif)//Q_offsets.c//fi+1 = Mi+1 << Qbitsi+1staticinlinevoidupdate_q_offset4x4(LevelQuantParams **q_params,short*offsetList,intq_bits)  
 {inti, j;short*p_list = &offsetList[0];for(j =0; j <4; j++)
   {for(i =0; i <4; i++)
     {          
@@ -147,12 +147,12 @@ View Code
 
 #### **trellis offset**
 trellis offset其实用trellis quantization来描述更为准确，因为这种量化方式不会用到offset。Trellis就是采用Rdoq来得到最佳量化值，即取0、level还是level+1会达到最优的量化结果。由于不会用到offset，因此得到的level统一都是取下整，这样的话需要进行Rdo的候选level有三个：0、level、level+1。三个候选值还是稍微多了，可以采用以下方式进行筛选。
-![](2015-04-06-quantization-method/060113185867877.jpg)
+![](img/2015-04-06-quantization-method/060113185867877.jpg)
 Rdoq当中包含Rdo这三个字母，这意味它依赖编码后的码流长度以及残差来选择最优结果，不过由于Rdoq处于编码途中，因此无法得到确切的编码后码流长度以及残差，因此只能通过预测值来，即上述候选值来进行计算。计算码流长度涉及到熵编码，而熵编码是以8x8或4x4为单位进行的，但是由于当前像素进行预测时，其后面的像素还没有进行预测，所以进行Rdoq时，当前像素之前的像素点采用的是预测后的level，而当前像素点之后的像素点采用level[num-1]的像素点。
-![](2015-04-06-quantization-method/060113199467661.jpg)
+![](img/2015-04-06-quantization-method/060113199467661.jpg)
 Rdoq实际上就是对于当前像素点所在的block进行Rdo：在该block上，当前像素采用的是0、level还是level+1才能得到最优的结果。
 
-![](2015-04-06-quantization-method/ContractedBlock.gif)![](2015-04-06-quantization-method/ExpandedBlockStart.gif)
+![](img/2015-04-06-quantization-method/ContractedBlock.gif)![](img/2015-04-06-quantization-method/ExpandedBlockStart.gif)
 /*!
  ************************************************************************
  * \brief
