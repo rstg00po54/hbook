@@ -1,5 +1,6 @@
 ---
 title: Intra Luma Prediction
+type: book-zh-cn
 date: 2014-12-28 23:05
 tag: 
 ---
