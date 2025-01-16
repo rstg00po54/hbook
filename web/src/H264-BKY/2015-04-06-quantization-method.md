@@ -2,6 +2,7 @@
 title: Quantization Method
 date: 2015-04-06 01:13
 tag: 
+type: book-zh-cn
 ---
 
 如上一篇[Quantization](http://www.cnblogs.com/TaigaCon/p/4266686.html)所说，可以在编码端通过设置offset来调整量化后的值，从而趋向于期望的量化值，而且在逆量化公式可以看出offset值在逆量化的时候是不会用到的。

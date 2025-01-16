@@ -2,6 +2,7 @@
 title: Intra Luma Prediction
 date: 2014-12-28 23:05
 tag: 
+type: book-zh-cn
 ---
 
 

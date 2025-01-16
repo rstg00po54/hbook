@@ -2,6 +2,7 @@
 title: UMHexagonS搜索过程
 date: 2014-06-16 00:33
 tag: 
+type: book-zh-cn
 ---
 
 通过相邻块的预测得到mvp后，会以mvp为基础搜索最佳的匹配块，UMHexagonS就是h.264中用的一种搜索算法。
