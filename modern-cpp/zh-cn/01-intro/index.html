@@ -160,6 +160,12 @@
 		</li>
 
 		<li>
+		  <a href="/hbook/modern-cpp/zh-cn/01-intro/index.html" class="sidebar-link current">
+			第 1 章 迈向现代 C++
+		  </a>
+		</li>
+
+		<li>
 		  <a href="/hbook/modern-cpp/zh-cn/00-preface/index.html" class="sidebar-link">
 			序言
 		  </a>
@@ -172,26 +178,8 @@
 		</li>
 
 		<li>
-		  <a href="/hbook/modern-cpp/zh-cn/01-intro/index.html" class="sidebar-link current">
-			第 1 章 迈向现代 C++
-		  </a>
-		</li>
-
-		<li>
-		  <a href="/hbook/modern-cpp/zh-cn/04-containers/index.html" class="sidebar-link">
-			第 4 章 容器
-		  </a>
-		</li>
-
-		<li>
-		  <a href="/hbook/modern-cpp/zh-cn/05-pointers/index.html" class="sidebar-link">
-			第 5 章 智能指针与内存管理
-		  </a>
-		</li>
-
-		<li>
-		  <a href="/hbook/modern-cpp/zh-cn/02-usability/index.html" class="sidebar-link">
-			第 2 章 语言可用性的强化
+		  <a href="/hbook/modern-cpp/zh-cn/06-regex/index.html" class="sidebar-link">
+			第 6 章 正则表达式
 		  </a>
 		</li>
 
@@ -202,26 +190,26 @@
 		</li>
 
 		<li>
+		  <a href="/hbook/modern-cpp/zh-cn/04-containers/index.html" class="sidebar-link">
+			第 4 章 容器
+		  </a>
+		</li>
+
+		<li>
+		  <a href="/hbook/modern-cpp/zh-cn/02-usability/index.html" class="sidebar-link">
+			第 2 章 语言可用性的强化
+		  </a>
+		</li>
+
+		<li>
+		  <a href="/hbook/modern-cpp/zh-cn/05-pointers/index.html" class="sidebar-link">
+			第 5 章 智能指针与内存管理
+		  </a>
+		</li>
+
+		<li>
 		  <a href="/hbook/modern-cpp/zh-cn/08-filesystem/index.html" class="sidebar-link">
 			第 8 章 文件系统
-		  </a>
-		</li>
-
-		<li>
-		  <a href="/hbook/modern-cpp/zh-cn/06-regex/index.html" class="sidebar-link">
-			第 6 章 正则表达式
-		  </a>
-		</li>
-
-		<li>
-		  <a href="/hbook/modern-cpp/zh-cn/09-others/index.html" class="sidebar-link">
-			第 9 章 其他杂项
-		  </a>
-		</li>
-
-		<li>
-		  <a href="/hbook/modern-cpp/zh-cn/appendix1/index.html" class="sidebar-link">
-			附录 1：进一步阅读的学习材料
 		  </a>
 		</li>
 
@@ -238,13 +226,25 @@
 		</li>
 
 		<li>
-		  <a href="/hbook/modern-cpp/exercises/6/www/test.html" class="sidebar-link">
-			
+		  <a href="/hbook/modern-cpp/zh-cn/09-others/index.html" class="sidebar-link">
+			第 9 章 其他杂项
+		  </a>
+		</li>
+
+		<li>
+		  <a href="/hbook/modern-cpp/zh-cn/appendix1/index.html" class="sidebar-link">
+			附录 1：进一步阅读的学习材料
 		  </a>
 		</li>
 
 		<li>
 		  <a href="/hbook/modern-cpp/exercises/6/www/index.html" class="sidebar-link">
+			
+		  </a>
+		</li>
+
+		<li>
+		  <a href="/hbook/modern-cpp/exercises/6/www/test.html" class="sidebar-link">
 			
 		  </a>
 		</li>
@@ -525,7 +525,7 @@
 </ul>
 <p>还有一些其他诸如参数绑定（C++11 提供了 <code>std::bind</code> 和 <code>std::function</code>）、<code>export</code> 等特性也均被弃用。前面提到的这些特性<strong>如果你从未使用或者听说过，也请不要尝试去了解他们，应该向新标准靠拢</strong>，直接学习新特性。毕竟，技术是向前发展的。</p>
 <h2 id="1-2-与-C-的兼容性"><a href="#1-2-与-C-的兼容性" class="headerlink" title="1.2 与 C 的兼容性"></a>1.2 与 C 的兼容性</h2><p>出于一些不可抗力、历史原因，我们不得不在 C++ 中使用一些 C 语言代码（甚至古老的 C 语言代码），例如 Linux 系统调用。在现代 C++ 出现之前，大部分人当谈及『C 与 C++ 的区别是什么』时，普遍除了回答面向对象的类特性、泛型编程的模板特性外，就没有其他的看法了，甚至直接回答『差不多』，也是大有人在。图 1.2 中的韦恩图大致上回答了 C 和 C++ 相关的兼容情况。</p>
-<p><img src="/../../assets/figures/comparison.png" alt="图 1.2: C 和 C++ 互相兼容情况"></p>
+<p><img src="/hbook/../../assets/figures/comparison.png" alt="图 1.2: C 和 C++ 互相兼容情况"></p>
 <p>从现在开始，你的脑子里应该树立『<strong>C++ 不是 C 的一个超集</strong>』这个观念（而且从一开始就不是，后面的<a href="#%E8%BF%9B%E4%B8%80%E6%AD%A5%E9%98%85%E8%AF%BB%E7%9A%84%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">进一步阅读的参考文献</a>中给出了 C++98 和 C99 之间的区别）。在编写 C++ 时，也应该尽可能的避免使用诸如 <code>void*</code> 之类的程序风格。而在不得不使用 C 时，应该注意使用 <code>extern &quot;C&quot;</code> 这种特性，将 C 语言的代码与 C++代码进行分离编译，再统一链接这种做法，例如：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// foo.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// foo.c</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1.1.cpp</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;foo.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    [out = std::<span class="built_in">ref</span>(std::cout &lt;&lt; <span class="string">&quot;Result from C code: &quot;</span> &lt;&lt; <span class="built_in">add</span>(<span class="number">1</span>, <span class="number">2</span>))]()&#123;</span><br><span class="line">        out.<span class="built_in">get</span>() &lt;&lt; <span class="string">&quot;.\n&quot;</span>;</span><br><span class="line">    &#125;();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -557,27 +557,27 @@
     
       <span>← <a href="/hbook/H264-CSDN/H.264%E5%85%A5%E9%97%A8%E7%AF%87-00%E7%AE%80%E4%BB%8B.html">H.264 入门篇 - 00 (简介)</a></span>
     
-      <span>← <a href="/hbook/H264-CSDN/H.264%E5%85%A5%E9%97%A8%E7%AF%87-02%E5%B8%A7%E5%86%85%E9%A2%84%E6%B5%8B%E7%9B%B8%E9%82%BB%E5%83%8F%E7%B4%A0%E6%8E%A8%E5%AF%BC.html">H.264 入门篇 - 02 (帧内预测相邻像素推导)</a></span>
-    
       <span>← <a href="/hbook/H264-CSDN/H.264%E5%85%A5%E9%97%A8%E7%AF%87-01Bitstream.html">H.264 入门篇 - 01 (Bitstream)</a></span>
     
-      <span>← <a href="/hbook/H264-CSDN/H.264%E5%85%A5%E9%97%A8%E7%AF%87-03%E5%AE%8F%E5%9D%97%E7%B1%BB%E5%9E%8B.html">H.264 入门篇 - 03 (宏块类型)</a></span>
+      <span>← <a href="/hbook/H264-CSDN/H.264%E5%85%A5%E9%97%A8%E7%AF%87-02%E5%B8%A7%E5%86%85%E9%A2%84%E6%B5%8B%E7%9B%B8%E9%82%BB%E5%83%8F%E7%B4%A0%E6%8E%A8%E5%AF%BC.html">H.264 入门篇 - 02 (帧内预测相邻像素推导)</a></span>
     
       <span>← <a href="/hbook/H264-CSDN/H.264%E5%85%A5%E9%97%A8%E7%AF%87-04BSkip%E3%80%81PSkip%E3%80%81BDirect%E5%AE%8F%E5%9D%97.html">H.264 入门篇 - 04 (B_Skip、P_Skip 、B_Direct宏块)</a></span>
     
+      <span>← <a href="/hbook/H264-CSDN/H.264%E5%85%A5%E9%97%A8%E7%AF%87-03%E5%AE%8F%E5%9D%97%E7%B1%BB%E5%9E%8B.html">H.264 入门篇 - 03 (宏块类型)</a></span>
+    
       <span>← <a href="/hbook/H264-CSDN/H.264%E5%85%A5%E9%97%A8%E7%AF%87-05%E5%B8%A7%E5%86%85%E9%A2%84%E6%B5%8B.html">H.264 入门篇 - 05 (帧内预测)</a></span>
+    
+      <span>← <a href="/hbook/H264-CSDN/H.264%E5%85%A5%E9%97%A8%E7%AF%87-07%E5%B8%A7%E9%97%B4%E9%A2%84%E6%B5%8B-%E8%A7%A3%E7%A0%81%E5%9B%BE%E5%83%8F%E7%BC%93%E5%AD%98DPB.html">H.264 入门篇 - 07 (帧间预测 - 解码图像缓存 DPB)</a></span>
     
       <span>← <a href="/hbook/H264-CSDN/H.264%E5%85%A5%E9%97%A8%E7%AF%87-06%E5%B8%A7%E9%97%B4%E9%A2%84%E6%B5%8B-%E8%BF%90%E5%8A%A8%E4%BC%B0%E8%AE%A1.html">H.264 入门篇 - 06 (帧间预测 - 运动估计)</a></span>
     
-      <span>← <a href="/hbook/H264-CSDN/H.264%E5%85%A5%E9%97%A8%E7%AF%87-07%E5%B8%A7%E9%97%B4%E9%A2%84%E6%B5%8B-%E8%A7%A3%E7%A0%81%E5%9B%BE%E5%83%8F%E7%BC%93%E5%AD%98DPB.html">H.264 入门篇 - 07 (帧间预测 - 解码图像缓存 DPB)</a></span>
+      <span>← <a href="/hbook/H264-CSDN/H.264%E5%85%A5%E9%97%A8%E7%AF%87-08%E5%B8%A7%E9%97%B4%E9%A2%84%E6%B5%8B-%E5%B7%B2%E8%A7%A3%E7%A0%81%E5%8F%82%E8%80%83%E5%B8%A7%E7%9A%84%E6%A0%87%E8%AE%B0.html">H.264 入门篇 - 08 (帧间预测 - 已解码参考帧的标记)</a></span>
     
       <span>← <a href="/hbook/H264-CSDN/H.264%E5%85%A5%E9%97%A8%E7%AF%87-09%E5%B8%A7%E9%97%B4%E9%A2%84%E6%B5%8B-%E5%8F%82%E8%80%83%E5%B8%A7%E5%88%97%E8%A1%A8.html">H.264 入门篇 - 09 (帧间预测 - 参考帧列表)</a></span>
     
       <span>← <a href="/hbook/H264-CSDN/H.264%E5%85%A5%E9%97%A8%E7%AF%87-11%E5%B8%A7%E9%97%B4%E9%A2%84%E6%B5%8B-DPB%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5.html">H.264 入门篇 - 11 (帧间预测 - DPB 管理策略)</a></span>
     
       <span>← <a href="/hbook/H264-CSDN/H.264%E5%85%A5%E9%97%A8%E7%AF%87-12%E5%B8%A7%E9%97%B4%E9%A2%84%E6%B5%8B-MVP%E6%B1%82%E8%A7%A3.html">H.264 入门篇 - 12 (帧间预测 - MVP 求解)</a></span>
-    
-      <span>← <a href="/hbook/H264-CSDN/H.264%E5%85%A5%E9%97%A8%E7%AF%87-08%E5%B8%A7%E9%97%B4%E9%A2%84%E6%B5%8B-%E5%B7%B2%E8%A7%A3%E7%A0%81%E5%8F%82%E8%80%83%E5%B8%A7%E7%9A%84%E6%A0%87%E8%AE%B0.html">H.264 入门篇 - 08 (帧间预测 - 已解码参考帧的标记)</a></span>
     
       <span>← <a href="/hbook/H264-CSDN/H.264%E5%85%A5%E9%97%A8%E7%AF%87-13POC%E6%B1%82%E8%A7%A3.html">H.264 入门篇 - 13 (POC 求解)</a></span>
     

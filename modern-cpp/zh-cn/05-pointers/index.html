@@ -160,6 +160,12 @@
 		</li>
 
 		<li>
+		  <a href="/hbook/modern-cpp/zh-cn/01-intro/index.html" class="sidebar-link">
+			第 1 章 迈向现代 C++
+		  </a>
+		</li>
+
+		<li>
 		  <a href="/hbook/modern-cpp/zh-cn/00-preface/index.html" class="sidebar-link">
 			序言
 		  </a>
@@ -172,26 +178,8 @@
 		</li>
 
 		<li>
-		  <a href="/hbook/modern-cpp/zh-cn/01-intro/index.html" class="sidebar-link">
-			第 1 章 迈向现代 C++
-		  </a>
-		</li>
-
-		<li>
-		  <a href="/hbook/modern-cpp/zh-cn/04-containers/index.html" class="sidebar-link">
-			第 4 章 容器
-		  </a>
-		</li>
-
-		<li>
-		  <a href="/hbook/modern-cpp/zh-cn/05-pointers/index.html" class="sidebar-link current">
-			第 5 章 智能指针与内存管理
-		  </a>
-		</li>
-
-		<li>
-		  <a href="/hbook/modern-cpp/zh-cn/02-usability/index.html" class="sidebar-link">
-			第 2 章 语言可用性的强化
+		  <a href="/hbook/modern-cpp/zh-cn/06-regex/index.html" class="sidebar-link">
+			第 6 章 正则表达式
 		  </a>
 		</li>
 
@@ -202,26 +190,26 @@
 		</li>
 
 		<li>
+		  <a href="/hbook/modern-cpp/zh-cn/04-containers/index.html" class="sidebar-link">
+			第 4 章 容器
+		  </a>
+		</li>
+
+		<li>
+		  <a href="/hbook/modern-cpp/zh-cn/02-usability/index.html" class="sidebar-link">
+			第 2 章 语言可用性的强化
+		  </a>
+		</li>
+
+		<li>
+		  <a href="/hbook/modern-cpp/zh-cn/05-pointers/index.html" class="sidebar-link current">
+			第 5 章 智能指针与内存管理
+		  </a>
+		</li>
+
+		<li>
 		  <a href="/hbook/modern-cpp/zh-cn/08-filesystem/index.html" class="sidebar-link">
 			第 8 章 文件系统
-		  </a>
-		</li>
-
-		<li>
-		  <a href="/hbook/modern-cpp/zh-cn/06-regex/index.html" class="sidebar-link">
-			第 6 章 正则表达式
-		  </a>
-		</li>
-
-		<li>
-		  <a href="/hbook/modern-cpp/zh-cn/09-others/index.html" class="sidebar-link">
-			第 9 章 其他杂项
-		  </a>
-		</li>
-
-		<li>
-		  <a href="/hbook/modern-cpp/zh-cn/appendix1/index.html" class="sidebar-link">
-			附录 1：进一步阅读的学习材料
 		  </a>
 		</li>
 
@@ -238,13 +226,25 @@
 		</li>
 
 		<li>
-		  <a href="/hbook/modern-cpp/exercises/6/www/test.html" class="sidebar-link">
-			
+		  <a href="/hbook/modern-cpp/zh-cn/09-others/index.html" class="sidebar-link">
+			第 9 章 其他杂项
+		  </a>
+		</li>
+
+		<li>
+		  <a href="/hbook/modern-cpp/zh-cn/appendix1/index.html" class="sidebar-link">
+			附录 1：进一步阅读的学习材料
 		  </a>
 		</li>
 
 		<li>
 		  <a href="/hbook/modern-cpp/exercises/6/www/index.html" class="sidebar-link">
+			
+		  </a>
+		</li>
+
+		<li>
+		  <a href="/hbook/modern-cpp/exercises/6/www/test.html" class="sidebar-link">
 			
 		  </a>
 		</li>
@@ -525,9 +525,9 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">A</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">B</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    std::shared_ptr&lt;B&gt; pointer;</span><br><span class="line">    ~<span class="built_in">A</span>() &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;A 被销毁&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">B</span> &#123;</span><br><span class="line">    std::shared_ptr&lt;A&gt; pointer;</span><br><span class="line">    ~<span class="built_in">B</span>() &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;B 被销毁&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> a = std::<span class="built_in">make_shared</span>&lt;A&gt;();</span><br><span class="line">    <span class="keyword">auto</span> b = std::<span class="built_in">make_shared</span>&lt;B&gt;();</span><br><span class="line">    a-&gt;pointer = b;</span><br><span class="line">    b-&gt;pointer = a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>运行结果是 A, B 都不会被销毁，这是因为 a,b 内部的 pointer 同时又引用了 <code>a,b</code>，这使得 <code>a,b</code> 的引用计数均变为了 2，而离开作用域时，<code>a,b</code> 智能指针被析构，却只能造成这块区域的引用计数减一，这样就导致了 <code>a,b</code> 对象指向的内存区域引用计数不为零，而外部已经没有办法找到这块区域了，也就造成了内存泄露，如图 5.1：</p>
-<p><img src="/../../assets/figures/pointers1.png" alt="图 5.1"></p>
+<p><img src="/hbook/../../assets/figures/pointers1.png" alt="图 5.1"></p>
 <p>解决这个问题的办法就是使用弱引用指针 <code>std::weak_ptr</code>，<code>std::weak_ptr</code>是一种弱引用（相比较而言 <code>std::shared_ptr</code> 就是一种强引用）。弱引用不会引起引用计数增加，当换用弱引用时候，最终的释放流程如图 5.2 所示：</p>
-<p><img src="/../../assets/figures/pointers2.png" alt="图 5.2"></p>
+<p><img src="/hbook/../../assets/figures/pointers2.png" alt="图 5.2"></p>
 <p>在上图中，最后一步只剩下 B，而 B 并没有任何智能指针引用它，因此这块内存资源也会被释放。</p>
 <p><code>std::weak_ptr</code> 没有 <code>*</code> 运算符和 <code>-&gt;</code> 运算符，所以不能够对资源进行操作，它可以用于检查 <code>std::shared_ptr</code> 是否存在，其 <code>expired()</code> 方法能在资源未被释放时，会返回 <code>false</code>，否则返回 <code>true</code>；除此之外，它也可以用于获取指向原始对象的 <code>std::shared_ptr</code> 指针，其 <code>lock()</code> 方法在原始对象未被释放时，返回一个指向原始对象的 <code>std::shared_ptr</code> 指针，进而访问原始对象的资源，否则返回<code>nullptr</code>。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>智能指针这种技术并不新奇，在很多语言中都是一种常见的技术，现代 C++ 将这项技术引进，在一定程度上消除了 <code>new</code>&#x2F;<code>delete</code> 的滥用，是一种更加成熟的编程范式。</p>

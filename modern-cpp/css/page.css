@@ -228,80 +228,6 @@ a.button:hover {
   padding: 0 60px 30px;
   overflow-x: hidden;
 }
-#nav .nav-link {
-  color: #fff;
-}
-#nav .nav-dropdown-container .nav-link:hover:not(.current) {
-  border-bottom: none;
-}
-#nav .nav-dropdown-container:hover .nav-dropdown {
-  display: block;
-}
-#nav .nav-dropdown-container.language,
-#nav .nav-dropdown-container.ecosystem {
-  margin-left: 20px;
-}
-#nav .nav-dropdown-container .arrow {
-  pointer-events: none;
-}
-#nav .nav-dropdown {
-  display: none;
-  box-sizing: border-box;
-  max-height: calc(100vh - 61px);
-  overflow-y: auto;
-  position: absolute;
-  top: 100%;
-  right: -15px;
-  background-color: #7e2d36;
-  padding: 10px 0;
-  border: 1px solid #fff;
-  border-bottom-color: #7e2d36;
-  text-align: left;
-  border-radius: 4px;
-  white-space: nowrap;
-}
-#nav .nav-dropdown li {
-  line-height: 1.8em;
-  margin: 0;
-  display: block;
-}
-#nav .nav-dropdown li > ul {
-  padding-left: 0;
-}
-#nav .nav-dropdown li:first-child h4 {
-  margin-top: 0;
-  padding-top: 0;
-  border-top: 0;
-}
-#nav .nav-dropdown a,
-#nav .nav-dropdown h4 {
-  padding: 0 24px 0 20px;
-}
-#nav .nav-dropdown h4 {
-  margin: 0.45em 0 0;
-  padding-top: 0.45em;
-  border-top: 1px solid #eee;
-}
-#nav .nav-dropdown a {
-  color: #fff;
-  font-size: 0.9em;
-  display: block;
-}
-#nav .nav-dropdown a:hover {
-  color: #ff0;
-}
-#nav .arrow {
-  display: inline-block;
-  vertical-align: middle;
-  margin-top: -1px;
-  margin-left: 6px;
-  margin-right: -14px;
-  width: 0;
-  height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 5px solid #fff;
-}
 .rotating-clockwise {
   animation: 3s rotating-clockwise linear infinite;
 }
@@ -440,6 +366,90 @@ body.docs #mobile-bar::before {
   padding: 1px 4px 0 6px;
   border-radius: 4px;
 }
+#nav .nav-link {
+  color: #fff;
+}
+#nav .nav-dropdown-container .nav-link:hover:not(.current) {
+  border-bottom: none;
+}
+#nav .nav-dropdown-container:hover .nav-dropdown {
+  display: block;
+}
+#nav .nav-dropdown-container.language,
+#nav .nav-dropdown-container.ecosystem {
+  margin-left: 20px;
+}
+#nav .nav-dropdown-container .arrow {
+  pointer-events: none;
+}
+#nav .nav-dropdown {
+  display: none;
+  box-sizing: border-box;
+/*
+    最大高度：max-height: calc(100vh - %s)，
+    这里 %s 是 $header-height 的动态值，确保高度不会超出视口
+    */
+  max-height: calc(100vh - 40px);
+/*开启垂直滚动*/
+  overflow-y: auto;
+/*绝对定位, 位置相对于父级元素*/
+  position: absolute;
+/*顶部距离：top: 100%，确保菜单紧贴导航条底部。*/
+  top: 100%;
+/*向右偏移：right: -15px。*/
+  right: -15px;
+  background-color: #7e2d36;
+  padding: 2px 0;
+  border: 1px solid #fff;
+/* border-bottom-color: $theme */
+  text-align: left;
+  border-radius: 4px;
+  white-space: nowrap;
+/*定义列表项的样式*/
+}
+#nav .nav-dropdown li {
+  line-height: 1.8em;
+/*移除列表项的外边距*/
+  margin: 0;
+  display: block;
+}
+#nav .nav-dropdown li > ul {
+  padding-left: 0;
+}
+#nav .nav-dropdown li:first-child h4 {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+#nav .nav-dropdown a,
+#nav .nav-dropdown h4 {
+  padding: 0 14px 0 14px;
+}
+#nav .nav-dropdown h4 {
+  margin: 0.45em 0 0;
+  padding-top: 0.45em;
+  border-top: 1px solid #eee;
+}
+#nav .nav-dropdown a {
+  color: #fff;
+  font-size: 0.9em;
+  display: block;
+}
+#nav .nav-dropdown a:hover {
+  color: #ff0;
+}
+#nav .arrow {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -1px;
+  margin-left: 6px;
+  margin-right: -14px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #fff;
+}
 #logo {
   display: inline-block;
   font-size: 1.5em;
@@ -502,7 +512,7 @@ body.docs #mobile-bar::before {
   position: fixed;
   z-index: 10;
   top: 61px;
-  left: 0;
+  left: 20px;
   bottom: 0;
   overflow-x: hidden;
   overflow-y: auto;
