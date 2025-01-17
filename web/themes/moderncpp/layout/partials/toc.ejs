@@ -2,13 +2,11 @@
 	  <!-- 引入外部的 JS 文件 -->
   <!-- <script src="/modern-cpp/js/menu.js"></script> -->
 
-
-	<!-- 传递数据到 JavaScript -->
-	<%- generateSidebar() %>
-	
 	<% console.log("toc.ejs",type) %>
-
+	<!-- SidebarHelper -->
 	<%- SidebarHelper(type,page) %>
-
+	----------------------------<br>
+	<!-- generateTocLinks -->
+	<%- generateTocLinks() %>
 
 </ul>
