@@ -15,9 +15,9 @@ timezone: ''
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 # url: http://example.com
 # rstg00po54.github.io/modern-cpp-tutorial/
-# url: http://rstg00po54.github.io/modern-cpp-tutorial/
+url: http://rstg00po54.github.io/hbook/
 # root: /modern-cpp-tutorial/
-# root: /modern-cpp/
+root: /hbook/
 # permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -113,8 +113,8 @@ theme: moderncpp
 
 deploy:
   type: git
-  repository: git@github.com:rstg00po54/modern-cpp-tutorial.git
-  branch: page1
+  repository: git@github.com:rstg00po54/hbook.git
+  branch: page
 
 
 
