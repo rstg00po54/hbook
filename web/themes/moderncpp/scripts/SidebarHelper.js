@@ -61,7 +61,7 @@ hexo.extend.helper.register('SidebarHelper', function (type, page) {
 		</li>`;
 	}).join('\n');
 	console.log('SidebarHelper --' + pagec)
-	log(html)
+	// log(html)
 	return html;
 });
 
